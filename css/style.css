@@ -6,3 +6,17 @@ body {
 .bg-brown {
     background-color: #be762e;
 }
+
+.bg-light-gray {
+    background-color: #e4ddc4;
+}
+
+.btn-brown{
+    background-color: #513519;
+    color: white;
+}
+
+.btn-brown:hover{
+    background-color: #68441f;
+    color: white;
+}
