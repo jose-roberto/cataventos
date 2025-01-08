@@ -39,10 +39,11 @@ Rascunho de uma modelagem considerando banco de dados e aspectos gerais da funci
 - [ ] Popular o banco de dados
       
 ## Estrutura geral (front-end e back-end)
-- [ ] Página de cadastro de usuário
-- [ ] Página de login
+- [X] Página de cadastro de usuário
+- [X] Página de login
 - [X] Navbar
 - [ ] Timeline de textos produzidos
+- [ ] Tirar repetição do código da navbar dos arquivos
 
 ### Itens do Toggler da Navbar
 

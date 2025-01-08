@@ -4,7 +4,7 @@ body {
 
 
 .bg-brown {
-    background-color: #be762e;
+    background-color: #68441f;
 }
 
 .bg-light-gray {
@@ -12,11 +12,21 @@ body {
 }
 
 .btn-brown{
-    background-color: #513519;
+    background-color: #412a14;
     color: white;
 }
 
 .btn-brown:hover{
-    background-color: #68441f;
+    background-color: #513519;
     color: white;
+}
+
+.title {
+    font-family:'Courier New';
+    text-decoration: none;
+    color: #513519; 
+}
+
+.link-style {
+    color: #513519; 
 }
