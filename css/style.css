@@ -1,5 +1,5 @@
 .bg-main {
-    background-color: rgb(249, 240, 227);
+    background-color: #fbf1e4;
 }
 
 .bg-reglog {
@@ -8,6 +8,14 @@
 
 .bg-brown {
     background-color: #66bfec;
+}
+
+.bg-sidebar-title {
+    background-color: #e5781f;
+}
+
+.bg-sidebar {
+    background-color: #f88b32;
 }
 
 .btn-brown{
@@ -32,4 +40,9 @@
 
 .link-style:hover {
     color: #b96119; 
+}
+
+.nav-link:hover {
+    background-color: #f9a333;
+    color: #fff;
 }
