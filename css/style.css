@@ -1,32 +1,35 @@
-body {
-    background-color: antiquewhite;
+.bg-main {
+    background-color: rgb(249, 240, 227);
 }
 
+.bg-reglog {
+    background-color: #8fd5f8;
+}
 
 .bg-brown {
-    background-color: #68441f;
-}
-
-.bg-light-gray {
-    background-color: #e4ddc4;
+    background-color: #66bfec;
 }
 
 .btn-brown{
-    background-color: #412a14;
+    background-color: #e5781f;
     color: white;
 }
 
 .btn-brown:hover{
-    background-color: #513519;
+    background-color: #b96119;
     color: white;
 }
 
 .title {
-    font-family:'Courier New';
+    font-family:'Henny Penny', sans-serif;
     text-decoration: none;
-    color: #513519; 
+    color: #ffffff; 
 }
 
 .link-style {
-    color: #513519; 
+    color: #e5781f; 
+}
+
+.link-style:hover {
+    color: #b96119; 
 }
