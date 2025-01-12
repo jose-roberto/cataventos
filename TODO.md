@@ -65,13 +65,15 @@ Implementar respectivos redirecionamentos.
 - [ ] Análise da atividade
 
 ### Página de textos do usuário
-- [ ] Criar textos via modal
+- [ ] Criar textos via modal com ferramentas de edição
 - [ ] Visualizar textos produzidos
 - [ ] Alterar textos produzidos
 - [ ] Excluir textos produzidos
+- [ ] Contador de caracteres
 
 ### Página de listas do usuário
-- [ ] Criar listas via modal
+- [ ] Criar listas via modal com ferramentas de edição
 - [ ] Visualizar listas
 - [ ] Alterar listas
 - [ ] Excluir listas
+- [ ] Contador de caracteres

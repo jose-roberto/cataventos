@@ -90,11 +90,28 @@
     </div>
 
     <div class="container-fluid page-content">
-        <button type="button" class="btn btn-brown" data-bs-toggle="modal" data-bs-target="#createListModal"
-            data-bs-whatever="@mdo">Criar conto</button>
+        <div class="d-flex align-items-center justify-content-center mb-4">
+            <h3>Crie seu conto</h3>
+        </div>
 
-        <div class="modal fade" id="createListModal" tabindex="-1" aria-labelledby="createListModal" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="d-flex align-items-center justify-content-center">
+            <form class="d-flex align-items-center">
+                <div class="position-relative w-100">
+                    <input class="form-control rounded-pill me-2 search-w fs-5 ps-5" type="search" aria-label="Search">
+                    <span class="position-absolute top-50 start-0 translate-middle-y ps-3">
+                        <i class="bi bi-search"></i>
+                    </span>
+                </div>
+            </form>
+
+            <button type="button" class="btn btn-brown" data-bs-toggle="modal" data-bs-target="#createListModal"
+                data-bs-whatever="@mdo">
+                <i class="bi bi-plus-square me-2"></i>Criar conto</button>
+        </div>
+
+
+        <div class="modal fade mt-5" id="createListModal" tabindex="-1" aria-labelledby="createListModal" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="createListModal">Crie sua conto</h1>
@@ -107,8 +124,8 @@
                                 <input type="text" class="form-control" id="recipient-name">
                             </div>
                             <div class="mb-3">
-                                <label for="description" class="col-form-label fw-semibold">Descrição:</label>
-                                <textarea class="form-control" id="description"></textarea>
+                                <label for="description" class="col-form-label fw-semibold">Conto:</label>
+                                <textarea class="form-control form-text" id="description" placeholder="Digite seu conto" maxlength="3000"></textarea>
                             </div>
                         </form>
                     </div>

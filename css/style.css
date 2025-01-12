@@ -50,3 +50,13 @@
 .page-content {
     margin-top: 8%;
 }
+
+.form-text {
+    height: 300px;
+}
+
+.search-w {
+    width: 500px;
+    border: 1px solid #e8dddd;
+    
+}
