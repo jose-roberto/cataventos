@@ -34,7 +34,7 @@ Rascunho de uma modelagem considerando banco de dados e aspectos gerais da funci
 - Nome do gênero
 
 ## Banco de dados
-- [X] Definir ferramenta -> SQLite
+- [X] Definir ferramenta -> Escolhemos: SQLite
 - [ ] Criar o banco de dados
 - [ ] Popular o banco de dados
       
