@@ -1,1 +1,3 @@
-console.log("Olá, Mundo!")
+function navigation(path) {
+    
+}
