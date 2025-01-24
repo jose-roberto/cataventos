@@ -28,6 +28,11 @@
     color: white;
 }
 
+.btn-brown:active {
+    background-color: #e5781f;
+    color: white;
+}
+
 .title {
     font-family:'Henny Penny', sans-serif;
     text-decoration: none;
@@ -59,4 +64,9 @@
     width: 500px;
     border: 1px solid #e8dddd;
     
+}
+
+.text-index {
+    color: #b96119;
+    padding: 5%;
 }
