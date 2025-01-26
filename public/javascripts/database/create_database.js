@@ -21,7 +21,8 @@ db.prepare(
   texto TEXT,
   descricao TEXT,
   data_publicacao TEXT,
-  likes INTEGER
+  likes INTEGER,
+  status INTEGER
 )`).run();
 
 db.prepare(
@@ -67,6 +68,6 @@ db.prepare(
   PRIMARY KEY (text_id, user_id)
 )`).run();
 
-console.log("Banco de dados pronto!");
+console.log("Banco de dados criado!");
 
 module.exports = db;

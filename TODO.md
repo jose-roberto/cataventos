@@ -42,16 +42,16 @@ Rascunho de uma modelagem considerando banco de dados e aspectos gerais da funci
 - [X] Página de cadastro de usuário
 - [X] Página de login
 - [X] Navbar
-- [ ] Tirar repetição do código da navbar dos arquivos
+- [X] Tirar repetição do código da navbar dos arquivos
 
 ### Itens do Toggler da Navbar
 
 Implementar respectivos redirecionamentos.
 
-- [ ] Página de perfil
-- [ ] Página de textos do usuário
-- [ ] Página de lista de textos
-- [ ] Botão de logout
+- [X] Página de perfil
+- [X] Página de textos do usuário
+- [X] Página de lista de textos
+- [X] Botão de logout
 - [ ] Homepage na logo
 
 ### Homepage
