@@ -1,85 +1,72 @@
-const sqlite3 = require('sqlite3').verbose();
+const Database = require('better-sqlite3');
 
-let db = new sqlite3.Database('./database.db', (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Conectado ao banco de dados SQLite.');
-});
+const db = new Database('cataventos.db');
 
-db.run(`CREATE TABLE IF NOT EXISTS users (
+db.prepare(
+  `CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nome TEXT,
   nome_usuario TEXT UNIQUE,
   email TEXT UNIQUE,
   senha TEXT,
   data_nasc TEXT,
-  pais TEXT,
   tipo INTEGER
-)`, (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Tabela "users" criada ou já existe.');
-});
+)`).run();
 
-const inserirUsuario = (nome, nome_usuario, email, data_nasc, senha, tipo) => {
-  bcrypt.hash(senha, 10, (err, hash) => {
-    if (err) {
-      return console.error(err.message);
-    }
-    db.run(`INSERT INTO users (nome, nome_usuario, email, data_nasc, senha, tipo) VALUES (?, ?, ?, ?, ?, ?)`, 
-      [nome, nome_usuario, email, data_nasc, hash, tipo], function(err) {
-      if (err) {
-        return console.error(err.message);
-      }
-      console.log(`Um novo usuário foi inserido com o ID ${this.lastID}`);
-    });
-  });
-};
-
-db.run(`CREATE TABLE IF NOT EXISTS text (
+db.prepare(
+  `CREATE TABLE IF NOT EXISTS text (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   titulo TEXT,
-  user_id INTEGER,
   tipo INTEGER,
   texto TEXT,
   descricao TEXT,
-  generos TEXT,
-  publicacao TEXt
-)`, (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Tabela "text" criada ou já existe.');
-});
+  data_publicacao TEXT,
+  likes INTEGER
+)`).run();
 
-db.run(`CREATE TABLE IF NOT EXISTS list (
+db.prepare(
+  `CREATE TABLE IF NOT EXISTS list (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nome TEXT,
   user_id INTEGER,
   privacidade INTEGER,
-  descricao TEXT
-)`, (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Tabela "list" criada ou já existe.');
-});
+  descricao TEXT,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+)`).run();
 
-db.run(`CREATE TABLE IF NOT EXISTS genre (
+db.prepare(
+  `CREATE TABLE IF NOT EXISTS genre (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nome TEXT
-)`, (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Tabela "genre" criada ou já existe.');
-});
+)`).run();
 
-db.close((err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Conexão com o banco de dados fechada.');
-});
+db.prepare(
+  `CREATE TABLE IF NOT EXISTS text_genres (
+  text_id INTEGER,
+  genre_id INTEGER,
+  FOREIGN KEY (text_id) REFERENCES text(id),
+  FOREIGN KEY (genre_id) REFERENCES genre(id),
+  PRIMARY KEY (text_id, genre_id)
+)`).run();
+
+db.prepare(
+  `CREATE TABLE IF NOT EXISTS list_texts (
+  list_id INTEGER,
+  text_id INTEGER,
+  FOREIGN KEY (list_id) REFERENCES list(id),
+  FOREIGN KEY (text_id) REFERENCES text(id),
+  PRIMARY KEY (list_id, text_id)
+)`).run();
+
+db.prepare(
+  `CREATE TABLE IF NOT EXISTS text_users (
+  text_id INTEGER,
+  user_id INTEGER,
+  FOREIGN KEY (text_id) REFERENCES text(id),
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  PRIMARY KEY (text_id, user_id)
+)`).run();
+
+console.log("Banco de dados pronto!");
+
+module.exports = db;

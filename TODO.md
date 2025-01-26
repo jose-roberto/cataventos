@@ -35,7 +35,7 @@ Rascunho de uma modelagem considerando banco de dados e aspectos gerais da funci
 
 ## Banco de dados
 - [X] Definir ferramenta -> Escolhemos: SQLite
-- [ ] Criar o banco de dados
+- [X] Criar o banco de dados
 - [ ] Popular o banco de dados
       
 ## Estrutura geral (front-end e back-end)
