@@ -3,7 +3,7 @@ const Database = require('better-sqlite3');
 const db = new Database('cataventos.db');
 
 db.prepare(
-  `CREATE TABLE IF NOT EXISTS users (
+  `CREATE TABLE IF NOT EXISTS user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nome TEXT,
   nome_usuario TEXT UNIQUE,
@@ -32,7 +32,7 @@ db.prepare(
   user_id INTEGER,
   privacidade INTEGER,
   descricao TEXT,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  FOREIGN KEY (user_id) REFERENCES user(id)
 )`).run();
 
 db.prepare(
@@ -42,7 +42,7 @@ db.prepare(
 )`).run();
 
 db.prepare(
-  `CREATE TABLE IF NOT EXISTS text_genres (
+  `CREATE TABLE IF NOT EXISTS text_genre (
   text_id INTEGER,
   genre_id INTEGER,
   FOREIGN KEY (text_id) REFERENCES text(id),
@@ -51,7 +51,7 @@ db.prepare(
 )`).run();
 
 db.prepare(
-  `CREATE TABLE IF NOT EXISTS list_texts (
+  `CREATE TABLE IF NOT EXISTS list_text (
   list_id INTEGER,
   text_id INTEGER,
   FOREIGN KEY (list_id) REFERENCES list(id),
@@ -60,7 +60,7 @@ db.prepare(
 )`).run();
 
 db.prepare(
-  `CREATE TABLE IF NOT EXISTS text_users (
+  `CREATE TABLE IF NOT EXISTS text_user (
   text_id INTEGER,
   user_id INTEGER,
   FOREIGN KEY (text_id) REFERENCES text(id),
