@@ -1,41 +1,39 @@
-const Genre = require('./genre');
+const Database = require('better-sqlite3');
+
+const db_connection = new Database('cataventos.db');
+console.log('Conectado ao banco de dados SQLite.');
+
+module.exports = db_connection;
+
+const Genre = require('../models/genre');
 const genre_instance = new Genre();
+genre_instance.create_table();
 
-const Text = require('./text');
+const Text = require('../models/text');
 const text_instance = new Text();
+text_instance.create_table();
 
-const List = require('./list');
-const list_instance = new List();
-
-const User = require('./user');
+const User = require('../models/user');
 const user_instance = new User();
+user_instance.create_table();
 
-const TextGenre = require('./text_genre');
+const List = require('../models/list');
+const list_instance = new List();
+list_instance.create_table();
+
+const TextGenre = require('../models/text_genre');
 const text_genre_instance = new TextGenre();
+text_genre_instance.create_table();
 
-const TextList = require('./text_list');
+const TextList = require('../models/text_list');
 const text_list_instance = new TextList();
+text_list_instance.create_table();
 
-const TextUser = require('./text_user');
+const TextUser = require('../models/text_user');
 const text_user_instance = new TextUser();
+text_user_instance.create_table();
 
-function initialize_database() {
-    genre_instance.createTable();
-
-    text_instance.createTable();
-
-    list_instance.createTable();
-
-    user_instance.createTable();
-
-    text_genre_instance.createTable();
-
-    text_list_instance.createTable();
-
-    text_user_instance.createTable();
-}
-
-function fill_database() {
+function fill_genre() {
     // Gêneros
     genre_instance.create({ nome: 'Mistério' }); // 1 
     genre_instance.create({ nome: 'Fantasia' }); // 2
@@ -58,8 +56,10 @@ function fill_database() {
     genre_instance.create({ nome: 'Suspense' }); // 19
     genre_instance.create({ nome: 'Fantasia Urbana' }); // 20
     genre_instance.create({ nome: 'Verso livre' }); // 21
+}
 
 
+function fill_text() {
     // Contos
     text_instance.create({ // 1
         titulo: 'O Coração Delator',
@@ -178,8 +178,10 @@ function fill_database() {
         like: 0,
         status: 1
     });
+}
 
 
+function fill_user() {
     // Usuários
     user_instance.create({  // 1
         nome: 'Admin', nome_usuario: 'admin', email: 'admin@gmail.com', senha: '1234', data_nasc: '01/01/1990', tipo: 0
@@ -238,28 +240,41 @@ function fill_database() {
     user_instance.create({ // 19
         nome: 'Charlotte Brontë', nome_usuario: 'bronte', email: 'bronte@gmail.com', senha: '1234', data_nasc: '21/04/1816', tipo: 1
     });
+}
 
 
+function fill_list() {
     // Listas
     list_instance.create({ // 1
-        nome: 'Clássicos', user_id: 1, privacidade: 0, descricao: 'Lista de clássicos da literatura' });
+        nome: 'Clássicos', user_id: 1, privacidade: 0, descricao: 'Lista de clássicos da literatura'
+    });
     list_instance.create({ // 2
-        nome: 'Suspense e Mistério', user_id: 2, privacidade: 0, descricao: 'Lista de livros de suspense e mistério' });
+        nome: 'Suspense e Mistério', user_id: 2, privacidade: 0, descricao: 'Lista de livros de suspense e mistério'
+    });
     list_instance.create({ // 3
-        nome: 'Horror Cósmico', user_id: 3, privacidade: 0, descricao: 'Lista de livros de horror cósmico' });
+        nome: 'Horror Cósmico', user_id: 3, privacidade: 0, descricao: 'Lista de livros de horror cósmico'
+    });
     list_instance.create({ // 4
-        nome: 'Favoritos de Edgar Allan Poe', user_id: 4, privacidade: 0, descricao: 'Lista de favoritos de Edgar Allan Poe' });
+        nome: 'Favoritos de Edgar Allan Poe', user_id: 4, privacidade: 0, descricao: 'Lista de favoritos de Edgar Allan Poe'
+    });
     list_instance.create({ // 5
-        nome: 'Histórias Curtas', user_id: 5, privacidade: 0, descricao: 'Lista de histórias curtas' });
+        nome: 'Histórias Curtas', user_id: 5, privacidade: 0, descricao: 'Lista de histórias curtas'
+    });
     list_instance.create({ // 6
-        nome: 'Terror Gótico', user_id: 6, privacidade: 0, descricao: 'Lista de livros de terror gótico' });
+        nome: 'Terror Gótico', user_id: 6, privacidade: 0, descricao: 'Lista de livros de terror gótico'
+    });
     list_instance.create({ // 7
-        nome: 'Clássicos da Literatura Inglesa', user_id: 7, privacidade: 0, descricao: 'Lista de clássicos da literatura inglesa' });
+        nome: 'Clássicos da Literatura Inglesa', user_id: 7, privacidade: 0, descricao: 'Lista de clássicos da literatura inglesa'
+    });
     list_instance.create({ // 8
-        nome: 'Ficção Científica e Fantasia', user_id: 8, privacidade: 0, descricao: 'Lista de livros de ficção científica e fantasia' });
+        nome: 'Ficção Científica e Fantasia', user_id: 8, privacidade: 0, descricao: 'Lista de livros de ficção científica e fantasia'
+    });
     list_instance.create({ // 9
-        nome: 'Histórias com Temas Filosóficos', user_id: 9, privacidade: 0, descricao: 'Lista de histórias com temas filosóficos' });
+        nome: 'Histórias com Temas Filosóficos', user_id: 9, privacidade: 0, descricao: 'Lista de histórias com temas filosóficos'
+    });
+}
 
+function fill_text_genre() {
 
     // Associação texto-gênero
     text_genre_instance.create({ text_id: 1, genre_id: 1 }); // O Coração Delator - Mistério
@@ -286,8 +301,10 @@ function fill_database() {
     text_genre_instance.create({ text_id: 12, genre_id: 12 }); // A Máquina do Tempo - Ficção Científica
     text_genre_instance.create({ text_id: 13, genre_id: 14 }); // O Monte dos Vendavais - Drama
     text_genre_instance.create({ text_id: 13, genre_id: 1 }); // O Monte dos Vendavais - Mistério
+}
 
 
+function fill_text_list() {
     // Associação texto-lista
     text_list_instance.create({ text_id: 1, list_id: 2 }); // O Coração Delator - Suspense e Mistério
     text_list_instance.create({ text_id: 1, list_id: 4 }); // O Coração Delator - Favoritos de Edgar Allan Poe
@@ -303,8 +320,10 @@ function fill_database() {
     text_list_instance.create({ text_id: 11, list_id: 6 }); // A Máscara da Morte Rubra - Terror Gótico
     text_list_instance.create({ text_id: 12, list_id: 8 }); // A Máquina do Tempo - Ficção Científica e Fantasia
     text_list_instance.create({ text_id: 13, list_id: 7 }); // O Monte dos Vendavais - Clássicos da Literatura Inglesa
+}
 
 
+function fill_text_user() {
     // Associação texto-usuário
     text_user_instance.create({ text_id: 1, user_id: 10 }); // O Coração Delator - poe
     text_user_instance.create({ text_id: 2, user_id: 11 }); // A Loteria - shirley
@@ -321,5 +340,52 @@ function fill_database() {
     text_user_instance.create({ text_id: 13, user_id: 19 }); // O Monte dos Vendavais - bronte
 }
 
-initialize_database();
-fill_database();
+
+// Verifica se o banco de dados está populado, e, caso não esteja, o popula
+function verify_population() {
+    genre_instance.find_all().then((genres) => {
+        if (genres.length == 0) {
+            fill_genre();
+        }
+    });
+
+    text_instance.find_all().then((texts) => {
+        if (texts.length == 0) {
+            fill_text();
+        }
+    });
+
+    user_instance.find_all().then((users) => {
+        if (users.length == 0) {
+            fill_user();
+        }
+    });
+
+    list_instance.find_all().then((lists) => {
+        if (lists.length == 0) {
+            fill_list();
+        }
+    });
+
+    text_genre_instance.find_all().then((text_genres) => {
+        if (text_genres.length == 0) {
+            fill_text_genre();
+        }
+    });
+
+    text_list_instance.find_all().then((text_lists) => {
+        if (text_lists.length == 0) {
+            fill_text_list();
+        }
+    });
+
+    text_user_instance.find_all().then((text_users) => {
+        if (text_users.length == 0) {
+            fill_text_user();
+        }
+    });
+
+    console.log('População verificada: caso necessário, o banco de dados foi populado.');
+}
+
+verify_population();
