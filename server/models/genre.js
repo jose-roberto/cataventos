@@ -1,4 +1,4 @@
-const Model = require('./model');
+const Model = require('./Model');
 
 class Genre extends Model {
     constructor() {
@@ -21,7 +21,7 @@ class Genre extends Model {
             const statement = this.db_connection.prepare(
                 `CREATE TABLE genre (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    nome TEXT NOT NULL
+                    name TEXT NOT NULL
                 )`
             );
             statement.run();

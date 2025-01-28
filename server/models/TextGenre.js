@@ -1,4 +1,4 @@
-const Model = require('./model');
+const Model = require('./Model');
 
 class TextGenre extends Model {
     constructor() {

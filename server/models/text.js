@@ -1,4 +1,4 @@
-const Model = require('./model');
+const Model = require('./Model');
 
 class Text extends Model {
     constructor() {
@@ -20,11 +20,11 @@ class Text extends Model {
             const statement = this.db_connection.prepare(
                 `CREATE TABLE IF NOT EXISTS text (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    titulo TEXT,
-                    tipo INTEGER,
-                    texto TEXT,
-                    sinopse TEXT,
-                    data_publicacao TEXT,
+                    title TEXT,
+                    text TEXT,
+                    synopsis TEXT,
+                    publication_date TEXT,
+                    type INTEGER,
                     like INTEGER,
                     status INTEGER
                 )`

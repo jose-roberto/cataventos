@@ -1,9 +1,9 @@
-const User = require('../models/user');
+const User = require('../models/User');
 
 const create_user = async (req, res) => {
   try {
     const { name, username, email, password, birthdate } = req.body;
-    console.log({ name, username });
+    // console.log(req.body);
 
     // Validação de entrada
     if (!name || !username || !email || !password || !birthdate) {
@@ -11,20 +11,20 @@ const create_user = async (req, res) => {
     }
 
     // Criar uma instância de User
-    const user = new User();
+    const user_instance = new User();
 
     // Criar novo usuário
-    const result = await user.create({
-      nome: name,
-      nome_usuario: username,
+    const result = await user_instance.create({
+      name: name,
+      username: username,
       email: email,
-      senha: password,
-      data_nasc: birthdate,
-      tipo: 1 // Assumindo que 'tipo' é um tipo de usuário, definindo um valor padrão
+      password: password,
+      birthdate: birthdate,
+      type: 1
     });
 
     // Retornar resposta de sucesso
-    res.status(201).json({ message: 'Usuário criado com sucesso!', userId: result.lastInsertRowid });
+    res.status(201).json({ message: 'Usuário criado com sucesso!', user_id: result.lastInsertRowid });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao criar usuário.' });
@@ -32,5 +32,5 @@ const create_user = async (req, res) => {
 };
 
 module.exports = {
-  create_user,
+  create_user
 };

@@ -1,8 +1,8 @@
-const Model = require('./model');
+const Model = require('./Model');
 
-class TextList extends Model {
+class TextUser extends Model {
     constructor() {
-        super('text_list');
+        super('text_user');
     }
 
     create_table() {
@@ -18,12 +18,12 @@ class TextList extends Model {
         // Verifica se a tabela já existe antes de tentar criar
         if (!table_exists(this.table_name)) {
             const statement = this.db_connection.prepare(
-                `CREATE TABLE IF NOT EXISTS text_list (
-                    list_id INTEGER,
+                `CREATE TABLE IF NOT EXISTS text_user (
                     text_id INTEGER,
-                    FOREIGN KEY (list_id) REFERENCES list(id),
+                    user_id INTEGER,
                     FOREIGN KEY (text_id) REFERENCES text(id),
-                    PRIMARY KEY (list_id, text_id)
+                    FOREIGN KEY (user_id) REFERENCES user(id),
+                    PRIMARY KEY (text_id, user_id)
                 )`
             );
             statement.run();
@@ -34,4 +34,4 @@ class TextList extends Model {
     }
 }
 
-module.exports = TextList;
+module.exports = TextUser;
