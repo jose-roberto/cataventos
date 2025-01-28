@@ -52,7 +52,7 @@ Implementar respectivos redirecionamentos.
 - [X] Página de textos do usuário
 - [X] Página de lista de textos
 - [X] Botão de logout
-- [ ] Homepage na logo
+- [X] Homepage na logo
 
 ### Homepage
 - [ ] Timeline de textos produzidos
