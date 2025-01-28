@@ -12,13 +12,14 @@ const create_user = async (req, res) => {
 
     // Criar uma instância de User
     const user_instance = new User();
+    const hashedPassword = await user_instance.crypt_password(password);
 
     // Criar novo usuário
     const result = await user_instance.create({
       name: name,
       username: username,
       email: email,
-      password: password,
+      password: hashedPassword,
       birthdate: birthdate,
       type: 1
     });

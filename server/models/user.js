@@ -1,4 +1,5 @@
 const Model = require('./Model');
+const bcrypt = require('bcryptjs');
 
 class User extends Model {
     constructor() {
@@ -32,6 +33,20 @@ class User extends Model {
             console.log(`Tabela "${this.table_name}" criada com sucesso.`);
         } else {
             console.log(`Tabela "${this.table_name}" já existe.`);
+        }
+    }
+
+    async crypt_password(password) {
+        try {
+            // Gera um "salt" (um valor aleatório) para aumentar a segurança do hash
+            const salt = await bcrypt.genSalt(10); // 10 é o custo do processamento (quanto maior, mais seguro e lento)
+
+            // Cria o hash da senha usando o salt
+            const hashedPassword = await bcrypt.hash(password, salt);
+
+            return hashedPassword; // Retorna a senha criptografada
+        } catch (error) {
+            throw new Error('Erro ao criptografar a senha');
         }
     }
 }
