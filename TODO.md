@@ -1,10 +1,64 @@
 # Tarefas e anotações
 
-## Rascunho de Modelagem
+## Estrutura geral (front-end e back-end)
+
+### Navbar
+
+- [X] Criar navbar
+- [X] Tornar navbar dinâmica
+- [X] Tirar repetição do código da navbar dos arquivos
+
+#### Itens do Toggler da navbar
+
+Implementar respectivos redirecionamentos para:
+
+- [X] Página de perfil
+- [X] Página de textos do usuário
+- [X] Página de lista de textos
+- [X] Botão de logout
+- [X] Homepage na logo
+
+### Página Index
+- [X] Redirecionamento para cadastro e login
+
+### Autenticação de usuário
+- [ ] Cadastro de usuário (Create)
+- [ ] Login
+- [ ] Logout
+- [ ] Validação do usuário
+- [ ] Controle de administrador
+
+### Homepage
+- [ ] Timeline de textos produzidos
+- [ ] Coluna de sugestões
+
+### Página de perfil
+- [ ] Visualizar dados pessoais (Read)
+- [ ] Alterar dados pessoais (Update)
+- [ ] Excluir conta (Delete)
+- [ ] Análise de atividades
+
+### Página de textos do usuário
+- [ ] Criar textos via modal com ferramentas de edição (Create)
+- [ ] Visualizar textos produzidos (Read)
+- [ ] Alterar textos produzidos (Update)
+- [ ] Excluir textos produzidos (Delete)
+- [ ] Acoplar editor de texto -> Sugestão: CKEditor
+- [ ] Contador de caracteres
+
+### Página de listas do usuário
+- [ ] Criar listas via modal (Create)
+- [ ] Visualizar listas (Read)
+- [ ] Alterar listas (Update)
+- [ ] Excluir listas (Delete)
+
+## Banco de dados
+
+### Rascunho de Modelagem
 
 Rascunho de uma modelagem considerando banco de dados e aspectos gerais da funcionalidade.
 
-### Usuário
+#### Usuário
 - Id
 - Nickname
 - Email
@@ -14,7 +68,7 @@ Rascunho de uma modelagem considerando banco de dados e aspectos gerais da funci
 - Localização
 - Tipo (comum ou administrador)
 
-### Texto
+#### Texto
 - Id
 - Tipo (conto ou poema)
 - Título
@@ -22,58 +76,18 @@ Rascunho de uma modelagem considerando banco de dados e aspectos gerais da funci
 - Gêneros
 - Classificação indicativa
 
-### Lista
+#### Lista
 - Id
 - Título
 - Capa
 - Privacidade
 - Textos
 
-### Gênero
+#### Gênero
 - Id
 - Nome do gênero
 
-## Banco de dados
+### Estruturação do banco de dados
 - [X] Definir ferramenta -> Escolhemos: SQLite
 - [X] Criar o banco de dados
-- [ ] Popular o banco de dados
-      
-## Estrutura geral (front-end e back-end)
-- [X] Página de cadastro de usuário
-- [X] Página de login
-- [X] Navbar
-- [X] Tirar repetição do código da navbar dos arquivos
-
-### Itens do Toggler da Navbar
-
-Implementar respectivos redirecionamentos.
-
-- [X] Página de perfil
-- [X] Página de textos do usuário
-- [X] Página de lista de textos
-- [X] Botão de logout
-- [X] Homepage na logo
-
-### Homepage
-- [ ] Timeline de textos produzidos
-- [ ] Coluna de sugestões
-
-### Página de perfil
-- [ ] Visualizar dados pessoais
-- [ ] Alterar dados pessoais
-- [ ] Excluir conta
-- [ ] Análise da atividade
-
-### Página de textos do usuário
-- [ ] Criar textos via modal com ferramentas de edição
-- [ ] Visualizar textos produzidos
-- [ ] Alterar textos produzidos
-- [ ] Excluir textos produzidos
-- [ ] Contador de caracteres
-
-### Página de listas do usuário
-- [ ] Criar listas via modal com ferramentas de edição
-- [ ] Visualizar listas
-- [ ] Alterar listas
-- [ ] Excluir listas
-- [ ] Contador de caracteres
+- [X] Popular o banco de dados
