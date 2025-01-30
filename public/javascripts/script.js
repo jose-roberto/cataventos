@@ -1,3 +1,20 @@
+async function load_genres() {
+  try {
+    const response = await fetch('/genre/read_genre');
+    const genres = await response.json();
+
+    const genreSelect = document.getElementById('genre');
+    genres.forEach(genre => {
+      const option = document.createElement('option');
+      option.value = genre.id;
+      option.textContent = genre.name;
+      genreSelect.appendChild(option);
+    });
+  } catch (error) {
+    console.error('Erro ao obter gêneros literários:', error);
+  }
+}
+
 function load_header() {
   fetch('/templates/navbar.html')
     .then(response => response.text())
@@ -7,4 +24,7 @@ function load_header() {
     .catch(error => console.error('Erro ao carregar o navbar:', error));
 }
 
-window.onload = load_header;
+window.onload = function () {
+  load_header();
+  load_genres();
+};
