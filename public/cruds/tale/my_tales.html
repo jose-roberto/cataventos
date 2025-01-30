@@ -60,6 +60,17 @@
                                 <label for="name" class="col-form-label fw-semibold">Nome do conto:</label>
                                 <input type="text" class="form-control" id="recipient-name" name="title" required>
                             </div>
+                            <div class="btn-group mt-2" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                <label class="btn btn-outline-info" for="btnradio1">Conto</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                <label class="btn btn-outline-info" for="btnradio2">Poema</label>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="name" class="col-form-label fw-semibold">Gênero literário:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="title" required>
+                            </div>
                             <div class="mb-3">
                                 <label for="description" class="col-form-label fw-semibold">Conto:</label>
                                 <textarea class="form-control form-text" id="description" placeholder="Digite seu conto"
@@ -67,7 +78,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
+                                <button type="button" class="btn btn-outline-secondary"
                                     data-bs-dismiss="modal">Cancelar</button>
                                 <button type="submit" class="btn btn-brown">Criar</button>
                             </div>
