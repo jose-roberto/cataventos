@@ -57,6 +57,13 @@
                                 <label for="name" class="col-form-label fw-semibold">Nome da lista:</label>
                                 <input type="text" class="form-control" id="recipient-name" name="name" required>
                             </div>
+                            <div class="btn-group mt-2 mb-2" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="btnradio1">Privada</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btnradio2">Pública</label>
+                            </div>
                             <div class="mb-3">
                                 <label for="description" class="col-form-label fw-semibold">Descrição:</label>
                                 <textarea class="form-control h-300 form-text" id="description"
@@ -64,8 +71,8 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-brown">Criar</button>
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Criar</button>
                             </div>
                         </form>
                     </div>
