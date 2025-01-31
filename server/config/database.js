@@ -1,4 +1,5 @@
 const Database = require('better-sqlite3');
+const bcrypt = require('bcryptjs');
 
 const db_connection = new Database('cataventos.db');
 console.log('Conectado ao banco de dados SQLite.');
@@ -182,63 +183,65 @@ function fill_text() {
 
 
 function fill_user() {
+    const hashedPassword = bcrypt.hashSync('1234', 10);
+
     // Usuários
     user_instance.create({  // 1
-        name: 'Admin', username: 'admin', email: 'admin@gmail.com', password: '1234', birthdate: '01/01/1990', type: 0
+        name: 'Admin', username: 'admin', email: 'admin@gmail.com', password: hashedPassword, birthdate: '01/01/1990', type: 0
     });
     user_instance.create({ // 2
-        name: 'José', username: 'zé', email: 'ze@gmail.com', password: '1234', birthdate: '01/01/1990', type: 0
+        name: 'José', username: 'zé', email: 'ze@gmail.com', password: hashedPassword, birthdate: '01/01/1990', type: 0
     });
     user_instance.create({ // 3
-        name: 'Thiago', username: 'thi', email: 'thi@gmail.com', password: '1234', birthdate: '01/01/1990', type: 0
+        name: 'Thiago', username: 'thi', email: 'thi@gmail.com', password: hashedPassword, birthdate: '01/01/1990', type: 0
     });
     user_instance.create({ // 4
-        name: 'Ana', username: 'aninha', email: 'ana@gmail.com', password: '1234', birthdate: '01/01/1990', type: 1
+        name: 'Ana', username: 'aninha', email: 'ana@gmail.com', password: hashedPassword, birthdate: '01/01/1990', type: 1
     });
     user_instance.create({ // 5
-        name: 'Carlos', username: 'carlinhos', email: 'carlos@gmail.com', password: '1234', birthdate: '01/01/1991', type: 1
+        name: 'Carlos', username: 'carlinhos', email: 'carlos@gmail.com', password: hashedPassword, birthdate: '01/01/1991', type: 1
     });
     user_instance.create({ // 6
-        name: 'Sofia', username: 'sofi', email: 'sofia@gmail.com', password: '1234', birthdate: '01/01/1992', type: 1
+        name: 'Sofia', username: 'sofi', email: 'sofia@gmail.com', password: hashedPassword, birthdate: '01/01/1992', type: 1
     });
     user_instance.create({ // 7
-        name: 'Beatriz', username: 'bea', email: 'beatriz@gmail.com', password: '1234', birthdate: '01/01/1993', type: 1
+        name: 'Beatriz', username: 'bea', email: 'beatriz@gmail.com', password: hashedPassword, birthdate: '01/01/1993', type: 1
     });
     user_instance.create({ // 8
-        name: 'Luiz', username: 'luizinho', email: 'luiz@gmail.com', password: '1234', birthdate: '01/01/1994', type: 1
+        name: 'Luiz', username: 'luizinho', email: 'luiz@gmail.com', password: hashedPassword, birthdate: '01/01/1994', type: 1
     });
     user_instance.create({ // 9
-        name: 'Mariana', username: 'mari', email: 'mariana@gmail.com', password: '1234', birthdate: '01/01/1995', type: 1
+        name: 'Mariana', username: 'mari', email: 'mariana@gmail.com', password: hashedPassword, birthdate: '01/01/1995', type: 1
     });
     user_instance.create({ // 10
-        name: 'Edgar Allan Poe', username: 'poe', email: 'poe@gmail.com', password: '1234', birthdate: '19/01/1809', type: 1
+        name: 'Edgar Allan Poe', username: 'poe', email: 'poe@gmail.com', password: hashedPassword, birthdate: '19/01/1809', type: 1
     });
     user_instance.create({ // 11
-        name: 'Shirley Jackson', username: 'shirley', email: 'shirley@gmail.com', password: '1234', birthdate: '14/12/1916', type: 1
+        name: 'Shirley Jackson', username: 'shirley', email: 'shirley@gmail.com', password: hashedPassword, birthdate: '14/12/1916', type: 1
     });
     user_instance.create({ // 12
-        name: 'Jorge Luis Borges', username: 'borges', email: 'borges@gmail.com', password: '1234', birthdate: '24/08/1899', type: 1
+        name: 'Jorge Luis Borges', username: 'borges', email: 'borges@gmail.com', password: hashedPassword, birthdate: '24/08/1899', type: 1
     });
     user_instance.create({ // 13
-        name: 'H.P. Lovecraft', username: 'lovecraft', email: 'lovecraft@gmail.com', password: '1234', birthdate: '20/08/1890', type: 1
+        name: 'H.P. Lovecraft', username: 'lovecraft', email: 'lovecraft@gmail.com', password: hashedPassword, birthdate: '20/08/1890', type: 1
     });
     user_instance.create({ // 14
-        name: 'Lygia Fagundes Telles', username: 'lygia', email: 'lygia@gmail.com', password: '1234', birthdate: '19/04/1923', type: 1
+        name: 'Lygia Fagundes Telles', username: 'lygia', email: 'lygia@gmail.com', password: hashedPassword, birthdate: '19/04/1923', type: 1
     });
     user_instance.create({ // 15
-        name: 'Arthur Machen', username: 'machen', email: 'machen@gmail.com', password: '1234', birthdate: '03/03/1863', type: 1
+        name: 'Arthur Machen', username: 'machen', email: 'machen@gmail.com', password: hashedPassword, birthdate: '03/03/1863', type: 1
     });
     user_instance.create({ // 16
-        name: 'E.T.A. Hoffmann', username: 'hoffmann', email: 'hoffmann@gmail.com', password: '1234', birthdate: '24/01/1776', type: 1
+        name: 'E.T.A. Hoffmann', username: 'hoffmann', email: 'hoffmann@gmail.com', password: hashedPassword, birthdate: '24/01/1776', type: 1
     });
     user_instance.create({ // 17
-        name: 'Autor Desconhecido', username: 'desconhecido', email: 'desconhecido@gmail.com', password: '1234', birthdate: '01/01/0001', type: 1
+        name: 'Autor Desconhecido', username: 'desconhecido', email: 'desconhecido@gmail.com', password: hashedPassword, birthdate: '01/01/0001', type: 1
     });
     user_instance.create({ // 18
-        name: 'H.G. Wells', username: 'wells', email: 'wells@gmail.com', password: '1234', birthdate: '21/09/1866', type: 1
+        name: 'H.G. Wells', username: 'wells', email: 'wells@gmail.com', password: hashedPassword, birthdate: '21/09/1866', type: 1
     });
     user_instance.create({ // 19
-        name: 'Charlotte Brontë', username: 'bronte', email: 'bronte@gmail.com', password: '1234', birthdate: '21/04/1816', type: 1
+        name: 'Charlotte Brontë', username: 'bronte', email: 'bronte@gmail.com', password: hashedPassword, birthdate: '21/04/1816', type: 1
     });
 }
 
@@ -385,7 +388,7 @@ function verify_population() {
         }
     });
 
-    console.log('População verificada: caso necessário, o banco de dados foi populado.');
+    console.log('População verificada: caso necessário, o banco de dados será populado.');
 }
 
 verify_population();
