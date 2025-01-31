@@ -3,9 +3,26 @@ function load_header() {
   fetch('/templates/navbar.html')
     .then(response => response.text())
     .then(data => {
-      document.getElementById('header').innerHTML = data;
+      const headerElement = document.getElementById('header');
+      if (headerElement) {
+        headerElement.innerHTML = data;
+      }
     })
     .catch(error => console.error('Erro ao carregar o navbar:', error));
+}
+
+async function load_user() {
+  try {
+    const response = await fetch('/user/read_user');
+    const user = await response.json();
+
+    document.getElementById('name').textContent = user.name;
+    document.getElementById('username').textContent = user.username;
+    document.getElementById('email').textContent = user.email;
+    document.getElementById('birthdate').textContent = user.birthdate;
+  } catch (error) {
+    console.error('Erro ao obter informações do usuário:', error);
+  }
 }
 
 async function load_genres() {
@@ -27,6 +44,10 @@ async function load_genres() {
 
 window.onload = function () {
   load_header();
+
+  if (window.location.pathname.includes('profile')) {
+    load_user();
+  }
 
   if (window.location.pathname.includes('my_tales')) {
     load_genres();

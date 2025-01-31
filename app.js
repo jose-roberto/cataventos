@@ -46,35 +46,6 @@ app.use('/text', textRouter);
 app.use('/list', listRouter);
 app.use('/genre', genreRouter);
 
-// Rota para processar o login
-app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
-
-  const user_instance = new User();
-
-  try {
-    const authentication_result = await user_instance.authentication(username, password);
-
-    if (authentication_result != null) {
-      req.session.userId = authentication_result;
-      console.log('Usuário autenticado com sucesso com o ID:', authentication_result);
-      res.redirect('/templates/homepage.html');
-    } else {
-      res.send('Usuário ou senha incorretos');
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Erro interno do servidor');
-  }
-});
-
-// Rota para logout
-app.get('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.redirect('/');
-  });
-});
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -90,10 +61,5 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// Iniciar o servidor
-// app.listen(port, () => {
-//   console.log(`Servidor rodando em http://localhost:${port}`);
-// });
 
 module.exports = app;

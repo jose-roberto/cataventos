@@ -24,7 +24,7 @@
 
 <body class="bg-main">
     <header id="header"></header>
-    
+
     <div class="d-flex">
         <section class="container mt-5 pt-5">
             <div class="row">
@@ -49,40 +49,40 @@
 
                                     <div class="row mt-4 mb-4">
                                         <div class="col-lg-3 col-md-4 label">Nome:</div>
-                                        <div class="col-lg-9 col-md-8" name="name"></div>
+                                        <div class="col-lg-9 col-md-8" name="name" id="name"></div>
                                     </div>
 
                                     <div class="row mb-4">
                                         <div class="col-lg-3 col-md-4 label">Nome de Usuário:</div>
-                                        <div class="col-lg-9 col-md-8" name="name"></div>
+                                        <div class="col-lg-9 col-md-8" name="username" id="username"></div>
                                     </div>
 
                                     <div class="row mb-4">
                                         <div class="col-lg-3 col-md-4 label">Email:</div>
-                                        <div class="col-lg-9 col-md-8" name="name"></div>
+                                        <div class="col-lg-9 col-md-8" name="email" id="email"></div>
                                     </div>
 
                                     <div class="row mb-2">
                                         <div class="col-lg-3 col-md-4 label">Data de Nascimento:</div>
-                                        <div class="col-lg-9 col-md-8" name="name"></div>
+                                        <div class="col-lg-9 col-md-8" name="birthdate" id="birthdate"></div>
                                     </div>
                                 </div>
 
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                                    <form action="#" method="POST">
+                                    <form action="/user/update_user" method="POST">
                                         <div class="row mb-3">
                                             <label for="name" class="col-md-4 col-lg-3 col-form-label">Nome</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="name" type="text" class="form-control" id="name" value="#">
+                                                <input name="name" type="text" class="form-control" id="name" value="">
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="nickname"
-                                                class="col-md-4 col-lg-3 col-form-label">Apelido</label>
+                                            <label for="username" class="col-md-4 col-lg-3 col-form-label">Nome de
+                                                usuário</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="nickname" type="text" class="form-control" id="apelido"
-                                                    value="#">
+                                                <input name="username" type="text" class="form-control" id="username"
+                                                    value="">
                                             </div>
                                         </div>
 
@@ -90,7 +90,7 @@
                                             <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="email" type="text" class="form-control" id="email"
-                                                    value="#">
+                                                    value="">
                                             </div>
                                         </div>
 
@@ -99,15 +99,7 @@
                                                 Nascimento</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="birthdate" type="text" class="form-control" id="birthdate"
-                                                    value="#">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="country" class="col-md-4 col-lg-3 col-form-label">País</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="country" type="text" class="form-control" id="country"
-                                                    value="#">
+                                                    value="">
                                             </div>
                                         </div>
 

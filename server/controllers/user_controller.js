@@ -1,5 +1,34 @@
 const User = require('../models/User');
 
+const login = async (req, res) => {
+  const { username, password } = req.body;
+
+  const user_instance = new User();
+
+  try {
+    const authentication_result = await user_instance.authentication(username, password);
+
+    if (authentication_result != null) {
+      req.session.user_id = authentication_result;
+
+      console.log('\nSession após login:', req.session.user_id + '\n');
+
+      res.redirect('/templates/homepage.html');
+    } else {
+      res.send('Usuário ou senha incorretos');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro interno do servidor');
+  }
+};
+
+const logout = async (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/');
+  });
+}
+
 const create_user = async (req, res) => {
   try {
     const { name, username, email, password, birthdate } = req.body;
@@ -32,6 +61,35 @@ const create_user = async (req, res) => {
   }
 };
 
+const read_user = async (req, res) => {
+  try {
+    const user_id = req.session.user_id;
+
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuário não autenticado.' });
+    }
+
+    // Criar uma instância de User
+    const user_instance = new User();
+
+    // Ler usuário
+    const user = await user_instance.find_by_id(user_id);
+
+    // Retornar resposta
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ error: 'Usuário não encontrado.' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao ler usuário.' });
+  }
+}
+
 module.exports = {
-  create_user
+  login,
+  logout,
+  create_user,
+  read_user
 };
