@@ -45,12 +45,14 @@ Implementar respectivos redirecionamentos para:
 - [ ] Excluir textos produzidos (Delete)
 - [ ] Acoplar editor de texto -> Sugestão: CKEditor
 - [ ] Contador de caracteres
+- [ ] Consertar botões de tipo
 
 ### Página de listas do usuário
 - [ ] Criar listas via modal (Create)
 - [ ] Visualizar listas (Read)
 - [ ] Alterar listas (Update)
 - [ ] Excluir listas (Delete)
+- [ ] Consertar botões de tipo
 
 ## Banco de dados
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const authenticate = require('../middleware/auth');
 
 // Rota para a página inicial
 router.get('/', (req, res) => {
@@ -14,19 +15,19 @@ router.get('/register', (req, res) => {
     res.render('register');
 });
 
-router.get('/homepage', (req, res) => {
+router.get('/homepage', authenticate, (req, res) => {
     res.render('homepage');
 });
 
-router.get('/profile', (req, res) => {
+router.get('/profile', authenticate, (req, res) => {
     res.render('profile');
 });
 
-router.get('/my_tales', (req, res) => {
+router.get('/my_tales', authenticate, (req, res) => {
     res.render('my_tales');
 });
 
-router.get('/my_lists', (req, res) => {
+router.get('/my_lists', authenticate, (req, res) => {
     res.render('my_lists');
 });
 
