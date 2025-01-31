@@ -87,9 +87,46 @@ const read_user = async (req, res) => {
   }
 }
 
+const update_user = async (req, res) => {
+  try {
+    const user_id = req.session.user_id;
+
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuário não autenticado.' });
+    }
+
+    const { name, username, email, birthdate } = req.body;
+
+    // console.log(req.body);
+
+    // Validação de entrada
+    if (!name || !username || !email || !birthdate) {
+      return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
+    }
+
+    // Criar uma instância de User
+    const user_instance = new User();
+
+    // Atualizar usuário
+    const result = await user_instance.update(user_id, {
+      name: name,
+      username: username,
+      email: email,
+      birthdate: birthdate
+    });
+
+    // Retornar resposta de sucesso
+    res.status(200).json({ message: 'Usuário atualizado com sucesso!', result: result });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao atualizar usuário.' });
+  }
+}
+
 module.exports = {
   login,
   logout,
   create_user,
-  read_user
+  read_user,
+  update_user
 };

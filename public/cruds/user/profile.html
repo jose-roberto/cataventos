@@ -69,37 +69,37 @@
                                 </div>
 
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                                    <form action="/user/update_user" method="POST">
+                                    <form action="/user/update_user?_method=PUT" method="POST">
                                         <div class="row mb-3">
-                                            <label for="name" class="col-md-4 col-lg-3 col-form-label">Nome</label>
+                                            <label for="name_update" class="col-md-4 col-lg-3 col-form-label">Nome</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="name" type="text" class="form-control" id="name" value="">
+                                                <input name="name" type="text" class="form-control" id="name_update" value="" required>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="username" class="col-md-4 col-lg-3 col-form-label">Nome de
+                                            <label for="username_update" class="col-md-4 col-lg-3 col-form-label">Nome de
                                                 usuário</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="username" type="text" class="form-control" id="username"
-                                                    value="">
+                                                <input name="username" type="text" class="form-control" id="username_update"
+                                                    value="" required>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                            <label for="email_update" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="email" type="text" class="form-control" id="email"
-                                                    value="">
+                                                <input name="email" type="text" class="form-control" id="email_update"
+                                                    value="" required>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="birthdate" class="col-md-4 col-lg-3 col-form-label">Data de
+                                            <label for="birthdate_update" class="col-md-4 col-lg-3 col-form-label">Data de
                                                 Nascimento</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="birthdate" type="text" class="form-control" id="birthdate"
-                                                    value="">
+                                                <input name="birthdate" type="text" class="form-control" id="birthdate_update"
+                                                    value="" required>
                                             </div>
                                         </div>
 

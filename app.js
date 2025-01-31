@@ -7,6 +7,8 @@ var logger = require('morgan');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
+const methodOverride = require('method-override');
+
 const db_connection = require('./server/config/database');
 const User = require('./server/models/User');
 
@@ -28,6 +30,9 @@ app.use(session({
 
 // Middleware para analisar o corpo das requisições
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Configura o method-override
+app.use(methodOverride('_method'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
