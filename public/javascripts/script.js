@@ -1,16 +1,3 @@
-
-function load_header() {
-  fetch('/templates/navbar.html')
-    .then(response => response.text())
-    .then(data => {
-      const headerElement = document.getElementById('header');
-      if (headerElement) {
-        headerElement.innerHTML = data;
-      }
-    })
-    .catch(error => console.error('Erro ao carregar o navbar:', error));
-}
-
 async function load_user() {
   try {
     const response = await fetch('/user/read_user');
@@ -50,8 +37,6 @@ async function load_genres() {
 }
 
 window.onload = function () {
-  // load_header();
-
   if (window.location.pathname.includes('profile')) {
     load_user();
   }

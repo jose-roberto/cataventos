@@ -33,8 +33,8 @@ Implementar respectivos redirecionamentos para:
 - [ ] Coluna de sugestões
 
 ### Página de perfil
-- [ ] Visualizar dados pessoais (Read)
-- [ ] Alterar dados pessoais (Update)
+- [X] Visualizar dados pessoais (Read)
+- [X] Alterar dados pessoais (Update)
 - [ ] Excluir conta (Delete)
 - [ ] Análise de atividades
 
