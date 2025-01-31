@@ -1,0 +1,8 @@
+{
+    "login": "/public/authentication/login.html",
+    "my_lists": "/public/cruds/list/my_lists.html",
+    "my_tales": "/public/cruds/tale/my_tales.html",
+    "profile": "/public/cruds/user/profile.html",
+    "register": "/public/cruds/user/register.html",
+    "homepage": "/public/templates/homepage.html"
+}

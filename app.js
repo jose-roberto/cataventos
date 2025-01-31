@@ -6,11 +6,9 @@ var logger = require('morgan');
 
 const session = require('express-session');
 const bodyParser = require('body-parser');
-
 const methodOverride = require('method-override');
 
 const db_connection = require('./server/config/database');
-const User = require('./server/models/User');
 
 var indexRouter = require('./server/routes/index');
 var userRouter = require('./server/routes/user');
@@ -25,7 +23,11 @@ app.use(session({
   secret: 'travessia', // Chave secreta para assinar a sessão
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Defina como true se estiver usando HTTPS
+  cookie: {
+    maxAge: 1000 * 60 * 60, 
+    httpOnly: true,
+    secure: false,
+  },
 }));
 
 // Middleware para analisar o corpo das requisições
@@ -45,7 +47,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Rotas
-app.use('/index', indexRouter);
+app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/text', textRouter);
 app.use('/list', listRouter);
