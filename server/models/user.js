@@ -49,6 +49,55 @@ class User extends Model {
             throw new Error('Erro ao criptografar a senha');
         }
     }
+
+    async authentication(username, password) {
+        try {
+            console.log('Iniciando autenticação para o usuário:', username);
+
+            // Encapsula a operação síncrona em uma Promise
+            return await new Promise((resolve, reject) => {
+                try {
+                    // Prepara a query
+                    const query = 'SELECT id, password FROM user WHERE username = ?;';
+                    // console.log('Executando query:', query);
+
+                    // Executa a query de forma síncrona
+                    const result = this.db_connection.prepare(query).get(username);
+
+                    // console.log('Resultado da query:', result);
+
+                    if (result) {
+                        // Compara a senha usando bcrypt
+                        bcrypt.compare(password, result.password, (err, match) => {
+                            if (err) {
+                                console.error('Erro ao comparar senhas:', err);
+                                reject(err);
+                            } else {
+                                // console.log('Resultado da comparação:', match);
+
+                                if (match) {
+                                    // console.log('Senha válida. ID do usuário:', result.id);
+                                    resolve(result.id); // Resolve com o ID do usuário
+                                } else {
+                                    console.log('Senha inválida.');
+                                    resolve(null); // Resolve com null (senha incorreta)
+                                }
+                            }
+                        });
+                    } else {
+                        console.log('Usuário não encontrado.');
+                        resolve(null); // Resolve com null (usuário não encontrado)
+                    }
+                } catch (error) {
+                    console.error('Erro ao executar a query:', error);
+                    reject(error); // Rejeita a Promise em caso de erro
+                }
+            });
+        } catch (error) {
+            console.error('Erro na função authentication:', error);
+            throw new Error('Erro ao autenticar usuário!');
+        }
+    }
 }
 
 module.exports = User;

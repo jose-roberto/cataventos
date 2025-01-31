@@ -8,6 +8,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 
 const db_connection = require('./server/config/database');
+const User = require('./server/models/User');
 
 var indexRouter = require('./server/routes/index');
 var userRouter = require('./server/routes/user');
@@ -46,15 +47,24 @@ app.use('/list', listRouter);
 app.use('/genre', genreRouter);
 
 // Rota para processar o login
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
-  // Verificação básica de login (substitua por uma lógica real)
-  if (username === 'admin' && password === '1234') {
-    req.session.username = username;
-    res.redirect('/templates/homepage.html');
-  } else {
-    res.send('Usuário ou senha incorretos');
+  const user_instance = new User();
+
+  try {
+    const authentication_result = await user_instance.authentication(username, password);
+
+    if (authentication_result != null) {
+      req.session.userId = authentication_result;
+      console.log('Usuário autenticado com sucesso com o ID:', authentication_result);
+      res.redirect('/templates/homepage.html');
+    } else {
+      res.send('Usuário ou senha incorretos');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro interno do servidor');
   }
 });
 
