@@ -22,11 +22,11 @@ Implementar respectivos redirecionamentos para:
 - [X] Redirecionamento para cadastro e login
 
 ### Autenticação de usuário
-- [ ] Cadastro de usuário (Create)
-- [ ] Login
-- [ ] Logout
-- [ ] Validação do usuário
-- [ ] Controle de administrador
+- [X] Cadastro de usuário (Create)
+- [X] Login
+- [X] Logout
+- [X] Validação do login
+- [ ] Controle de acesso
 
 ### Homepage
 - [ ] Timeline de textos produzidos
