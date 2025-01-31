@@ -50,7 +50,7 @@ async function load_genres() {
 }
 
 window.onload = function () {
-  load_header();
+  // load_header();
 
   if (window.location.pathname.includes('profile')) {
     load_user();

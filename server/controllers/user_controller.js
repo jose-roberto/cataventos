@@ -13,7 +13,7 @@ const login = async (req, res) => {
 
       console.log('\nSession após login:', req.session.user_id + '\n');
 
-      res.redirect('/templates/homepage.html');
+      res.redirect('/homepage');
     } else {
       res.send('Usuário ou senha incorretos');
     }
@@ -55,6 +55,7 @@ const create_user = async (req, res) => {
 
     // Retornar resposta de sucesso
     res.status(201).json({ message: 'Usuário criado com sucesso!', user_id: result.lastInsertRowid });
+    res.redirect('/homepage');
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao criar usuário.' });
@@ -116,7 +117,8 @@ const update_user = async (req, res) => {
     });
 
     // Retornar resposta de sucesso
-    res.status(200).json({ message: 'Usuário atualizado com sucesso!', result: result });
+    // res.status(200).json({ message: 'Usuário atualizado com sucesso!', result: result });
+    res.redirect('/profile');
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao atualizar usuário.' });

@@ -30,7 +30,8 @@ const create_list = async (req, res) => {
         });
 
         // Retornar resposta de sucesso
-        res.status(201).json({ message: 'Lista criada com sucesso!', list_id: result.lastInsertRowid });
+        // res.status(201).json({ message: 'Lista criada com sucesso!', list_id: result.lastInsertRowid });
+        res.redirect('/my_lists');
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao criar lista.' });

@@ -32,7 +32,8 @@ const create_text = async (req, res) => {
         });
 
         // Retornar resposta de sucesso
-        res.status(201).json({ message: 'Texto criado com sucesso!', text_id: result.lastInsertRowid });
+        // res.status(201).json({ message: 'Texto criado com sucesso!', text_id: result.lastInsertRowid });
+        res.redirect('/my_tales');
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao criar text.' });
