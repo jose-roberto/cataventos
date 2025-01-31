@@ -1,3 +1,13 @@
+
+function load_header() {
+  fetch('/templates/navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+    })
+    .catch(error => console.error('Erro ao carregar o navbar:', error));
+}
+
 async function load_genres() {
   try {
     const response = await fetch('/genre/read_genre');
@@ -15,16 +25,10 @@ async function load_genres() {
   }
 }
 
-function load_header() {
-  fetch('/templates/navbar.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('header').innerHTML = data;
-    })
-    .catch(error => console.error('Erro ao carregar o navbar:', error));
-}
-
 window.onload = function () {
   load_header();
-  load_genres();
+
+  if (window.location.pathname.includes('my_tales')) {
+    load_genres();
+  }
 };
