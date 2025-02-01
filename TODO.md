@@ -30,7 +30,7 @@ Implementar respectivos redirecionamentos para:
 - [ ] Adicionar seleção de gêneros de interesse
 
 ### Homepage
-- [ ] Timeline de textos produzidos
+- [X] Timeline de textos produzidos
 - [ ] Coluna de sugestões
 - [ ] Opções de like
 - [ ] Realizar filtragens
@@ -57,7 +57,7 @@ Implementar respectivos redirecionamentos para:
 - [ ] Visualizar listas (Read)
 - [ ] Alterar listas (Update)
 - [ ] Excluir listas (Delete)
-- [ ] Consertar botões de tipo
+- [X] Consertar botões de tipo
 
 ## Banco de dados
 

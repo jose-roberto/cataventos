@@ -38,8 +38,20 @@ async function load_genres() {
 
 async function load_posts() {
   try {
+    // Buscar os posts
     const response = await fetch("/text/read_texts");
     const posts = await response.json();
+
+    // Buscar os gêneros
+    const genreResponse = await fetch("/genre/read_genre");
+    const genres = await genreResponse.json();
+
+    // Criar um mapa de ID para nome do gênero
+    const genreMap = {};
+    genres.forEach(genre => {
+      genreMap[genre.id] = genre.name;
+    });
+
     const timeline = document.getElementById("timeline");
 
     if (posts.length === 0) {
@@ -53,6 +65,9 @@ async function load_posts() {
       const is_long = post.text.length > charLimit;
       const display = is_long ? post.text.slice(0, charLimit) + "..." : post.text;
       const card_height = is_long ? "auto" : "23rem";
+
+      // Obter o nome do gênero pelo ID do post
+      const genreName = genreMap[post.genre_id] || "Desconhecido";
 
       return `
         <div class="card mb-3" style="width: 36rem; height: ${card_height};">
@@ -71,7 +86,7 @@ async function load_posts() {
               <hr class="border-danger-subtle border-3 opacity-75 mt-4">
               <p class="card-text ms-4 fs-5">${display}</p>
               <hr class="border-danger-subtle border-3 opacity-75 mt-4">
-              <p class="card-text ms-4 fs-5">$Gênero</p>
+              <p class="card-text ms-4 fs-5"> ${genreName}</p>
           </div>
         </div>
       `;
@@ -81,6 +96,7 @@ async function load_posts() {
     document.getElementById("timeline").innerHTML = "<p>Erro ao carregar posts.</p>";
   }
 }
+
 
 window.onload = function () {
   if (window.location.pathname.includes('homepage')) {
