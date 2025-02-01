@@ -36,7 +36,56 @@ async function load_genres() {
   }
 }
 
+async function load_posts() {
+  try {
+    const response = await fetch("/text/read_texts");
+    const posts = await response.json();
+    const timeline = document.getElementById("timeline");
+
+    if (posts.length === 0) {
+      timeline.innerHTML = "<p>Nenhum post disponível.</p>";
+      return;
+    }
+
+    const charLimit = 250;
+
+    timeline.innerHTML = posts.map(post => {
+      const is_long = post.text.length > charLimit;
+      const display = is_long ? post.text.slice(0, charLimit) + "..." : post.text;
+      const card_height = is_long ? "auto" : "23rem";
+
+      return `
+        <div class="card mb-3" style="width: 36rem; height: ${card_height};">
+          <div class="card-body">
+              <div class="d-flex justify-content-between">
+                  <h3 class="card-title m-3">${post.title}</h3>
+                  <div class="d-flex">
+                      <img src="images/livros.png" alt="Logo" class="rounded-circle mt-2" width="40" height="40">
+                      <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="/index.html">User</a>
+                  </div>
+              </div>
+              <div class="d-flex">
+                  <i class="bi bi-hand-thumbs-up ms-2 "></i>
+                  <p class="card-text ms-3">${post.like}</p>
+              </div>                    
+              <hr class="border-danger-subtle border-3 opacity-75 mt-4">
+              <p class="card-text ms-4 fs-5">${display}</p>
+              <hr class="border-danger-subtle border-3 opacity-75 mt-4">
+              <p class="card-text ms-4 fs-5">$Gênero</p>
+          </div>
+        </div>
+      `;
+    }).join("");
+  } catch (error) {
+    console.error("Erro ao carregar posts:", error);
+    document.getElementById("timeline").innerHTML = "<p>Erro ao carregar posts.</p>";
+  }
+}
+
 window.onload = function () {
+  if (window.location.pathname.includes('homepage')) {
+    load_posts();
+  }
   if (window.location.pathname.includes('profile')) {
     load_user();
   }

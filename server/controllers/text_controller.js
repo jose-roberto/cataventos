@@ -3,21 +3,18 @@ const TextUser = require('../models/TextUser');
 
 const create_text = async (req, res) => {
     try {
-        // Teste adequado para o frontend atual
         const { title, text, style, genre } = req.body;
-        // console.log(req.body);
 
-        // Teste adequado para o frontend atual
         if (!title || !text || !style || !genre) {
             return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
         }
 
         const type = style === 'poem' ? 1 : 0;
 
-        // Criar uma instância de User
+        // Criar uma instância de Text
         const text_instance = new Text();
 
-        // Criar novo usuário
+        // Criar novo texto
         const result = await text_instance.create({
             title: title,
             type: type,
@@ -45,6 +42,21 @@ const create_text = async (req, res) => {
     }
 };
 
+const get_timeline = async (req, res) => {
+    try {
+        const text_instance = new Text();
+
+        const posts = await text_instance.find_all();
+
+        posts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        res.json(posts);
+    } catch (error) {
+        console.error("Erro ao buscar posts:", error);
+        res.status(500).send("Erro ao carregar a timeline.");
+    }
+};
+
 module.exports = {
-    create_text
+    create_text, 
+    get_timeline
 };
