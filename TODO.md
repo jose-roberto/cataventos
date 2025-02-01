@@ -26,11 +26,14 @@ Implementar respectivos redirecionamentos para:
 - [X] Login
 - [X] Logout
 - [X] Validação do login
-- [ ] Controle de acesso
+- [X] Controle de acesso
+- [ ] Adicionar seleção de gêneros de interesse
 
 ### Homepage
 - [ ] Timeline de textos produzidos
 - [ ] Coluna de sugestões
+- [ ] Opções de like
+- [ ] Realizar filtragens
 
 ### Página de perfil
 - [X] Visualizar dados pessoais (Read)
@@ -45,7 +48,9 @@ Implementar respectivos redirecionamentos para:
 - [ ] Excluir textos produzidos (Delete)
 - [ ] Acoplar editor de texto -> Sugestão: CKEditor
 - [ ] Contador de caracteres
-- [ ] Consertar botões de tipo
+- [X] Consertar botões de tipo
+- [ ] Criar opção de convidar para colaboração
+- [ ] Criar opção de indicar leitura
 
 ### Página de listas do usuário
 - [ ] Criar listas via modal (Create)
