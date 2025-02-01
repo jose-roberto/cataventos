@@ -22,10 +22,6 @@ const List = require('../models/List');
 const list_instance = new List();
 list_instance.create_table();
 
-const TextGenre = require('../models/TextGenre');
-const text_genre_instance = new TextGenre();
-text_genre_instance.create_table();
-
 const TextList = require('../models/TextList');
 const text_list_instance = new TextList();
 text_list_instance.create_table();
@@ -69,6 +65,7 @@ function fill_text() {
         text: 'Edgar Allan Poe\n\nVerdade! - Nervos há, aguçados demais, muito aguçados, que, por muito tempo, para o mal do autor, com o mal da humanidade, não se deixarão deitar em repouso. Ora, o que se pode considerar como "doença" num nervo, é, muitas vezes, apenas a sua sensibilidade normal, o seu estado habitual. E, na verdade, não há loucura no que muitos homens consideram como tal. Pois, a loucura é apenas uma inteligência excessiva. Mas, para que se possa ver a profundidade, é preciso manter-se afastado do abismo.\n\nComo eu disse, o nervo agudo, o nervo aguçado, aguçadíssimo, levou-me àquela ação. E, então, o som daquele coração começou a crescer mais alto, mais alto! Eu dizia a mim mesmo: "É nada além de um visitante que bate à porta da minha porta. É um visitante que bate à porta do meu coração". Eu me esforcei para manter a calma, e, ainda assim, o som crescia mais alto, mais alto! E, então, o som tornou-se mais claro, mais claro! Eu disse: "É o som de um coração, de um coração que bate, de um coração que bate, de um coração que bate".\n\nMas, por que será que o som crescia mais alto',
         publication_date: date,
         type: 1,
+        genre_id: 10,
         like: 0,
         status: 1,
     });
@@ -77,6 +74,7 @@ function fill_text() {
         text: 'Shirley Jackson\n\nO povo da aldeia se reúne para a loteria anual, que é organizada por Mr. Summers, que também conduz a escolha de nomes para a loteria. A família Hutchinson é escolhida, e a escolha de uma pessoa da família é feita. Tessie Hutchinson é escolhida, e ela protesta que a escolha não foi justa. A aldeia então se reúne para apedrejar Tessie até a morte.',
         publication_date: date,
         type: 1,
+        genre_id: 2,
         like: 0,
         status: 1
     });
@@ -85,6 +83,7 @@ function fill_text() {
         text: 'Jorge Luis Borges\n\nEra uma manhã de março de 1929. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava.',
         publication_date: date,
         type: 1,
+        genre_id: 5,
         like: 0,
         status: 1
     });
@@ -93,6 +92,7 @@ function fill_text() {
         text: 'Edgar Allan Poe\n\nEu sou louco, eu sei. Mas não sou um tolo. E, no entanto, como posso ser um tolo, se a loucura é apenas uma inteligência excessiva? Mas, para que se possa ver a profundo',
         publication_date: date,
         type: 1,
+        genre_id: 9,
         like: 0,
         status: 1
     });
@@ -101,6 +101,7 @@ function fill_text() {
         text: 'Lovecraft\n\nO conto começa com a morte do professor George Gammell Angell, da Universidade de Brown, em Providence, Rhode Island, encontrado morto em sua cama por',
         publication_date: date,
         type: 1,
+        genre_id: 15,
         like: 0,
         status: 1
     });
@@ -109,6 +110,7 @@ function fill_text() {
         text: 'Ligya Fagundes Telles\n\nA Curva na Estrada é um conto de Ligya Fagundes Telles que narra a história de um homem que, ao dirigir por uma estrada, se depara com uma curva que o leva a um destino inesperado. O conto é uma reflexão sobre a vida e a morte, e sobre como nossas escolhas podem nos levar a caminhos desconhecidos.',
         publication_date: date,
         type: 1,
+        genre_id: 1,
         like: 0,
         status: 1
     });
@@ -117,6 +119,7 @@ function fill_text() {
         text: 'Arthur Machen\n\nO conto começa com a morte do professor George Gammell Angell, da Universidade de Brown, em Providence, Rhode Island, encontrado morto em sua cama por',
         publication_date: date,
         type: 1,
+        genre_id: 1,
         like: 0,
         status: 1
     });
@@ -125,6 +128,7 @@ function fill_text() {
         text: 'E.T.A. Hoffmann\n\nO conto começa com a morte do professor George Gammell Angell, da Universidade de Brown, em Providence, Rhode Island, encontrado morto em sua cama por',
         publication_date: date,
         type: 1,
+        genre_id: 4,
         like: 0,
         status: 1
     });
@@ -133,6 +137,7 @@ function fill_text() {
         text: 'Jorge Luis Borges\n\nA Biblioteca de Babel é um conto de Jorge Luis Borges que narra a história de uma biblioteca infinita que contém todos os livros possíveis. A biblioteca é habitada por uma sociedade de bibliotecários que passam suas vidas explorando os corredores intermináveis da biblioteca em busca de conhecimento. O conto é uma reflexão sobre a natureza do conhecimento e do caos, e sobre a busca humana pela verdade e pela ordem.',
         publication_date: date,
         type: 1,
+        genre_id: 7,
         like: 0,
         status: 1
     });
@@ -141,6 +146,7 @@ function fill_text() {
         text: 'Desconhecido\n\nA Canção de Rolando é um poema épico medieval que narra a história de Rolando, um cavaleiro francês que luta na Batalha de Roncesvales. O poema é uma das mais antigas obras da literatura francesa e é considerado um dos grandes clássicos da literatura medieval. A Canção de Rolando é uma história de lealdade, coragem e honra, e é um dos mais importantes poemas épicos da Idade Média.',
         publication_date: date,
         type: 1,
+        genre_id: 11,
         like: 0,
         status: 1
     });
@@ -149,6 +155,7 @@ function fill_text() {
         text: 'Edgar Allan Poe\n\nA Máscara da Morte Rubra é um conto de Edgar Allan Poe que narra a história de um príncipe que se refugia em seu castelo para escapar de uma terrível praga que assola o reino. O príncipe dá um baile de máscaras para seus amigos, mas a festa é interrompida por um visitante inesperado. O conto é uma reflexão sobre a morte e a mortalidade, e sobre como a morte é inevitável para todos os seres humanos.',
         publication_date: date,
         type: 1,
+        genre_id: 12,
         like: 0,
         status: 1
     });
@@ -157,6 +164,7 @@ function fill_text() {
         text: 'H.G. Wells\n\nA Máquina do Tempo é um romance de ficção científica de H.G. Wells que narra a história de um cientista que inventa uma máquina do tempo e viaja para o futuro distante. O cientista explora os futuros distantes da humanidade e descobre o destino final da raça humana. O romance é uma reflexão sobre o tempo, o espaço e o destino, e sobre como o futuro pode ser moldado pelas escolhas que fazemos no presente.',
         publication_date: date,
         type: 1,
+        genre_id: 13,
         like: 0,
         status: 1
     });
@@ -165,6 +173,7 @@ function fill_text() {
         text: 'Emily Brontë\n\nO Monte dos Vendavais é um romance de Emily Brontë que narra a história de Heathcliff, um jovem órfão que é adotado por uma família rica e se apaixona por sua irmã adotiva, Catherine. O romance é uma história de amor e vingança, e é considerado um dos grandes clássicos da literatura inglesa. O Monte dos Vendavais é uma história trágica de paixão, vingança e obsessão em um ambiente selvagem e isolado.',
         publication_date: date,
         type: 1,
+        genre_id: 3,
         like: 0,
         status: 1
     });
@@ -266,36 +275,6 @@ function fill_list() {
     });
 }
 
-function fill_text_genre() {
-
-    // Associação text-gênero
-    text_genre_instance.create({ text_id: 1, genre_id: 1 }); // O Coração Delator - Mistério
-    text_genre_instance.create({ text_id: 1, genre_id: 18 }); // O Coração Delator - Terror
-    text_genre_instance.create({ text_id: 2, genre_id: 1 }); // A Loteria - Mistério
-    text_genre_instance.create({ text_id: 2, genre_id: 18 }); // A Loteria - Terror
-    text_genre_instance.create({ text_id: 3, genre_id: 2 }); // A Casa de Asterion - Fantasia
-    text_genre_instance.create({ text_id: 3, genre_id: 15 }); // A Casa de Asterion - Policial
-    text_genre_instance.create({ text_id: 4, genre_id: 1 }); // O Gato Preto - Mistério
-    text_genre_instance.create({ text_id: 4, genre_id: 18 }); // O Gato Preto - Terror
-    text_genre_instance.create({ text_id: 5, genre_id: 12 }); // O Chamado de Cthulhu - Ficção Científica
-    text_genre_instance.create({ text_id: 5, genre_id: 17 }); // O Chamado de Cthulhu - Terror
-    text_genre_instance.create({ text_id: 6, genre_id: 14 }); // A Curva na Estrada - Drama
-    text_genre_instance.create({ text_id: 6, genre_id: 4 }); // A Curva na Estrada - Suspense
-    text_genre_instance.create({ text_id: 7, genre_id: 9 }); // O Grande Deus Pã - Terror Gótico
-    text_genre_instance.create({ text_id: 7, genre_id: 19 }); // O Grande Deus Pã - Suspense
-    text_genre_instance.create({ text_id: 8, genre_id: 1 }); // O Homem da Areia - Mistério
-    text_genre_instance.create({ text_id: 8, genre_id: 14 }); // O Homem da Areia - Drama
-    text_genre_instance.create({ text_id: 9, genre_id: 20 }); // A Biblioteca de Babel - Fantasia Urbana
-    text_genre_instance.create({ text_id: 9, genre_id: 2 }); // A Biblioteca de Babel - Fantasia
-    text_genre_instance.create({ text_id: 10, genre_id: 16 }); // A Canção de Rolando - Aventura
-    text_genre_instance.create({ text_id: 11, genre_id: 13 }); // A Máscara da Morte Rubra - Terror Gótico
-    text_genre_instance.create({ text_id: 11, genre_id: 19 }); // A Máscara da Morte Rubra - Suspense
-    text_genre_instance.create({ text_id: 12, genre_id: 12 }); // A Máquina do Tempo - Ficção Científica
-    text_genre_instance.create({ text_id: 13, genre_id: 14 }); // O Monte dos Vendavais - Drama
-    text_genre_instance.create({ text_id: 13, genre_id: 1 }); // O Monte dos Vendavais - Mistério
-}
-
-
 function fill_text_list() {
     // Associação text-lista
     text_list_instance.create({ text_id: 1, list_id: 2 }); // O Coração Delator - Suspense e Mistério
@@ -356,12 +335,6 @@ function verify_population() {
     list_instance.find_all().then((lists) => {
         if (lists.length == 0) {
             fill_list();
-        }
-    });
-
-    text_genre_instance.find_all().then((text_genres) => {
-        if (text_genres.length == 0) {
-            fill_text_genre();
         }
     });
 

@@ -24,6 +24,7 @@ class Text extends Model {
                     text TEXT,
                     publication_date TEXT,
                     type INTEGER,
+                    genre_id INTEGER,
                     like INTEGER,
                     status INTEGER
                 )`

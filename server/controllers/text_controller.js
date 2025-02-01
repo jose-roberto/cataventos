@@ -19,6 +19,7 @@ const create_text = async (req, res) => {
             title: title,
             type: type,
             text: text,
+            genre_id: genre,
             publication_date: new Date().toISOString(),
             like: 0,
             status: 1
