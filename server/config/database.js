@@ -61,12 +61,13 @@ function fill_genre() {
 
 
 function fill_text() {
+    date = new Date().toISOString();
+    
     // Contos
     text_instance.create({ // 1
         title: 'O Coração Delator',
         text: 'Edgar Allan Poe\n\nVerdade! - Nervos há, aguçados demais, muito aguçados, que, por muito tempo, para o mal do autor, com o mal da humanidade, não se deixarão deitar em repouso. Ora, o que se pode considerar como "doença" num nervo, é, muitas vezes, apenas a sua sensibilidade normal, o seu estado habitual. E, na verdade, não há loucura no que muitos homens consideram como tal. Pois, a loucura é apenas uma inteligência excessiva. Mas, para que se possa ver a profundidade, é preciso manter-se afastado do abismo.\n\nComo eu disse, o nervo agudo, o nervo aguçado, aguçadíssimo, levou-me àquela ação. E, então, o som daquele coração começou a crescer mais alto, mais alto! Eu dizia a mim mesmo: "É nada além de um visitante que bate à porta da minha porta. É um visitante que bate à porta do meu coração". Eu me esforcei para manter a calma, e, ainda assim, o som crescia mais alto, mais alto! E, então, o som tornou-se mais claro, mais claro! Eu disse: "É o som de um coração, de um coração que bate, de um coração que bate, de um coração que bate".\n\nMas, por que será que o som crescia mais alto',
-        synopsis: 'Um homem perturbado tenta convencer o leitor de sua sanidade enquanto descreve como assassinou um idoso por causa de seu olho “vultuoso”.',
-        publication_date: '29/01/1843',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1,
@@ -74,8 +75,7 @@ function fill_text() {
     text_instance.create({ // 2
         title: 'A Loteria',
         text: 'Shirley Jackson\n\nO povo da aldeia se reúne para a loteria anual, que é organizada por Mr. Summers, que também conduz a escolha de nomes para a loteria. A família Hutchinson é escolhida, e a escolha de uma pessoa da família é feita. Tessie Hutchinson é escolhida, e ela protesta que a escolha não foi justa. A aldeia então se reúne para apedrejar Tessie até a morte.',
-        synopsis: 'Os moradores de uma pequena cidade participam de uma tradição anual que termina com consequências sombrias.',
-        publication_date: '26/06/1948',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -83,8 +83,7 @@ function fill_text() {
     text_instance.create({ // 3
         title: 'A Casa de Asterion',
         text: 'Jorge Luis Borges\n\nEra uma manhã de março de 1929. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava. Eu estava deitado no escuro, ouvindo o ruído do mundo. O ruído do mundo era um murmúrio, um murmúrio que se tornava mais alto à medida que a noite avançava.',
-        synopsis: 'Um conto narrado pelo Minotauro sobre sua solidão, sua casa labiríntica e seu destino.',
-        publication_date: '01/01/1947',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -92,8 +91,7 @@ function fill_text() {
     text_instance.create({ // 4
         title: 'O Gato Preto',
         text: 'Edgar Allan Poe\n\nEu sou louco, eu sei. Mas não sou um tolo. E, no entanto, como posso ser um tolo, se a loucura é apenas uma inteligência excessiva? Mas, para que se possa ver a profundo',
-        synopsis: 'Um homem relata a história de como sua crescente violência levou a eventos sobrenaturais e à sua queda.',
-        publication_date: '19/08/1843',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -101,8 +99,7 @@ function fill_text() {
     text_instance.create({ // 5
         title: 'O Chamado de Cthulhu',
         text: 'Lovecraft\n\nO conto começa com a morte do professor George Gammell Angell, da Universidade de Brown, em Providence, Rhode Island, encontrado morto em sua cama por',
-        synopsis: 'Um conto de horror cósmico sobre uma entidade antiga que habita as profundezas do mar.',
-        publication_date: '01/02/1928',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -110,8 +107,7 @@ function fill_text() {
     text_instance.create({ // 6
         title: 'A Curva na Estrada',
         text: 'Ligya Fagundes Telles\n\nA Curva na Estrada é um conto de Ligya Fagundes Telles que narra a história de um homem que, ao dirigir por uma estrada, se depara com uma curva que o leva a um destino inesperado. O conto é uma reflexão sobre a vida e a morte, e sobre como nossas escolhas podem nos levar a caminhos desconhecidos.',
-        synopsis: 'Um conto psicológico sobre um homem que encontra uma estranha e sua relação com o destino.',
-        publication_date: '01/01/1952',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -119,8 +115,7 @@ function fill_text() {
     text_instance.create({ // 7
         title: 'O Grande Deus Pã',
         text: 'Arthur Machen\n\nO conto começa com a morte do professor George Gammell Angell, da Universidade de Brown, em Providence, Rhode Island, encontrado morto em sua cama por',
-        synopsis: 'Uma experiência sobrenatural revela a presença de forças antigas e misteriosas na natureza.',
-        publication_date: '01/01/1894',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -128,8 +123,7 @@ function fill_text() {
     text_instance.create({ // 8
         title: 'O Homem da Areia',
         text: 'E.T.A. Hoffmann\n\nO conto começa com a morte do professor George Gammell Angell, da Universidade de Brown, em Providence, Rhode Island, encontrado morto em sua cama por',
-        synopsis: 'Um conto de horror psicológico sobre um homem assombrado por uma figura misteriosa de sua infância.',
-        publication_date: '01/01/1817',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -137,8 +131,7 @@ function fill_text() {
     text_instance.create({ // 9
         title: 'A Biblioteca de Babel',
         text: 'Jorge Luis Borges\n\nA Biblioteca de Babel é um conto de Jorge Luis Borges que narra a história de uma biblioteca infinita que contém todos os livros possíveis. A biblioteca é habitada por uma sociedade de bibliotecários que passam suas vidas explorando os corredores intermináveis da biblioteca em busca de conhecimento. O conto é uma reflexão sobre a natureza do conhecimento e do caos, e sobre a busca humana pela verdade e pela ordem.',
-        synopsis: 'Uma vasta biblioteca contém todos os livros possíveis, explorando os limites do conhecimento e do caos.',
-        publication_date: '01/01/1941',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -146,8 +139,7 @@ function fill_text() {
     text_instance.create({ // 10
         title: 'A Canção de Rolando',
         text: 'Desconhecido\n\nA Canção de Rolando é um poema épico medieval que narra a história de Rolando, um cavaleiro francês que luta na Batalha de Roncesvales. O poema é uma das mais antigas obras da literatura francesa e é considerado um dos grandes clássicos da literatura medieval. A Canção de Rolando é uma história de lealdade, coragem e honra, e é um dos mais importantes poemas épicos da Idade Média.',
-        synopsis: 'Um poema épico medieval sobre a lealdade e a coragem durante uma batalha lendária.',
-        publication_date: '01/01/1098',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -155,8 +147,7 @@ function fill_text() {
     text_instance.create({ // 11
         title: 'A Máscara da Morte Rubra',
         text: 'Edgar Allan Poe\n\nA Máscara da Morte Rubra é um conto de Edgar Allan Poe que narra a história de um príncipe que se refugia em seu castelo para escapar de uma terrível praga que assola o reino. O príncipe dá um baile de máscaras para seus amigos, mas a festa é interrompida por um visitante inesperado. O conto é uma reflexão sobre a morte e a mortalidade, e sobre como a morte é inevitável para todos os seres humanos.',
-        synopsis: 'Uma história alegórica sobre a inevitabilidade da morte, ambientada durante uma praga mortal.',
-        publication_date: '01/01/1842',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -164,8 +155,7 @@ function fill_text() {
     text_instance.create({ // 12
         title: 'A Máquina do Tempo',
         text: 'H.G. Wells\n\nA Máquina do Tempo é um romance de ficção científica de H.G. Wells que narra a história de um cientista que inventa uma máquina do tempo e viaja para o futuro distante. O cientista explora os futuros distantes da humanidade e descobre o destino final da raça humana. O romance é uma reflexão sobre o tempo, o espaço e o destino, e sobre como o futuro pode ser moldado pelas escolhas que fazemos no presente.',
-        synopsis: 'Um cientista viaja no tempo e explora os futuros distantes da humanidade e seu destino final.',
-        publication_date: '01/01/1895',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1
@@ -173,8 +163,7 @@ function fill_text() {
     text_instance.create({ // 13
         title: 'O Monte dos Vendavais',
         text: 'Emily Brontë\n\nO Monte dos Vendavais é um romance de Emily Brontë que narra a história de Heathcliff, um jovem órfão que é adotado por uma família rica e se apaixona por sua irmã adotiva, Catherine. O romance é uma história de amor e vingança, e é considerado um dos grandes clássicos da literatura inglesa. O Monte dos Vendavais é uma história trágica de paixão, vingança e obsessão em um ambiente selvagem e isolado.',
-        synopsis: 'Uma história trágica de paixão, vingança e obsessão em um ambiente selvagem e isolado.',
-        publication_date: '01/01/1847',
+        publication_date: date,
         type: 1,
         like: 0,
         status: 1

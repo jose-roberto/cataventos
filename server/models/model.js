@@ -37,7 +37,7 @@ class Model {
         const placeholders = Object.keys(data).map(() => '?').join(', ');
         const statement = this.db_connection.prepare(`INSERT INTO ${this.table_name}(${keys}) VALUES(${placeholders})`);
         const result = statement.run(Object.values(data));
-        resolve(result);
+        resolve({ id: result.lastInsertRowid }); // Retorne o ID do novo registro
       } catch (error) {
         reject(error);
       }

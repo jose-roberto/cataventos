@@ -22,7 +22,6 @@ class Text extends Model {
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     title TEXT,
                     text TEXT,
-                    synopsis TEXT,
                     publication_date TEXT,
                     type INTEGER,
                     like INTEGER,
