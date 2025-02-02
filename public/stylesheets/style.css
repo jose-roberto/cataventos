@@ -1,3 +1,7 @@
+html {
+    font-size: 14px !important;
+}
+ 
 .bg-main {
     background-color: #fbf1e4;
 }
@@ -18,7 +22,7 @@
     background-color: #f88b32;
 }
 
-.btn-brown{
+.btn-brown {
     background-color: #e5781f;
     color: white;
 }
@@ -70,3 +74,14 @@
     border: 1px solid #f9dbbf;
     background-color: #ffe8c9;
 }
+
+.form-control:focus {
+    border-color: #b07d62;
+    box-shadow: 0 0 5px rgba(176, 125, 98, 0.5);
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+       
