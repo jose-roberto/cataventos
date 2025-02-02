@@ -64,32 +64,32 @@ async function load_timeline() {
     timeline.innerHTML = posts.map(post => {
       const is_long = post.text.length > charLimit;
       const display = is_long ? post.text.slice(0, charLimit) + "..." : post.text;
-      const card_height = is_long ? "auto" : "23rem";
 
       // Obter o nome do gênero pelo ID do post
       const genreName = genreMap[post.genre_id] || "Desconhecido";
 
       return `
-        <div class="card mb-3" style="width: 36rem; height: ${card_height};">
-          <div class="card-body">
-              <div class="d-flex justify-content-between">
-                  <h3 class="card-title m-3">
-                      <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
-                  </h3>
-                  <div class="d-flex">
-                      <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40" height="40">
-                      <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
-                  </div>
-              </div>
-              <div class="d-flex">
-                  <i class="bi bi-hand-thumbs-up ms-2 "></i>
-                  <p class="card-text ms-3">${post.like}</p>
-              </div>                    
-              <hr class="border-danger-subtle border-3 opacity-75 mt-4">
-              <p class="card-text ms-4 fs-5">${display}</p>
-              <hr class="border-danger-subtle border-3 opacity-75 mt-4">
-              <p class="card-text ms-4 fs-5"> ${genreName}</p>
-          </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h3 class="card-title m-3">
+                        <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
+                    </h3>
+                    <div class="d-flex">
+                        <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40"
+                            height="40">
+                        <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <i class="bi bi-hand-thumbs-up ms-2"></i>
+                    <p class="card-text ms-3">${post.like}</p>
+                </div>
+                <hr class="border-danger-subtle border-3 opacity-75 mt-4">
+                <p class="card-text ms-4 fs-5">${display}</p>
+                <hr class="border-danger-subtle border-3 opacity-75 mt-4">
+                <p class="card-text ms-4 fs-5">${genreName}</p>
+            </div>
         </div>
       `;
     }).join("");

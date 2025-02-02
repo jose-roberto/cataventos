@@ -1,6 +1,10 @@
 html {
     font-size: 14px !important;
 }
+
+.page-content {
+    margin-top: 100px;
+}
  
 .bg-main {
     background-color: #fbf1e4;
@@ -49,10 +53,6 @@ html {
 
 .link-style:hover {
     color: #b96119; 
-}
-
-.page-content {
-    margin-top: 8%;
 }
 
 .form-text {
