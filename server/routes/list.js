@@ -9,4 +9,6 @@ router.get('/my_lists', list_controller.get_my_lists);
 
 router.get('/:id', list_controller.get_list);
 
+router.get('/:id/texts', list_controller.get_list_texts);
+
 module.exports = router;

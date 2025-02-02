@@ -1,4 +1,5 @@
 const List = require('../models/List');
+const Text = require('../models/Text');
 const { get } = require('../routes/list');
 
 const create_list = async (req, res) => {
@@ -39,7 +40,6 @@ const get_my_lists = async (req, res) => {
         const list_instance = new List();
 
         const lists = await list_instance.find_my_lists(req.session.user_id);
-        console.log(lists);
 
         res.json(lists);
     } catch (error) {
@@ -65,8 +65,32 @@ const get_list = async (req, res) => {
     }
 };
 
+const get_list_texts = async (req, res) => {
+    try {
+        const list_instance = new List();
+        const text_instance = new Text();
+
+        const text_instances = await list_instance.find_text_list(req.params.id);
+
+        const texts = await Promise.all(
+            text_instances.map(async (instance) => {
+                return await text_instance.find_by_id(instance.text_id);
+            })
+        );
+
+        // Retorna os textos completos em formato JSON
+
+        res.json(texts);
+    } catch (error) {
+        console.error("Erro ao buscar textos da lista:", error);
+        res.status(500).send("Erro ao carregar os textos da lista.");
+    }
+};
+
+
 module.exports = {
     create_list,
     get_my_lists,
-    get_list
+    get_list,
+    get_list_texts
 };

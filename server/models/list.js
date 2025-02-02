@@ -40,6 +40,13 @@ class List extends Model {
         );
         return statement.all(user_id);
     }
+
+    find_text_list(list_id) {
+        const statement = this.db_connection.prepare(
+            `SELECT * FROM text_list WHERE list_id = ?`
+        );
+        return statement.all(list_id);
+    }
 }
 
 module.exports = List;

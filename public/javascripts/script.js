@@ -76,8 +76,7 @@ async function load_timeline() {
                         <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
                     </h3>
                     <div class="d-flex">
-                        <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40"
-                            height="40">
+                        <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40"height="40">
                         <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
                     </div>
                 </div>
@@ -139,8 +138,8 @@ async function load_my_posts() {
                       <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
                   </h3>
                   <div class="d-flex">
-                      <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-2" width="40" height="40">
-                      <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="profile">User</a>
+                    <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40"height="40">
+                    <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
                   </div>
               </div>
               <div class="d-flex">
@@ -164,11 +163,8 @@ async function load_my_posts() {
 async function load_my_lists() {
   try {
     // Buscar as listas
-    console.log("aqui")
     const response = await fetch("/list/my_lists");
     const lists = await response.json();
-
-    console.log("Lists fetched:", lists);
 
     const my_lists = document.getElementById("my_lists");
 
@@ -186,8 +182,8 @@ async function load_my_lists() {
                     <a href="/list/${list.id}" class="text-decoration-none text-dark">${list.name}</a>
                   </h3>
                   <div class="d-flex">
-                      <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-2" width="40" height="40">
-                      <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="profile">User</a>
+                    <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40"height="40">
+                    <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
                   </div>
               </div>
               <hr class="border-danger-subtle border-3 opacity-75 mt-2 mb-4">
@@ -199,6 +195,38 @@ async function load_my_lists() {
   } catch (error) {
     console.error("Erro ao carregar posts:", error);
     document.getElementById("my_lists").innerHTML = "<p>Erro ao carregar posts.</p>";
+  }
+}
+
+async function load_text_list(list_id) {
+  try {
+    const response = await fetch(`/list/${list_id}/texts`);
+    const texts = await response.json();
+
+    const list_texts = document.getElementById("list_texts");
+
+    if (texts.length === 0) {
+      list_texts.innerHTML = "<p>Nenhum texto disponível.</p>";
+      return;
+    }
+
+    list_texts.innerHTML = texts.map(text => {
+      return `
+        <div class="d-flex justify-content-between">
+          <h4 class="mt-2 ms-4">
+            <a href="/text/${text.id}" class="text-decoration-none text-dark">${text.title}</a>
+          </h4>
+          <div class="d-flex">
+            <img src="/images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40"height="40">
+            <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
+          </div>
+        </div>
+        <hr class="border-danger-subtle border-3 opacity-75 mt- mb-4">
+      `;
+    }).join("");
+  } catch (error) {
+    console.error("Erro ao carregar textos da lista:", error);
+    document.getElementById("list_texts").innerHTML = "<p>Erro ao carregar textos da lista.</p>";
   }
 }
 
@@ -232,6 +260,7 @@ window.onload = function () {
   if (window.location.pathname.includes('homepage')) {
     load_timeline();
   }
+
   if (window.location.pathname.includes('profile')) {
     load_user();
   }
@@ -240,10 +269,18 @@ window.onload = function () {
     load_genres();
     load_my_posts();
   }
+
   if (window.location.pathname.includes('my_lists')) {
     load_my_lists();
   }
+
   if (window.location.pathname.includes('text')) {
     like_text();
+  }
+
+  if (window.location.pathname.startsWith('/list')) {
+    const list_id = window.location.pathname.split('/')[2];
+
+    load_text_list(list_id);
   }
 };
