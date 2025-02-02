@@ -7,4 +7,6 @@ router.post('/create_list', list_controller.create_list);
 
 router.get('/my_lists', list_controller.get_my_lists);
 
+router.get('/:id', list_controller.get_list);
+
 module.exports = router;

@@ -1,4 +1,5 @@
 const List = require('../models/List');
+const { get } = require('../routes/list');
 
 const create_list = async (req, res) => {
     try {
@@ -43,11 +44,29 @@ const get_my_lists = async (req, res) => {
         res.json(lists);
     } catch (error) {
         console.error("Erro ao buscar listas:", error);
-        res.status(500).send("Erro ao carregar os textos.");
+        res.status(500).send("Erro ao carregar as listas.");
+    }
+};
+
+const get_list = async (req, res) => {
+    try {
+        const list_instance = new List();
+
+        const list = await list_instance.find_by_id(req.params.id);
+
+        if(!list) {
+            return res.status(404).send("Lista não encontrada.");
+        }
+
+        res.render('list', { list });
+    } catch (error) {
+        console.error("Erro ao buscar lista:", error);
+        res.status(500).send("Erro ao carregar o lista.");
     }
 };
 
 module.exports = {
     create_list,
-    get_my_lists
+    get_my_lists,
+    get_list
 };
