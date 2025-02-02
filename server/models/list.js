@@ -33,6 +33,13 @@ class List extends Model {
             console.log(`Tabela "${this.table_name}" já existe.`);
         }
     }
+
+    find_my_lists(user_id) {
+        const statement = this.db_connection.prepare(
+            `SELECT * FROM list WHERE user_id = ?`
+        );
+        return statement.all(user_id);
+    }
 }
 
 module.exports = List;

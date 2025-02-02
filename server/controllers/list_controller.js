@@ -16,7 +16,7 @@ const create_list = async (req, res) => {
         // Criar uma instância de User
         const list_instance = new List();
 
-        // Criar novo usuário
+        // Criar nova lista
         const result = await list_instance.create({
             name: name,
             description: description,
@@ -33,6 +33,21 @@ const create_list = async (req, res) => {
     }
 };
 
+const get_my_lists = async (req, res) => {
+    try {
+        const list_instance = new List();
+
+        const lists = await list_instance.find_my_lists(req.session.user_id);
+        console.log(lists);
+
+        res.json(lists);
+    } catch (error) {
+        console.error("Erro ao buscar listas:", error);
+        res.status(500).send("Erro ao carregar os textos.");
+    }
+};
+
 module.exports = {
-    create_list
+    create_list,
+    get_my_lists
 };

@@ -157,10 +157,46 @@ async function load_my_posts() {
   }
 }
 
-window.onload = function () {
-  if (window.location.pathname.includes('my_tales')) {
-    load_my_posts();
+async function load_my_lists() {
+  try {
+    // Buscar as listas
+    console.log("aqui")
+    const response = await fetch("/list/my_lists");
+    const lists = await response.json();
+
+    console.log("Lists fetched:", lists);
+
+    const my_lists = document.getElementById("my_lists");
+
+    if (lists.length === 0) {
+      my_lists.innerHTML = "<p>Nenhuma lista disponível.</p>";
+      return;
+    }
+
+    my_lists.innerHTML = lists.map(list => {
+      return `
+        <div class="card m-2" style="width: 80rem; height: 15rem;">
+          <div class="card-body">
+              <div class="d-flex justify-content-between">
+                  <h3 class="card-title m-3">${list.name}</h3>
+                  <div class="d-flex">
+                      <img src="images/livros.png" alt="Logo" class="rounded-circle mt-2" width="40" height="40">
+                      <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="/index.html">User</a>
+                  </div>
+              </div>
+              <hr class="border-danger-subtle border-3 opacity-75 mt-2 mb-4">
+              <p class="card-text ms-4 fs-5">${list.description}</p>
+          </div>
+        </div>
+      `;
+    }).join("");
+  } catch (error) {
+    console.error("Erro ao carregar posts:", error);
+    document.getElementById("my_lists").innerHTML = "<p>Erro ao carregar posts.</p>";
   }
+}
+
+window.onload = function () {
   if (window.location.pathname.includes('homepage')) {
     load_timeline();
   }
@@ -170,5 +206,9 @@ window.onload = function () {
 
   if (window.location.pathname.includes('my_tales')) {
     load_genres();
+    load_my_posts();
+  }
+  if (window.location.pathname.includes('my_lists')) {
+    load_my_lists();
   }
 };
