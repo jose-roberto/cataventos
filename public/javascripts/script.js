@@ -135,9 +135,11 @@ async function load_my_posts() {
         <div class="card m-2" style="width: 30rem; height: ${card_height};">
           <div class="card-body">
               <div class="d-flex justify-content-between">
-                  <h3 class="card-title m-3">${post.title}</h3>
+                  <h3 class="card-title m-3">
+                      <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
+                  </h3>
                   <div class="d-flex">
-                      <img src="images/livros.png" alt="Logo" class="rounded-circle mt-2" width="40" height="40">
+                      <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-2" width="40" height="40">
                       <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="profile">User</a>
                   </div>
               </div>

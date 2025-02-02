@@ -25,104 +25,109 @@
 <body class="bg-main">
     <%- include('navbar') %>
 
-    <div class="d-flex">
-        <section class="container mt-5 pt-5">
-            <div class="row">
-                <div class="col-12 col-md-8">
-                    <div class="card">
-                        <div class="card-body pt-3">
-                            <ul class="nav nav-tabs nav-tabs-bordered">
-                                <li class="nav-item">
-                                    <button class="nav-link active" data-bs-toggle="tab"
-                                        data-bs-target="#profile-overview">Geral</button>
-                                </li>
+        <div class="d-flex">
+            <section class="container mt-5 pt-5">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="card">
+                            <div class="card-body pt-3">
+                                <ul class="nav nav-tabs nav-tabs-bordered">
+                                    <li class="nav-item">
+                                        <button class="nav-link active" data-bs-toggle="tab"
+                                            data-bs-target="#profile-overview">Geral</button>
+                                    </li>
 
-                                <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab"
-                                        data-bs-target="#profile-edit">Editar Perfil</button>
-                                </li>
-                            </ul>
+                                    <li class="nav-item">
+                                        <button class="nav-link" data-bs-toggle="tab"
+                                            data-bs-target="#profile-edit">Editar Perfil</button>
+                                    </li>
+                                </ul>
 
-                            <div class="tab-content pt-2">
-                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                    <h5 class="card-title">Informações do Perfil</h5>
+                                <div class="tab-content pt-2">
+                                    <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                        <h5 class="card-title">Informações do Perfil</h5>
 
-                                    <div class="row mt-4 mb-4">
-                                        <div class="col-lg-3 col-md-4 label">Nome:</div>
-                                        <div class="col-lg-9 col-md-8" name="name" id="name"></div>
+                                        <div class="row mt-4 mb-4">
+                                            <div class="col-lg-3 col-md-4 label">Nome:</div>
+                                            <div class="col-lg-9 col-md-8" name="name" id="name"></div>
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <div class="col-lg-3 col-md-4 label">Nome de Usuário:</div>
+                                            <div class="col-lg-9 col-md-8" name="username" id="username"></div>
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <div class="col-lg-3 col-md-4 label">Email:</div>
+                                            <div class="col-lg-9 col-md-8" name="email" id="email"></div>
+                                        </div>
+
+                                        <div class="row mb-2">
+                                            <div class="col-lg-3 col-md-4 label">Data de Nascimento:</div>
+                                            <div class="col-lg-9 col-md-8" name="birthdate" id="birthdate"></div>
+                                        </div>
                                     </div>
 
-                                    <div class="row mb-4">
-                                        <div class="col-lg-3 col-md-4 label">Nome de Usuário:</div>
-                                        <div class="col-lg-9 col-md-8" name="username" id="username"></div>
+                                    <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                                        <form action="/user/update_user?_method=PUT" method="POST">
+                                            <div class="row mb-3">
+                                                <label for="name_update"
+                                                    class="col-md-4 col-lg-3 col-form-label">Nome</label>
+                                                <div class="col-md-8 col-lg-9">
+                                                    <input name="name" type="text" class="form-control" id="name_update"
+                                                        value="" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="username_update"
+                                                    class="col-md-4 col-lg-3 col-form-label">Nome de
+                                                    usuário</label>
+                                                <div class="col-md-8 col-lg-9">
+                                                    <input name="username" type="text" class="form-control"
+                                                        id="username_update" value="" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="email_update"
+                                                    class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                                <div class="col-md-8 col-lg-9">
+                                                    <input name="email" type="text" class="form-control"
+                                                        id="email_update" value="" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="birthdate_update"
+                                                    class="col-md-4 col-lg-3 col-form-label">Data de
+                                                    Nascimento</label>
+                                                <div class="col-md-8 col-lg-9">
+                                                    <input name="birthdate" type="text" class="form-control"
+                                                        id="birthdate_update" value="" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-brown mt-2 bold">Salvar
+                                                    alterações</button>
+                                            </div>
+                                        </form>
                                     </div>
-
-                                    <div class="row mb-4">
-                                        <div class="col-lg-3 col-md-4 label">Email:</div>
-                                        <div class="col-lg-9 col-md-8" name="email" id="email"></div>
-                                    </div>
-
-                                    <div class="row mb-2">
-                                        <div class="col-lg-3 col-md-4 label">Data de Nascimento:</div>
-                                        <div class="col-lg-9 col-md-8" name="birthdate" id="birthdate"></div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                                    <form action="/user/update_user?_method=PUT" method="POST">
-                                        <div class="row mb-3">
-                                            <label for="name_update" class="col-md-4 col-lg-3 col-form-label">Nome</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="name" type="text" class="form-control" id="name_update" value="" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="username_update" class="col-md-4 col-lg-3 col-form-label">Nome de
-                                                usuário</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="username" type="text" class="form-control" id="username_update"
-                                                    value="" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="email_update" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="email" type="text" class="form-control" id="email_update"
-                                                    value="" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="birthdate_update" class="col-md-4 col-lg-3 col-form-label">Data de
-                                                Nascimento</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="birthdate" type="text" class="form-control" id="birthdate_update"
-                                                    value="" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-brown mt-2 bold">Salvar
-                                                alterações</button>
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
-                    <div class="image-box"
-                        style="width: 400px; height: 400px; background-color: #ffffff; border-radius: 5%; border: 1px solid #d4d1d1;;">
-                        <img src="#" alt="Profile Image" class="img-fluid"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+                        <div class="image-box d-flex justify-content-center align-items-center"
+                            style="width: 400px; height: 400px; background-color: #ffffff; border-radius: 5%; border: 5px solid #ffffff;">
+                            <img src="images/user_photo.png" alt="Profile Image" class="img-fluid rounded"
+                                style="width: 95%; height: 95%; object-fit: cover; border-radius: 10%;">
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
 </body>
 
 </html>

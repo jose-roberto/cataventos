@@ -28,11 +28,13 @@ Implementar respectivos redirecionamentos para:
 - [X] Validação do login
 - [X] Controle de acesso
 - [ ] Adicionar seleção de gêneros de interesse
+- [ ] Erros de login e cadastro
 
 ### Homepage
 - [X] Timeline de textos produzidos
 - [ ] Coluna de sugestões
 - [X] Opções de like
+- [ ] Data de publicação
 - [ ] Realizar filtragens
 
 ### Página de perfil
