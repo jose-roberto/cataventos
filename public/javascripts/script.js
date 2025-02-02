@@ -73,10 +73,12 @@ async function load_timeline() {
         <div class="card mb-3" style="width: 36rem; height: ${card_height};">
           <div class="card-body">
               <div class="d-flex justify-content-between">
-                  <h3 class="card-title m-3">${post.title}</h3>
+                  <h3 class="card-title m-3">
+                      <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
+                  </h3>
                   <div class="d-flex">
-                      <img src="images/livros.png" alt="Logo" class="rounded-circle mt-2" width="40" height="40">
-                      <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="/index.html">User</a>
+                      <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40" height="40">
+                      <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
                   </div>
               </div>
               <div class="d-flex">
@@ -136,7 +138,7 @@ async function load_my_posts() {
                   <h3 class="card-title m-3">${post.title}</h3>
                   <div class="d-flex">
                       <img src="images/livros.png" alt="Logo" class="rounded-circle mt-2" width="40" height="40">
-                      <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="/index.html">User</a>
+                      <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="profile">User</a>
                   </div>
               </div>
               <div class="d-flex">
@@ -181,7 +183,7 @@ async function load_my_lists() {
                   <h3 class="card-title m-3">${list.name}</h3>
                   <div class="d-flex">
                       <img src="images/livros.png" alt="Logo" class="rounded-circle mt-2" width="40" height="40">
-                      <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="/index.html">User</a>
+                      <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="profile">User</a>
                   </div>
               </div>
               <hr class="border-danger-subtle border-3 opacity-75 mt-2 mb-4">
@@ -194,6 +196,32 @@ async function load_my_lists() {
     console.error("Erro ao carregar posts:", error);
     document.getElementById("my_lists").innerHTML = "<p>Erro ao carregar posts.</p>";
   }
+}
+
+async function like_text() {
+  const button = document.getElementById("like-button");
+
+  button.addEventListener("click", async () => {
+    const text_id = button.getAttribute("data-id");
+
+    try {
+      const response = await fetch(`/text/${text_id}/like_text`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao curtir o post");
+      }
+
+      const data = await response.json();
+      document.getElementById("like-count").textContent = data.likes;
+    } catch (error) {
+      console.error(error);
+    }
+  });
 }
 
 window.onload = function () {
@@ -210,5 +238,8 @@ window.onload = function () {
   }
   if (window.location.pathname.includes('my_lists')) {
     load_my_lists();
+  }
+  if (window.location.pathname.includes('text')) {
+    like_text();
   }
 };

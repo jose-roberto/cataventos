@@ -32,7 +32,7 @@ Implementar respectivos redirecionamentos para:
 ### Homepage
 - [X] Timeline de textos produzidos
 - [ ] Coluna de sugestões
-- [ ] Opções de like
+- [X] Opções de like
 - [ ] Realizar filtragens
 
 ### Página de perfil
@@ -42,8 +42,8 @@ Implementar respectivos redirecionamentos para:
 - [ ] Análise de atividades
 
 ### Página de textos do usuário
-- [ ] Criar textos via modal com ferramentas de edição (Create)
-- [ ] Visualizar textos produzidos (Read)
+- [X] Criar textos via modal com ferramentas de edição (Create)
+- [X] Visualizar textos produzidos (Read)
 - [ ] Alterar textos produzidos (Update)
 - [ ] Excluir textos produzidos (Delete)
 - [ ] Acoplar editor de texto -> Sugestão: CKEditor
@@ -53,8 +53,8 @@ Implementar respectivos redirecionamentos para:
 - [ ] Criar opção de indicar leitura
 
 ### Página de listas do usuário
-- [ ] Criar listas via modal (Create)
-- [ ] Visualizar listas (Read)
+- [X] Criar listas via modal (Create)
+- [X] Visualizar listas (Read)
 - [ ] Alterar listas (Update)
 - [ ] Excluir listas (Delete)
 - [X] Consertar botões de tipo

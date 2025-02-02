@@ -1,5 +1,6 @@
 const Text = require('../models/Text');
 const TextUser = require('../models/TextUser');
+const { get } = require('../routes/list');
 
 const create_text = async (req, res) => {
     try {
@@ -70,8 +71,46 @@ const get_my_texts = async (req, res) => {
     }
 };
 
+const get_text = async (req, res) => {
+    try {
+        const text_instance = new Text();
+
+        const text = await text_instance.find_by_id(req.params.id);
+
+        if(!text) {
+            return res.status(404).send("Texto não encontrado.");
+        }
+
+        res.render('text', { text });
+    } catch (error) {
+        console.error("Erro ao buscar post:", error);
+        res.status(500).send("Erro ao carregar o texto.");
+    }
+};
+
+const like_text = async (req, res) => {
+    try {
+        const text_instance = new Text();
+        const text = await text_instance.find_by_id(req.params.id);
+
+        if (!text) {
+            return res.status(404).json({ error: "Texto não encontrado." });
+        }
+
+        text.like += 1;
+        await text_instance.update(req.params.id, { like: text.like });
+
+        res.json({ likes: text.like }); // Retorna o número atualizado de likes
+    } catch (error) {
+        console.error("Erro ao curtir post:", error);
+        res.status(500).json({ error: "Erro ao curtir o texto." });
+    }
+};
+
 module.exports = {
     create_text, 
     get_timeline,
-    get_my_texts
+    get_my_texts,
+    get_text,
+    like_text
 };
