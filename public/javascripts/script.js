@@ -36,7 +36,7 @@ async function load_genres() {
   }
 }
 
-async function load_posts() {
+async function load_timeline() {
   try {
     // Buscar os posts
     const response = await fetch("/text/read_texts");
@@ -97,10 +97,72 @@ async function load_posts() {
   }
 }
 
+async function load_my_posts() {
+  try {
+    // Buscar os posts
+    const response = await fetch("/text/my_texts");
+    const posts = await response.json();
+
+    // Buscar os gêneros
+    const genreResponse = await fetch("/genre/read_genre");
+    const genres = await genreResponse.json();
+
+    // Criar um mapa de ID para nome do gênero
+    const genreMap = {};
+    genres.forEach(genre => {
+      genreMap[genre.id] = genre.name;
+    });
+
+    const my_texts = document.getElementById("my_tales");
+
+    if (posts.length === 0) {
+      my_texts.innerHTML = "<p>Nenhum post disponível.</p>";
+      return;
+    }
+
+    charLimit = 150;
+
+    my_texts.innerHTML = posts.map(post => {
+      const is_long = post.text.length > charLimit;
+      const display = is_long ? post.text.slice(0, charLimit) + "..." : post.text;
+      const card_height = is_long ? "auto" : "23rem";
+
+      const genreName = genreMap[post.genre_id] || "Desconhecido";
+
+      return `
+        <div class="card m-2" style="width: 30rem; height: ${card_height};">
+          <div class="card-body">
+              <div class="d-flex justify-content-between">
+                  <h3 class="card-title m-3">${post.title}</h3>
+                  <div class="d-flex">
+                      <img src="images/livros.png" alt="Logo" class="rounded-circle mt-2" width="40" height="40">
+                      <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="/index.html">User</a>
+                  </div>
+              </div>
+              <div class="d-flex">
+                  <i class="bi bi-hand-thumbs-up ms-2 "></i>
+                  <p class="card-text ms-3">${post.like}</p>
+              </div>                    
+              <hr class="border-danger-subtle border-3 opacity-75 mt-4">
+              <p class="card-text ms-4 fs-5">${display}</p>
+              <hr class="border-danger-subtle border-3 opacity-75 mt-4">
+              <p class="card-text ms-4 fs-5"> ${genreName}</p>
+          </div>
+        </div>
+      `;
+    }).join("");
+  } catch (error) {
+    console.error("Erro ao carregar posts:", error);
+    document.getElementById("my_tales").innerHTML = "<p>Erro ao carregar posts.</p>";
+  }
+}
 
 window.onload = function () {
+  if (window.location.pathname.includes('my_tales')) {
+    load_my_posts();
+  }
   if (window.location.pathname.includes('homepage')) {
-    load_posts();
+    load_timeline();
   }
   if (window.location.pathname.includes('profile')) {
     load_user();

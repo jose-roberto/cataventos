@@ -7,4 +7,6 @@ router.post('/create_text', text_controller.create_text);
 
 router.get('/read_texts', text_controller.get_timeline);
 
+router.get('/my_texts', text_controller.get_my_texts);
+
 module.exports = router;

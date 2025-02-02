@@ -57,7 +57,23 @@ const get_timeline = async (req, res) => {
     }
 };
 
+const get_my_texts = async (req, res) => {
+    try {
+        const text_instance = new Text();
+
+        const posts = await text_instance.find_my_texts(req.session.user_id);
+        console.log(posts);
+
+        // posts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        res.json(posts);
+    } catch (error) {
+        console.error("Erro ao buscar posts:", error);
+        res.status(500).send("Erro ao carregar os textos.");
+    }
+};
+
 module.exports = {
     create_text, 
-    get_timeline
+    get_timeline,
+    get_my_texts
 };
