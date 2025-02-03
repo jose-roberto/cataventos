@@ -1,7 +1,7 @@
 # Tarefas e anotações
 
 ## Estrutura geral (front-end e back-end)
-- [ ] Mensagem de confirmação
+- [X] Modal de confirmação genérico
 
 ### Navbar
 
@@ -44,7 +44,7 @@ Implementar respectivos redirecionamentos para:
 ### Página de perfil
 - [X] Visualizar dados pessoais (Read)
 - [X] Alterar dados pessoais (Update)
-- [ ] Excluir conta (Delete)
+- [X] Excluir conta (Delete)
 - [ ] Contos e listas do usuário
 
 - [ ] Análise de atividades

@@ -133,30 +133,17 @@
             </div>
         </div>
 
-        <!-- Modal de Confirmação -->
-        <div class="modal fade" id="confirm_delete_modal" tabindex="-1" aria-labelledby="confirm_delete_label"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirm_delete_label">Confirmar Exclusão</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        Tem certeza de que deseja excluir este item? Essa ação não pode ser
-                        desfeita.
-                    </div>
-
-                    <div class="modal-footer">
-                        <form action="/user/delete?_method=DELETE" method="POST" id="delete_form">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-danger" id="confirm_delete_btn">Excluir</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Modal de Confirmação de Exclusão de Perfil -->
+         <%- include ('confirmation_modal',
+         {modal_id: 'confirm_delete_modal',
+         modal_label: 'confirm_delete_label',
+         modal_title: 'Excluir Perfil',
+         modal_body: 'Tem certeza que deseja excluir seu perfil? Esta ação não pode ser desfeita.',
+         modal_form_id: 'confirm_delete_form',
+         modal_action: '/user/delete_user?_method=DELETE',
+         modal_btn_id: 'confirm_delete_btn',
+         modal_btn_text: 'Excluir Perfil',
+         modal_btn_class: 'btn-danger'}) %> 
 </body>
 
 </html>

@@ -1,0 +1,28 @@
+<!-- Modal Reutilizável -->
+<div class="modal fade" id="<%= modal_id %>" tabindex="-1" aria-labelledby="<%= modal_label %>" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="<%= modal_label %>">
+                    <%= modal_title %>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+
+            <div class="modal-body">
+                <p>
+                    <%= modal_body %>
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <form action="<%= modal_action %>" method="POST" id="<%= modal_form_id %>">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn <%= modal_btn_class %>" id="<%= modal_btn_id %>">
+                        <%= modal_btn_text %>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

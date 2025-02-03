@@ -287,7 +287,7 @@ window.onload = function () {
 
   if (window.location.pathname.includes('profile')) {
     load_user();
-    document.getElementById('delete_form').addEventListener('submit', delete_user);
+    document.getElementById('confirm_delete_form').addEventListener('submit', delete_user);
   }
 
   if (window.location.pathname.includes('my_tales')) {
