@@ -1,6 +1,7 @@
 # Tarefas e anotações
 
 ## Estrutura geral (front-end e back-end)
+- [ ] Mensagem de confirmação
 
 ### Navbar
 
@@ -27,33 +28,38 @@ Implementar respectivos redirecionamentos para:
 - [X] Logout
 - [X] Validação do login
 - [X] Controle de acesso
-- [ ] Adicionar seleção de gêneros de interesse
 - [ ] Erros de login e cadastro
+
+- [ ] Adicionar seleção de gêneros de interesse
 
 ### Homepage
 - [X] Timeline de textos produzidos
-- [ ] Coluna de sugestões
 - [X] Opções de like
-- [ ] Data de publicação
 - [ ] Realizar filtragens
+- [ ] Data de publicação
+
+- [ ] Coluna de sugestões
 
 ### Página de perfil
 - [X] Visualizar dados pessoais (Read)
 - [X] Alterar dados pessoais (Update)
 - [ ] Excluir conta (Delete)
+- [ ] Contos e listas do usuário
+
 - [ ] Análise de atividades
 
 ### Página de textos do usuário
 - [X] Criar textos via modal com ferramentas de edição (Create)
 - [X] Visualizar textos produzidos (Read)
-- [ ] Alterar textos produzidos (Update)
-- [ ] Excluir textos produzidos (Delete)
+- [X] Alterar textos produzidos (Update)
+- [X] Excluir textos produzidos (Delete)
+- [X] Consertar botões de tipo
+- [ ] Paginação
+- [ ] Criar opção de convidar para colaboração
+
+- [ ] Criar opção de indicar leitura
 - [ ] Acoplar editor de texto -> Sugestão: CKEditor
 - [ ] Contador de caracteres
-- [X] Consertar botões de tipo
-- [ ] Criar opção de convidar para colaboração
-- [ ] Criar opção de indicar leitura
-- [ ] Paginação
 
 ### Página de listas do usuário
 - [X] Criar listas via modal (Create)

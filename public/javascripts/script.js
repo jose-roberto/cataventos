@@ -117,7 +117,7 @@ async function load_my_posts() {
     const my_texts = document.getElementById("my_tales");
 
     if (posts.length === 0) {
-      my_texts.innerHTML = "<p>Nenhum post disponível.</p>";
+      my_texts.innerHTML = "<p class='title-gradient fs-4 mt-4'>Nenhum post disponível.</p>";
       return;
     }
 
@@ -173,7 +173,7 @@ async function load_my_lists() {
     const my_lists = document.getElementById("my_lists");
 
     if (lists.length === 0) {
-      my_lists.innerHTML = "<p>Nenhuma lista disponível.</p>";
+      my_lists.innerHTML = "<p class='title-gradient fs-4 mt-4>Nenhuma lista disponível.</p>";
       return;
     }
 
