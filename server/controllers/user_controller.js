@@ -125,10 +125,32 @@ const update_user = async (req, res) => {
   }
 }
 
+const delete_user = async (req, res) => {
+  try {
+    const user_id = req.session.user_id;
+
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuário não autenticado.' });
+    }
+
+    const user_instance = new User();
+
+    const result = await user_instance.delete(user_id);
+
+    // Retornar resposta de sucesso
+    // res.status(200).json({ message: 'Usuário deletado com sucesso!', result: result });
+    res.redirect('/');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao deletar usuário.' });
+  }
+}
+
 module.exports = {
   login,
   logout,
   create_user,
   read_user,
-  update_user
+  update_user,
+  delete_user
 };

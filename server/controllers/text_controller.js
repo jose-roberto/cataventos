@@ -107,10 +107,29 @@ const like_text = async (req, res) => {
     }
 };
 
+const delete_text = async (req, res) => {
+    try {
+        const text_instance = new Text()
+        const text = await text_instance.find_by_id(req.params.id);
+
+        if (!text) {
+            return res.status(404).json({ error: "Texto não encontrado." });
+        }
+
+        await text_instance.delete_text(req.params.id);
+
+        res.redirect('/homepage');
+    } catch (error) {
+        console.error("Erro ao deletar post:", error);
+        res.status(500).json({ error: "Erro ao deletar o texto." });
+    }
+};
+
 module.exports = {
     create_text, 
     get_timeline,
     get_my_texts,
     get_text,
-    like_text
+    like_text,
+    delete_text
 };

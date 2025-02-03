@@ -53,6 +53,7 @@ Implementar respectivos redirecionamentos para:
 - [X] Consertar botões de tipo
 - [ ] Criar opção de convidar para colaboração
 - [ ] Criar opção de indicar leitura
+- [ ] Paginação
 
 ### Página de listas do usuário
 - [X] Criar listas via modal (Create)
