@@ -21,8 +21,8 @@ class TextUser extends Model {
                 `CREATE TABLE IF NOT EXISTS text_user (
                     text_id INTEGER,
                     user_id INTEGER,
-                    FOREIGN KEY (text_id) REFERENCES text(id),
-                    FOREIGN KEY (user_id) REFERENCES user(id),
+                    FOREIGN KEY (text_id) REFERENCES text(id) ON DELETE CASCADE,
+                    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
                     PRIMARY KEY (text_id, user_id)
                 )`
             );

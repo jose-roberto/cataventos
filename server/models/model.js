@@ -11,6 +11,7 @@ class Model {
       try {
         const statement = this.db_connection.prepare(`SELECT * FROM ${this.table_name}`);
         const rows = statement.all();
+
         resolve(rows);
       } catch (error) {
         reject(error);
@@ -23,6 +24,7 @@ class Model {
       try {
         const statement = this.db_connection.prepare(`SELECT * FROM ${this.table_name} WHERE id = ?`);
         const row = statement.get(id);
+
         resolve(row);
       } catch (error) {
         reject(error);
@@ -37,6 +39,7 @@ class Model {
         const placeholders = Object.keys(data).map(() => '?').join(', ');
         const statement = this.db_connection.prepare(`INSERT INTO ${this.table_name}(${keys}) VALUES(${placeholders})`);
         const result = statement.run(Object.values(data));
+
         resolve({ id: result.lastInsertRowid }); // Retorne o ID do novo registro
       } catch (error) {
         reject(error);
@@ -50,6 +53,7 @@ class Model {
         const updates = Object.keys(data).map(key => `${key} = ?`).join(', ');
         const statement = this.db_connection.prepare(`UPDATE ${this.table_name} SET ${updates} WHERE id = ?`);
         const result = statement.run([...Object.values(data), id]);
+
         resolve(result);
       } catch (error) {
         reject(error);
@@ -62,8 +66,14 @@ class Model {
       try {
         const statement = this.db_connection.prepare(`DELETE FROM ${this.table_name} WHERE id = ?`);
         const result = statement.run(id);
+
+        if (result.changes === 0) {
+          throw new Error(`Nenhum registro encontrado para deletar na tabela ${this.table_name}.`);
+        }
+
         resolve(result);
       } catch (error) {
+        console.error("Erro ao deletar:", error);
         reject(error);
       }
     });

@@ -137,9 +137,7 @@ const delete_user = async (req, res) => {
 
     const result = await user_instance.delete(user_id);
 
-    // Retornar resposta de sucesso
-    // res.status(200).json({ message: 'Usuário deletado com sucesso!', result: result });
-    res.redirect('/');
+    res.json(result); 
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao deletar usuário.' });

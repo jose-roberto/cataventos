@@ -21,8 +21,8 @@ class TextList extends Model {
                 `CREATE TABLE IF NOT EXISTS text_list (
                     list_id INTEGER,
                     text_id INTEGER,
-                    FOREIGN KEY (list_id) REFERENCES list(id),
-                    FOREIGN KEY (text_id) REFERENCES text(id),
+                    FOREIGN KEY (list_id) REFERENCES list(id) ON DELETE CASCADE,
+                    FOREIGN KEY (text_id) REFERENCES text(id) ON DELETE CASCADE,
                     PRIMARY KEY (list_id, text_id)
                 )`
             );

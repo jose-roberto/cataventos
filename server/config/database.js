@@ -181,7 +181,7 @@ function fill_text() {
 
 
 function fill_user() {
-    const hashedPassword = bcrypt.hashSync('1234', 10);
+    const hashedPassword = bcrypt.hashSync('1', 10);
 
     // Usuários
     user_instance.create({  // 1

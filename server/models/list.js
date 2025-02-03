@@ -24,7 +24,7 @@ class List extends Model {
                     description TEXT,
                     user_id INTEGER,
                     status INTEGER,
-                    FOREIGN KEY (user_id) REFERENCES user(id)
+                    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
                 )`
             );
             statement.run();

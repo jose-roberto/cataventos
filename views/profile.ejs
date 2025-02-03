@@ -39,9 +39,18 @@
                                         <i class="bi bi-person-circle me-1"></i> Geral
                                     </button>
                                 </li>
+
                                 <li class="nav-item flex-fill text-center">
                                     <button class="nav-link w-100" data-bs-toggle="tab" data-bs-target="#profile-edit">
                                         <i class="bi bi-pencil-square me-1"></i> Editar Perfil
+                                    </button>
+                                </li>
+
+                                <li class="nav-item flex-fill text-center">
+                                    <!-- Botão para abrir o modal -->
+                                    <button class="nav-link w-100" data-bs-toggle="modal"
+                                        data-bs-target="#confirm_delete_modal">
+                                        <i class="bi bi-trash me-1"></i> Excluir Perfil
                                     </button>
                                 </li>
                             </ul>
@@ -54,12 +63,14 @@
                                         <div class="col-lg-9 col-md-8" id="name"></div>
                                     </div>
                                     <div class="row mb-4">
-                                        <div class="col-lg-3 col-md-4 label"><i class="bi bi-at"></i> Nome de Usuário:
+                                        <div class="col-lg-3 col-md-4 label"><i class="bi bi-at"></i> Nome de
+                                            Usuário:
                                         </div>
                                         <div class="col-lg-9 col-md-8" id="username"></div>
                                     </div>
                                     <div class="row mb-4">
-                                        <div class="col-lg-3 col-md-4 label"><i class="bi bi-envelope-fill"></i> Email:
+                                        <div class="col-lg-3 col-md-4 label"><i class="bi bi-envelope-fill"></i>
+                                            Email:
                                         </div>
                                         <div class="col-lg-9 col-md-8" id="email"></div>
                                     </div>
@@ -111,8 +122,37 @@
                                         </div>
                                     </form>
                                 </div>
+
+                                <div class="tab-pane fade active profile-delete" id="profile-delete">
+
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Confirmação -->
+        <div class="modal fade" id="confirm_delete_modal" tabindex="-1" aria-labelledby="confirm_delete_label"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirm_delete_label">Confirmar Exclusão</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        Tem certeza de que deseja excluir este item? Essa ação não pode ser
+                        desfeita.
+                    </div>
+
+                    <div class="modal-footer">
+                        <form action="/user/delete?_method=DELETE" method="POST" id="delete_form">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger" id="confirm_delete_btn">Excluir</button>
+                        </form>
                     </div>
                 </div>
             </div>

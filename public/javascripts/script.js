@@ -19,6 +19,26 @@ async function load_user() {
   }
 }
 
+async function delete_user(event) {
+  console.log('Deletando usuário...');
+  event.preventDefault();
+
+  try {
+    const response = await fetch('/user/delete_user', {
+      method: 'DELETE',
+    });
+    console.log(response);
+
+    if (response) {
+      window.location.href = '/';
+    } else {
+      console.error('Erro ao deletar usuário.');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function load_genres() {
   try {
     const response = await fetch('/genre/read_genre');
@@ -267,6 +287,7 @@ window.onload = function () {
 
   if (window.location.pathname.includes('profile')) {
     load_user();
+    document.getElementById('delete_form').addEventListener('submit', delete_user);
   }
 
   if (window.location.pathname.includes('my_tales')) {
