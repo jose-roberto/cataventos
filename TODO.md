@@ -37,6 +37,7 @@ Implementar respectivos redirecionamentos para:
 - [X] Opções de like
 - [ ] Realizar filtragens
 - [ ] Data de publicação
+- [ ] Visualizar perfil de outros usuários
 
 - [ ] Coluna de sugestões
 
