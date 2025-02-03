@@ -1,6 +1,5 @@
 const List = require('../models/List');
 const Text = require('../models/Text');
-const { get } = require('../routes/list');
 
 const create_list = async (req, res) => {
     try {
@@ -87,10 +86,39 @@ const get_list_texts = async (req, res) => {
     }
 };
 
+const update_list = async (req, res) => {
+    try {
+        const { list_id, name, description, text_ids} = req.body;
+
+        if (!name && !description || !text_ids) {
+            return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
+        }
+
+        const list_instance = new List();
+
+        const result = await list_instance.update(list_id, {
+            name: name,
+            description: description
+        });
+
+        const text_list_instance = new TextList();
+
+        for (let text_id of text_ids) {
+            await text_list_instance.delete(text_id);
+        }
+
+        res.status(200).json({ message: 'Lista atualizada com sucesso!' });
+    } catch (error) {
+        console.error("Erro ao atualizar lista:", error);
+        res.status(500).send("Erro ao atualizar a lista.");
+    }
+}
+
 
 module.exports = {
     create_list,
     get_my_lists,
     get_list,
-    get_list_texts
+    get_list_texts,
+    update_list
 };

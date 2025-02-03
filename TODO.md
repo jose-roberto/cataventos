@@ -3,6 +3,17 @@
 ## Estrutura geral (front-end e back-end)
 - [X] Modal de confirmação genérico
 
+### Sugestão de correção de implementação de CRUD's
+Caso a ação resulte em um redirecionamento direto o ideal é utilizar um formulário básico
+que se comunica diretamente com o banco.
+
+Já em casos onde seja interessante que o resultado da ação impacte o front-end dinamicamente, é mais interessante utilizar o Javascript como mediador.
+
+#### Verificar em:
+- [] CRUD do usuário
+- [] CRUD do texto
+- [] CRUD da lista
+
 ### Responsividade
 - [ ] text.ejs
 - [ ] my_lists.ejs

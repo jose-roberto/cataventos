@@ -11,4 +11,6 @@ router.get('/:id', list_controller.get_list);
 
 router.get('/:id/texts', list_controller.get_list_texts);
 
+router.put('/update_list', list_controller.update_list);
+
 module.exports = router;
