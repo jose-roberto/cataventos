@@ -145,9 +145,9 @@ const delete_text = async (req, res) => {
             return res.status(404).json({ error: "Texto não encontrado." });
         }
 
-        await text_instance.delete_text(req.params.id);
+        const result = await text_instance.delete(req.params.id);
 
-        res.redirect('/homepage');
+        res.json(result); 
     } catch (error) {
         console.error("Erro ao deletar post:", error);
         res.status(500).json({ error: "Erro ao deletar o texto." });

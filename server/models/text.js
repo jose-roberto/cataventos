@@ -44,28 +44,6 @@ class Text extends Model {
         );
         return statement.all(user_id);
     }
-
-    delete_text(id) {
-        return new Promise((resolve, reject) => {
-            try {
-
-                const transaction = this.db_connection.transaction(() => {
-
-                    this.db_connection.prepare("DELETE FROM text_user WHERE text_id = ?").run(id);
-                    this.db_connection.prepare("DELETE FROM text_list WHERE text_id = ?").run(id);
-    
-                    const result = this.db_connection.prepare(`DELETE FROM ${this.table_name} WHERE id = ?`).run(id);
-    
-                    return result;
-                });
-
-                const result = transaction();
-                resolve(result);
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
 }
 
 module.exports = Text;

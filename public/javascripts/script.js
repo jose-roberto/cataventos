@@ -20,15 +20,13 @@ async function load_user() {
 }
 
 async function delete_user(event) {
-  console.log('Deletando usuário...');
   event.preventDefault();
 
   try {
     const response = await fetch('/user/delete_user', {
       method: 'DELETE',
     });
-    console.log(response);
-
+   
     if (response) {
       window.location.href = '/';
     } else {
@@ -184,6 +182,26 @@ async function load_my_posts() {
   }
 }
 
+async function delete_post(event, text_id) {
+  console.log('Deletando post...');
+  event.preventDefault();
+
+  try {
+    const response = await fetch(`/text/${text_id}/delete_text`, {
+      method: 'DELETE',
+    });
+    console.log(response);
+
+    if (response) {
+      window.location.href = '/my_tales';
+    } else {
+      console.error('Erro ao deletar post.');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function load_my_lists() {
   try {
     // Buscar as listas
@@ -287,7 +305,12 @@ window.onload = function () {
 
   if (window.location.pathname.includes('profile')) {
     load_user();
-    document.getElementById('confirm_delete_form').addEventListener('submit', delete_user);
+
+    const delete_form = document.getElementById('confirm_delete_form');
+    
+    if (delete_form) {
+      delete_form.addEventListener('submit', (event) => delete_user(event));
+    }
   }
 
   if (window.location.pathname.includes('my_tales')) {
@@ -301,11 +324,18 @@ window.onload = function () {
 
   if (window.location.pathname.includes('text')) {
     like_text();
+
+    const text_id = window.location.pathname.split('/')[2];
+
+    const deleteForm = document.getElementById('delete_post_form');
+
+    if (deleteForm) {
+      deleteForm.addEventListener('submit', (event) => delete_post(event, text_id));
+    }
   }
 
   if (window.location.pathname.startsWith('/list')) {
     const list_id = window.location.pathname.split('/')[2];
-
     load_text_list(list_id);
   }
 };
