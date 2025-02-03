@@ -3,6 +3,19 @@
 ## Estrutura geral (front-end e back-end)
 - [X] Modal de confirmação genérico
 
+### Responsividade
+- [ ] text.ejs
+- [ ] my_lists.ejs
+- [ ] list.ejs
+- [X] confirmation_modal.ejs
+- [X] homepage.ejs
+- [X] index.ejs
+- [X] login.ejs
+- [x] my_tales.ejs
+- [X] navbar.ejs
+- [X] profile.ejs
+- [X] register.ejs
+
 ### Navbar
 
 - [X] Criar navbar
