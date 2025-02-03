@@ -1,6 +1,5 @@
 const Text = require('../models/Text');
 const TextUser = require('../models/TextUser');
-const { get } = require('../routes/list');
 
 const create_text = async (req, res) => {
     try {
@@ -107,6 +106,36 @@ const like_text = async (req, res) => {
     }
 };
 
+const edit_text = async (req, res) => {
+    try {
+        const { title, text, style} = req.body;
+
+        if (!title || !text || !style) {
+            return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
+        }
+
+        const type = style === 'poem' ? 1 : 0;
+
+        const text_instance = new Text();
+        const selected_text = await text_instance.find_by_id(req.params.id);
+
+        if (!selected_text) {
+            return res.status(404).json({ error: "Texto não encontrado." });
+        }
+
+        await text_instance.update(req.params.id, {
+            title: title,
+            type: type,
+            text: text,
+        });
+
+        res.redirect('/my_tales');
+    } catch (error) {
+        console.error("Erro ao editar post:", error);
+        res.status(500).json({ error: "Erro ao editar o texto." });
+    }
+}
+
 const delete_text = async (req, res) => {
     try {
         const text_instance = new Text()
@@ -131,5 +160,6 @@ module.exports = {
     get_my_texts,
     get_text,
     like_text,
+    edit_text,
     delete_text
 };
