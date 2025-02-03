@@ -2,6 +2,7 @@
 
 ## Estrutura geral (front-end e back-end)
 - [X] Modal de confirmação genérico
+- [ ] Opções de excluir e editar somente para usuário criador (controle de sessão)
 
 ### Sugestão de correção de implementação de CRUD's
 Caso a ação resulte em um redirecionamento direto o ideal é utilizar um formulário básico
