@@ -47,10 +47,26 @@ const get_timeline = async (req, res) => {
     try {
         const text_instance = new Text();
 
-        const posts = await text_instance.find_all();
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
 
-        posts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-        res.json(posts);
+        const all_posts = await text_instance.find_all();
+
+        all_posts.sort((a, b) => new Date(b.publication_date) - new Date(a.publication_date));
+
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
+
+        const posts = all_posts.slice(startIndex, endIndex);
+
+        res.json({
+            posts,
+            pagination: {
+                page,
+                limit,
+                total_posts: all_posts.length, // Total de posts no banco de dados
+            },
+        });
     } catch (error) {
         console.error("Erro ao buscar posts:", error);
         res.status(500).send("Erro ao carregar a timeline.");

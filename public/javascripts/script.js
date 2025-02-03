@@ -54,11 +54,12 @@ async function load_genres() {
   }
 }
 
-async function load_timeline() {
+async function load_timeline(page = 1, limit = 10) {
   try {
-    // Buscar os posts
-    const response = await fetch("/text/read_texts");
-    const posts = await response.json();
+    // Buscar os posts com paginação
+    const response = await fetch(`/text/read_texts?page=${page}&limit=${limit}`);
+    const data = await response.json();
+    const { posts, pagination } = data;
 
     // Buscar os gêneros
     const genreResponse = await fetch("/genre/read_genre");
@@ -79,22 +80,32 @@ async function load_timeline() {
 
     const charLimit = 250;
 
+    // Exibir os posts
     timeline.innerHTML = posts.map(post => {
       const is_long = post.text.length > charLimit;
       const display = is_long ? post.text.slice(0, charLimit) + "..." : post.text;
 
       // Obter o nome do gênero pelo ID do post
+      const date = new Date(post.publication_date);
+      const final_date = date.toLocaleDateString('pt-BR');
       const genreName = genreMap[post.genre_id] || "Desconhecido";
 
       return `
         <div class="card mb-3">
             <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <h3 class="card-title m-3">
-                        <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
-                    </h3>
-                    <div class="d-flex">
-                        <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40"height="40">
+                <!-- Cabeçalho do card -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <!-- Título e data formatada -->
+                    <div class="d-flex align-items-center">
+                        <h3 class="card-title m-3">
+                            <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
+                        </h3>
+                        <div class="mt-1 me-3">
+                            <i class="bi bi-calendar-event me-2"></i>${final_date}
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40" height="40">
                         <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
                     </div>
                 </div>
@@ -109,11 +120,26 @@ async function load_timeline() {
             </div>
         </div>
       `;
-    }).join("");
+    }).join("");
+
+    // Adicionar botões de paginação
+    const pagination_container = document.getElementById("pagination");
+    if (pagination_container) {
+      const total_pages = Math.ceil(pagination.total_posts / pagination.limit);
+      pagination_container.innerHTML = `
+          <div style="display: flex; justify-content: center; gap: 10px;">
+              <button class="btn btn-brown" onclick="load_timeline(${page - 1}, ${limit})" ${page === 1 ? "disabled" : ""}>Anterior</button>
+              <button class="btn btn-brown" onclick="load_timeline(${page + 1}, ${limit})" ${page === total_pages ? "disabled" : ""}>Próxima</button>
+          </div>
+          <div style="text-align: center; margin-top: 5px;">
+              <span class="ms-3 mt-1">Página ${page} de ${total_pages}</span>
+          </div>
+      `;
+    }
   } catch (error) {
     console.error("Erro ao carregar posts:", error);
     document.getElementById("timeline").innerHTML = "<p>Erro ao carregar posts.</p>";
-  }
+  }
 }
 
 async function load_my_posts() {
@@ -145,6 +171,8 @@ async function load_my_posts() {
       const is_long = post.text.length > charLimit;
       const display = is_long ? post.text.slice(0, charLimit) + "..." : post.text;
 
+      const data = new Date(post.publication_date);
+      const data_formatada = data.toLocaleDateString('pt-BR');
       const genreName = genreMap[post.genre_id] || "Desconhecido";
 
       return `
@@ -154,17 +182,21 @@ async function load_my_posts() {
                     <h3 class=" card-title m-3">
                     <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
                     </h3>
-                    
                     <div class="d-flex">
                         <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-2" width="40"
                             height="40">
                         <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="profile">User</a>
                     </div>
                 </div>
-
-                <div class="d-flex">
-                    <i class="bi bi-hand-thumbs-up ms-2"></i>
-                    <p class="card-text ms-3">${post.like}</p>
+                    
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex mt-1 ms-2">
+                        <i class="bi bi-hand-thumbs-up ms-2"></i>
+                        <p class="card-text ms-3">${post.like}</p>
+                    </div>
+                    <div class="mt-1 me-3">
+                        <i class="bi bi-calendar-event me-2"></i>${data_formatada}
+                    </div>
                 </div>
 
                 <hr class="border-danger-subtle border-3 opacity-75 mt-4">
@@ -381,7 +413,7 @@ async function like_text() {
 
 window.onload = function () {
   if (window.location.pathname.includes('homepage')) {
-    load_timeline();
+    load_timeline(1, 5);
   }
 
   if (window.location.pathname.includes('profile')) {
