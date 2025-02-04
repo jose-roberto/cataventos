@@ -122,7 +122,7 @@ async function search_collaborators(text_id, search_query = "") {
                                     
                                 <a class="navbar-brand fs-4 mt-4 me-3">${collaborator.username}</a>
                                 
-                                <button type="button" class="btn btn-brown" id="add_collaborator_button" data-id="${collaborator.id}">
+                                <button type="button" class="btn btn-brown add-collaborator-button" data-id="${collaborator.id}">
                                     <i class="bi bi-plus-square"></i>
                                 </button>
                             </div>
@@ -212,23 +212,22 @@ window.onload = function () {
             search_collaborators(text_id, search_query);
         });
     }
-
-
-    const collaboratorsContainer = document.getElementById("collaborators_list");
-
-    if (collaboratorsContainer) {
-        // Adiciona um evento de clique ao container
-        collaboratorsContainer.addEventListener("click", (event) => {
-            // Verifica se o elemento clicado é o botão de adicionar colaborador
-            if (event.target.classList.contains("add_collaborator_button")) {
-                console.log("Adicionar colaborador clicado!");
-
-                const text_id = window.location.pathname.split('/')[2];
-                const collaborator_id = event.target.getAttribute("data-id");
-
-                // Chama a função para adicionar o colaborador
-                add_collaborator(text_id, collaborator_id);
-            }
-        });
-    }
 };
+
+// DINAMICAMENTE:
+
+const collaboratorsContainer = document.getElementById("collaborators_list");
+
+if (collaboratorsContainer) {
+    collaboratorsContainer.addEventListener("click", (event) => {
+        const button = event.target.closest(".add-collaborator-button");
+
+        if (button) {  // Verifica se o botão existe
+            const text_id = window.location.pathname.split('/')[2];
+            const collaborator_id = button.getAttribute("data-id");
+
+            // Chama a função para adicionar o colaborador
+            add_collaborator(text_id, collaborator_id);
+        }
+    });
+}
