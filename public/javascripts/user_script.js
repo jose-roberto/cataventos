@@ -1,19 +1,14 @@
 async function load_user() {
     try {
-        // Primeiro, busca o user_id
-        const id_responso = await fetch('/get_user_id');
-        const user_info = await id_responso.json();
+        // Extrai o user_id da URL
+        const path_array = window.location.pathname.split('/');
+        const user_id = path_array[2];
 
-        if (!id_responso.ok) {
-            throw new Error(id_responso.error || 'Erro ao obter user_id');
-        }
-
-        const user_id = user_info.user_id;
-
+        // Busca as informações do usuário
         const response = await fetch(`/user/${user_id}/read_user`);
         const user = await response.json();
 
-        // Para leitura
+        // Atualiza a página com os dados do usuário
         document.getElementById('name').textContent = user.name;
         document.getElementById('username').textContent = user.username;
         document.getElementById('email').textContent = user.email;
@@ -23,7 +18,7 @@ async function load_user() {
         });
         document.getElementById('birthdate').textContent = formattedBirthdate;
 
-        // Para visualização dos dados no campo de edição
+        // Preenche os campos de edição
         document.getElementById('name_update').value = user.name;
         document.getElementById('username_update').value = user.username;
         document.getElementById('email_update').value = user.email;

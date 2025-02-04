@@ -62,10 +62,10 @@ const create_user = async (req, res) => {
 
 const read_user = async (req, res) => {
   try {
-    const user_id = req.session.user_id;
+    const user_id = req.params.id;
 
     if (!user_id) {
-      return res.status(401).json({ error: 'Usuário não autenticado.' });
+      return res.status(400).json({ error: 'Página do usuário.' });
     }
 
     // Criar uma instância de User
@@ -142,7 +142,7 @@ const delete_user = async (req, res) => {
   }
 }
 
-const get_user = async (req, res) => {
+const get_profile = async (req, res) => {
   try {
     const user_id = req.params.id;
     const user_session = req.session.user_id;
@@ -173,5 +173,5 @@ module.exports = {
   read_user,
   update_user,
   delete_user,
-  get_user
+  get_profile
 };

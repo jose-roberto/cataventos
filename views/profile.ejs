@@ -40,19 +40,21 @@
                                     </button>
                                 </li>
 
-                                <li class="nav-item flex-fill text-center">
-                                    <button class="nav-link w-100" data-bs-toggle="tab" data-bs-target="#profile-edit">
-                                        <i class="bi bi-pencil-square me-1"></i> Editar Perfil
-                                    </button>
-                                </li>
+                                <% if (is_owner) { %>
+                                    <li class="nav-item flex-fill text-center">
+                                        <button class="nav-link w-100" data-bs-toggle="tab" data-bs-target="#profile-edit">
+                                            <i class="bi bi-pencil-square me-1"></i> Editar Perfil
+                                        </button>
+                                    </li>
 
-                                <li class="nav-item flex-fill text-center">
-                                    <!-- Botão para abrir o modal -->
-                                    <button class="nav-link w-100" data-bs-toggle="modal"
-                                        data-bs-target="#confirm_delete_modal">
-                                        <i class="bi bi-trash me-1"></i> Excluir Perfil
-                                    </button>
-                                </li>
+                                    <li class="nav-item flex-fill text-center">
+                                        <!-- Botão para abrir o modal -->
+                                        <button class="nav-link w-100" data-bs-toggle="modal"
+                                            data-bs-target="#confirm_delete_modal">
+                                            <i class="bi bi-trash me-1"></i> Excluir Perfil
+                                        </button>
+                                    </li>
+                                <% } %>
                             </ul>
 
                             <div class="tab-content pt-2">

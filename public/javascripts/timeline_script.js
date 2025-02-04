@@ -50,7 +50,7 @@ async function load_timeline(page = 1, limit = 10) {
                       </div>
                       <div class="d-flex align-items-center">
                           <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40" height="40">
-                          <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
+                          <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="user/${post.created_by}">User</a>
                       </div>
                   </div>
                   <div class="d-flex">

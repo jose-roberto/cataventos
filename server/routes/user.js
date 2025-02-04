@@ -8,7 +8,7 @@ router.post('/login', user_controller.login);
 
 router.get('/logout', authenticate, user_controller.logout);
 
-router.get('/:id', authenticate, user_controller.get_user);
+router.get('/:id', authenticate, user_controller.get_profile);
 
 router.post('/create_user', user_controller.create_user);
 
