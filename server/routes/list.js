@@ -12,6 +12,6 @@ router.get('/:id', authenticate, list_controller.get_list);
 
 router.get('/:id/texts', authenticate, list_controller.get_list_texts);
 
-router.put('/update_list', authenticate, list_controller.update_list);
+router.put('/:id/edit_list', authenticate, list_controller.update_list);
 
 module.exports = router;

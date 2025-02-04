@@ -1,5 +1,6 @@
 const List = require('../models/List');
 const Text = require('../models/Text');
+const TextList = require('../models/TextList');
 
 const create_list = async (req, res) => {
     try {
@@ -53,7 +54,7 @@ const get_list = async (req, res) => {
 
         const list = await list_instance.find_by_id(req.params.id);
 
-        if(!list) {
+        if (!list) {
             return res.status(404).send("Lista não encontrada.");
         }
 
@@ -88,23 +89,28 @@ const get_list_texts = async (req, res) => {
 
 const update_list = async (req, res) => {
     try {
-        const { list_id, name, description, text_ids} = req.body;
+        const { list_title, list_description, text_ids } = req.body;
 
-        if (!name && !description || !text_ids) {
+        const list_id = req.params.id;
+
+        // console.log(req.body);
+        // console.log(list_id);
+
+        if (!list_title || !list_description) {
             return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
         }
 
         const list_instance = new List();
 
         const result = await list_instance.update(list_id, {
-            name: name,
-            description: description
+            name: list_title,
+            description: list_description
         });
 
         const text_list_instance = new TextList();
 
         for (let text_id of text_ids) {
-            await text_list_instance.delete(text_id);
+            await text_list_instance.delete(text_id, list_id);
         }
 
         res.status(200).json({ message: 'Lista atualizada com sucesso!' });

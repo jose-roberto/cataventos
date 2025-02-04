@@ -32,6 +32,19 @@ class TextList extends Model {
             console.log(`Tabela "${this.table_name}" já existe.`);
         }
     }
+
+    delete(text_id, list_id) {
+        return new Promise((resolve, reject) => { 
+            const statement = this.db_connection.prepare(`DELETE FROM text_list WHERE text_id = ? AND list_id = ?`);
+            try {
+                const result = statement.run(text_id, list_id);
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+
 }
 
 module.exports = TextList;
