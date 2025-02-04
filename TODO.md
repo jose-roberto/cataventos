@@ -56,6 +56,7 @@ Implementar respectivos redirecionamentos para:
 - [X] Controle de acesso
 - [ ] Erros de login e cadastro
 
+#### Baixa prioridade
 - [ ] Adicionar seleção de gêneros de interesse
 
 ### Homepage
@@ -66,6 +67,7 @@ Implementar respectivos redirecionamentos para:
 - [ ] Realizar filtragens
 - [ ] Visualizar perfil de outros usuários
 
+#### Baixa prioridade
 - [ ] Coluna de sugestões
 
 ### Página de perfil
@@ -74,6 +76,7 @@ Implementar respectivos redirecionamentos para:
 - [X] Excluir conta (Delete)
 - [ ] Contos e listas do usuário
 
+#### Baixa prioridade
 - [ ] Análise de atividades
 
 ### Página de textos do usuário
@@ -82,14 +85,17 @@ Implementar respectivos redirecionamentos para:
 - [X] Alterar textos produzidos (Update)
 - [X] Excluir textos produzidos (Delete)
 - [X] Consertar botões de tipo
-- [ ] Criar opção de convidar para colaboração
+- [X] Criar opção de convidar para colaboração
 - [ ] Adicionar texto na lista
+- [ ] Validação de colaboração
+- [ ] Controle de acesso para alterações
+- [ ] Adicionar data
 
+#### Baixa prioridade
+- [ ] Corrigir like
 - [ ] Criar opção de indicar leitura
 - [ ] Contador de caracteres
 - [ ] Acoplar editor de texto -> Sugestão: CKEditor
-- [ ] Corrigir like
-- [ ] Adicionar data
 
 ### Página de listas do usuário
 - [X] Criar listas via modal (Create)
