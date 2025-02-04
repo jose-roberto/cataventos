@@ -231,6 +231,20 @@ const add_collaborator = async (req, res) => {
     }
 }
 
+const verify_collaborator = async (req, res) => {
+    try {
+        const text_user_instance = new TextUser();
+
+        const result = await text_user_instance.find_by_two_keys(req.params.id, req.session.user_id);
+        console.log("Resultado da verificação:", result);
+
+        res.json({ is_collaborator: result });
+    } catch (error) {
+        console.error("Erro ao verificar colaborador:", error);
+        res.status(500).json({ error: "Erro ao verificar colaborador." });
+    }
+}
+
 module.exports = {
     create_text,
     get_timeline,
@@ -240,5 +254,6 @@ module.exports = {
     update_text,
     delete_text,
     search_collaborator,
-    add_collaborator
+    add_collaborator,
+    verify_collaborator
 };

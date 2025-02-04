@@ -32,6 +32,29 @@ class TextUser extends Model {
             console.log(`Tabela "${this.table_name}" já existe.`);
         }
     }
+
+    find_by_two_keys(text_id, user_id) {
+        return new Promise((resolve, reject) => {
+            try {
+                const statement = this.db_connection.prepare(
+                    `SELECT * FROM ${this.table_name} WHERE text_id = ? AND user_id = ?`
+                );
+
+                const result = statement.get(text_id, user_id);
+                console.log("Resultado da busca:", result);
+
+                // Se o resultado for encontrado, resolve com o resultado
+                if (result) {
+                    resolve(1);
+                } else {
+                    resolve(0);
+                }
+            } catch (error) {
+                // Em caso de erro, rejeita a Promise
+                reject(error);
+            }
+        });
+    }
 }
 
 module.exports = TextUser;

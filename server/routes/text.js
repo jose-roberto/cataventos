@@ -22,4 +22,6 @@ router.get('/:id/search_collaborator', authenticate, text_controller.search_coll
 
 router.post('/:id/add_collaborator', authenticate, text_controller.add_collaborator);
 
+router.get('/:id/verify_collaborator', authenticate, text_controller.verify_collaborator);
+
 module.exports = router;
