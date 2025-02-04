@@ -30,6 +30,18 @@ app.use(session({
   },
 }));
 
+app.use((req, res, next) => {
+  res.locals.user_id = req.session.user_id || null;
+  next();
+});
+
+app.get('/get_user_id', (req, res) => {
+  if (!req.session.user_id) {
+      return res.status(401).json({ error: 'Não autenticado' });
+  }
+  res.json({ user_id: req.session.user_id });
+});
+
 // Middleware para analisar o corpo das requisições
 app.use(bodyParser.urlencoded({ extended: true }));
 

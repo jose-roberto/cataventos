@@ -118,7 +118,7 @@ const update_user = async (req, res) => {
 
     // Retornar resposta de sucesso
     // res.status(200).json({ message: 'Usuário atualizado com sucesso!', result: result });
-    res.redirect('/profile');
+    res.redirect(`/user/${req.session.user_id}`);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao atualizar usuário.' });
@@ -137,10 +137,34 @@ const delete_user = async (req, res) => {
 
     const result = await user_instance.delete(user_id);
 
-    res.json(result); 
+    res.json(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao deletar usuário.' });
+  }
+}
+
+const get_user = async (req, res) => {
+  try {
+    const user_id = req.params.id;
+    const user_session = req.session.user_id;
+
+    const user_instance = new User()
+
+    const user = user_instance.find_by_id(user_id)
+
+    if (!user) {
+      return res.status(404).send('Usuário não encontrado');
+    }
+
+    res.render('profile', {
+      user,
+      is_owner: user_session === Number(user_id),
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao carregar perfil.' });
   }
 }
 
@@ -150,5 +174,6 @@ module.exports = {
   create_user,
   read_user,
   update_user,
-  delete_user
+  delete_user,
+  get_user
 };

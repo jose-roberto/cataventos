@@ -8,12 +8,14 @@ router.post('/login', user_controller.login);
 
 router.get('/logout', authenticate, user_controller.logout);
 
-router.post('/create_user', authenticate, user_controller.create_user);
+router.get('/:id', authenticate, user_controller.get_user);
 
-router.get('/read_user', authenticate, user_controller.read_user);
+router.post('/create_user', user_controller.create_user);
 
-router.put('/update_user', authenticate, user_controller.update_user);
+router.get('/:id/read_user', authenticate, user_controller.read_user);
 
-router.delete('/delete_user', authenticate, user_controller.delete_user);
+router.put('/:id/update_user', authenticate, user_controller.update_user);
+
+router.delete('/:id/delete_user', authenticate, user_controller.delete_user);
 
 module.exports = router;

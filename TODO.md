@@ -83,10 +83,13 @@ Implementar respectivos redirecionamentos para:
 - [X] Excluir textos produzidos (Delete)
 - [X] Consertar botões de tipo
 - [ ] Criar opção de convidar para colaboração
+- [ ] Adicionar texto na lista
 
 - [ ] Criar opção de indicar leitura
 - [ ] Contador de caracteres
 - [ ] Acoplar editor de texto -> Sugestão: CKEditor
+- [ ] Corrigir like
+- [ ] Adicionar data
 
 ### Página de listas do usuário
 - [X] Criar listas via modal (Create)

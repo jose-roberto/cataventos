@@ -24,7 +24,7 @@
                 <!-- Profile Image -->
                 <div class="col-12 col-md-4 d-flex justify-content-center order-1 order-md-2 mb-4">
                     <div class="image-box d-flex justify-content-center align-items-center rounded-4 shadow-lg p-3">
-                        <img src="images/user_photo.png" alt="Profile Image" class="img-fluid rounded-4">
+                        <img src="/images/user_photo.png" alt="Profile Image" class="img-fluid rounded-4">
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@
                                 </div>
 
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                                    <form action="/user/update_user?_method=PUT" method="POST">
+                                    <form action="/user/<%= user_id %>/update_user?_method=PUT" method="POST">
                                         <div class="row mb-3">
                                             <label for="name_update" class="col-md-4 col-lg-3 col-form-label"><i
                                                     class="bi bi-person"></i> Nome</label>
