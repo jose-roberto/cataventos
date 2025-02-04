@@ -47,6 +47,23 @@ class List extends Model {
         );
         return statement.all(list_id);
     }
+
+    search_my_lists(user_id, search_query) {
+        const search_terms = search_query.split(' ').filter(term => term.trim() !== '');
+    
+        let query = `
+            SELECT * FROM list WHERE user_id = ? 
+        `;
+    
+        let params = [user_id];
+    
+        if (search_terms.length > 0) {
+            query += ` AND (${search_terms.map(() => 'name LIKE ?').join(' OR ')})`;
+            params = params.concat(search_terms.map(term => `%${term}%`));
+        }
+    
+        return this.db_connection.prepare(query).all(...params);
+    }
 }
 
 module.exports = List;

@@ -1,9 +1,10 @@
 let texts_to_remove = []; // Lista de textos a serem removidos
 
-async function load_my_lists() {
+async function load_my_lists(search_query = "") {
     try {
         // Buscar as listas
-        const response = await fetch("/list/my_lists");
+        const url = search_query ? `/list/my_lists?q=${encodeURIComponent(search_query)}` : "/list/my_lists";
+        const response = await fetch(url);
         const lists = await response.json();
 
         const my_lists = document.getElementById("my_lists");
@@ -35,8 +36,8 @@ async function load_my_lists() {
         `;
         }).join("");
     } catch (error) {
-        console.error("Erro ao carregar posts:", error);
-        document.getElementById("my_lists").innerHTML = "<p>Erro ao carregar posts.</p>";
+        console.error("Erro ao carregar listas:", error);
+        document.getElementById("my_lists").innerHTML = "<p>Erro ao carregar listas.</p>";
     }
 }
 
@@ -156,6 +157,12 @@ async function update_list(list_id) {
 window.onload = function () {
     if (window.location.pathname.includes('my_lists')) {
         load_my_lists();
+
+        const searchInput = document.getElementById("search_input");
+        searchInput.addEventListener("input", (event) => {
+            const searchQuery = event.target.value.trim();
+            load_my_lists(searchQuery);
+        });
     }
 
     if (window.location.pathname.startsWith('/list')) {

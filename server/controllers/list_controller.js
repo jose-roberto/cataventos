@@ -38,8 +38,19 @@ const create_list = async (req, res) => {
 const get_my_lists = async (req, res) => {
     try {
         const list_instance = new List();
+        const search_query = req.query.q;
 
-        const lists = await list_instance.find_my_lists(req.session.user_id);
+        let lists;
+        
+        if (search_query) {
+            // Se houver uma pesquisa, filtre as listas
+            lists = await list_instance.search_my_lists(req.session.user_id, search_query);
+        } else {
+            // Caso contrário, retorne todos as listas
+            lists = await list_instance.find_my_lists(req.session.user_id);
+        }
+
+        lists.sort((a, b) => new Date(b.publication_date) - new Date(a.publication_date));
 
         res.json(lists);
     } catch (error) {
