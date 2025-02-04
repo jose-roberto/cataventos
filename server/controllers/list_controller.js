@@ -69,7 +69,10 @@ const get_list = async (req, res) => {
             return res.status(404).send("Lista não encontrada.");
         }
 
-        res.render('list', { list });
+        res.render('list', { 
+            list,
+            is_owner: req.session.user_id === list.user_id
+        });
     } catch (error) {
         console.error("Erro ao buscar lista:", error);
         res.status(500).send("Erro ao carregar o lista.");

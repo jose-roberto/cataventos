@@ -19,10 +19,6 @@ router.get('/homepage', authenticate, (req, res) => {
     res.render('homepage');
 });
 
-// router.get('/profile', authenticate, (req, res) => {
-//     res.render('profile');
-// });
-
 router.get('/my_tales', authenticate, (req, res) => {
     res.render('my_tales');
 });

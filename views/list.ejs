@@ -17,7 +17,7 @@
 
 <body class="bg-main">
     <%- include('navbar') %>
-    
+
         <div class="container page-content">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
@@ -30,33 +30,34 @@
                                 <div class="d-flex align-items-center">
                                     <img src="/images/user_photo.png" alt="Logo" class="rounded-circle me-2" width="40"
                                         height="40">
-                                    <a class="fs-4 me-3 text-dark" href="profile">User</a>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn border-0 fw-bold" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="bi bi-three-dots fs-3"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                                            <li>
-                                                <button id="edit_button"
-                                                    class="dropdown-item d-flex align-items-center gap-2"
-                                                    data-bs-toggle="modal" data-bs-target="#edit_modal">
-                                                    <i class="bi bi-pencil-square text-primary"></i> Editar
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="dropdown-item text-danger d-flex align-items-center gap-2"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_list_modal">
-                                                    <i class="bi bi-trash"></i> Excluir
-                                                </button>
-                                            </li>
-                                        </ul>
-
-                                    </div>
+                                    <a class="navbar-brand fs-4 me-3" href="/user/<%= list.user_id %>">User</a>
+                                    <% if (is_owner) { %>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn border-0 fw-bold" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="bi bi-three-dots fs-3"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                                <li>
+                                                    <button id="edit_button"
+                                                        class="dropdown-item d-flex align-items-center gap-2"
+                                                        data-bs-toggle="modal" data-bs-target="#edit_modal">
+                                                        <i class="bi bi-pencil-square text-primary"></i> Editar
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <button
+                                                        class="dropdown-item text-danger d-flex align-items-center gap-2"
+                                                        data-bs-toggle="modal" data-bs-target="#delete_list_modal">
+                                                        <i class="bi bi-trash"></i> Excluir
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    <% } %>
                                 </div>
                             </div>
                             <p class="card-text ms-3 fs-5">

@@ -26,11 +26,11 @@ async function load_my_lists(search_query = "") {
                         <div class="d-flex">
                             <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1"
                                 width="40" height="40">
-                            <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
+                            <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="/user/${list.user_id}">User</a>
                         </div>
                     </div>
                     <hr class="border-danger-subtle border-3 opacity-75 mt-2 mb-4">
-                    <p class="card-text ms-4 fs-5 text-start text-sm-start">${list.description}</p>
+                    <p class="card-text ms-4 fs-5 mb-2 text-start text-sm-start">${list.description}</p>
                 </div>
             </div>
         `;
@@ -61,7 +61,7 @@ async function load_text_list(list_id, target_id) {
                 </h4>
                 <div class="d-flex">
                     <img src="/images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40" height="40">
-                    <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
+                    <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="/user/${text.created_by}">User</a>
                 </div>
             </div>
             <hr class="border-danger-subtle border-3 opacity-75 mt- mb-4">
