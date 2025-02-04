@@ -17,7 +17,7 @@ Já em casos onde seja interessante que o resultado da ação impacte o front-en
 
 ### Responsividade
 - [ ] text.ejs
-- [ ] my_lists.ejs
+- [X] my_lists.ejs
 - [x] list.ejs
 - [X] confirmation_modal.ejs
 - [X] homepage.ejs

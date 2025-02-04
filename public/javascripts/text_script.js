@@ -18,7 +18,7 @@ async function load_my_posts(search_query = "") {
         const my_texts = document.getElementById("my_tales");
 
         if (posts.length === 0) {
-            my_texts.innerHTML = "<p class='title-gradient fs-4 mt-4'>Nenhum post disponível.</p>";
+            my_texts.innerHTML = "<p class='text-center title-gradient fs-4 mt-4'>Nenhum post disponível.</p>";
             return;
         }
 
@@ -36,7 +36,7 @@ async function load_my_posts(search_query = "") {
                     <div class="card mt-4">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
-                                <h3 class=" card-title m-3">
+                                <h3 class="card-title m-3">
                                     <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
                                 </h3>
                                 <div class="d-flex">

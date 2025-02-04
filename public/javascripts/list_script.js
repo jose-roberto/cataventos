@@ -9,27 +9,29 @@ async function load_my_lists() {
         const my_lists = document.getElementById("my_lists");
 
         if (lists.length === 0) {
-            my_lists.innerHTML = "<p class='title-gradient fs-4 mt-4'>Nenhuma lista disponível.</p>";
+            my_lists.innerHTML = "<p class='text-center title-gradient fs-4 mt-1'>Nenhuma lista disponível.</p>";
             return;
         }
 
         my_lists.innerHTML = lists.map(list => {
             return `
-          <div class="card m-2" style="width: 80rem; height: 15rem;">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <h3 class="card-title m-3">
-                      <a href="/list/${list.id}" class="text-decoration-none text-dark">${list.name}</a>
-                    </h3>
-                    <div class="d-flex">
-                      <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40"height="40">
-                      <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="card-title m-3">
+                            <a href="/list/${list.id}"
+                                class="text-decoration-none text-dark">${list.name}</a>
+                        </h3>
+                        <div class="d-flex">
+                            <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1"
+                                width="40" height="40">
+                            <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
+                        </div>
                     </div>
+                    <hr class="border-danger-subtle border-3 opacity-75 mt-2 mb-4">
+                    <p class="card-text ms-4 fs-5 text-start text-sm-start">${list.description}</p>
                 </div>
-                <hr class="border-danger-subtle border-3 opacity-75 mt-2 mb-4">
-                <p class="card-text ms-4 fs-5">${list.description}</p>
             </div>
-          </div>
         `;
         }).join("");
     } catch (error) {
