@@ -71,32 +71,6 @@ async function load_my_posts(search_query = "") {
     }
 }
 
-const searchInput = document.getElementById("search_input");
-searchInput.addEventListener("input", (event) => {
-    const searchQuery = event.target.value.trim();
-    load_my_posts(searchQuery);
-});
-
-async function delete_post(event, text_id) {
-    console.log('Deletando post...');
-    event.preventDefault();
-
-    try {
-        const response = await fetch(`/text/${text_id}/delete_text`, {
-            method: 'DELETE',
-        });
-        console.log(response);
-
-        if (response) {
-            window.location.href = '/my_tales';
-        } else {
-            console.error('Erro ao deletar post.');
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-
 async function like_text() {
     const button = document.getElementById("like-button");
 
@@ -144,17 +118,15 @@ window.onload = function () {
     if (window.location.pathname.includes('my_tales')) {
         load_genres();
         load_my_posts();
+
+        const searchInput = document.getElementById("search_input");
+        searchInput.addEventListener("input", (event) => {
+            const searchQuery = event.target.value.trim();
+            load_my_posts(searchQuery);
+        });
     }
 
     if (window.location.pathname.includes('text')) {
         like_text();
-
-        const text_id = window.location.pathname.split('/')[2];
-
-        const deleteForm = document.getElementById('delete_post_form');
-
-        if (deleteForm) {
-            deleteForm.addEventListener('submit', (event) => delete_post(event, text_id));
-        }
     }
 };

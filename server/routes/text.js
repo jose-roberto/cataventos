@@ -12,10 +12,12 @@ router.get('/my_texts', authenticate, text_controller.get_my_texts);
 
 router.get('/:id', authenticate, text_controller.get_text);
 
-router.put('/:id/edit_text', authenticate, text_controller.edit_text);
+router.put('/:id/update_text', authenticate, text_controller.update_text);
 
 router.post('/:id/like_text', authenticate, text_controller.like_text);
 
 router.delete('/:id/delete_text', authenticate, text_controller.delete_text);
+
+router.post('/add_collaborator', authenticate, text_controller.add_collaborator);
 
 module.exports = router;

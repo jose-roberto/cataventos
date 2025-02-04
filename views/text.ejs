@@ -13,12 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="/javascripts/text_script.js" defer></script>
 
-    <style>
-        html {
-            font-size: 14px !important;
-        }
-    </style>
-
     <title>
         Texto - <%= text.title %>
     </title>
@@ -27,107 +21,148 @@
 <body class="bg-main">
     <%- include('navbar') %>
 
-        <div class="d-flex justify-content-center me-5 page-content">
-            <div class="container">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h3 class="card-title m-3">
-                                <%= text.title %>
-                            </h3>
-                            <div class="d-flex">
-                                <div class="d-flex">
-                                    <img src="/images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40"
-                                        height="40">
-                                    <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
+        <div class="container page-content">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-12">
+                    <div class="card shadow-lg mb-4">
+                        <div class="card-body">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start">
+                                <!-- User, Foto e Botões no topo direito -->
+                                <div class="d-flex align-items-center ms-auto mb-2">
+                                    <img src="/images/user_photo.png" alt="Foto do Usuário" class="rounded-circle"
+                                        width="40" height="40">
+                                    <a class="navbar-brand fs-5 ms-2 me-3" href="profile">User</a>
+
+                                    <div class="btn-group">
+                                        <button type="button" class="btn rounded-pill border-0 fw-bold"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-three-dots fs-4"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                            <li>
+                                                <button id="add_collaborator_button"
+                                                    class="dropdown-item d-flex align-items-center gap-2"
+                                                    data-bs-toggle="modal" data-bs-target="#add_collaborator_modal">
+                                                    <i class="bi bi-people text-primary"></i> Adicionar colaborador
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <button id="update_post_button"
+                                                    class="dropdown-item d-flex align-items-center gap-2"
+                                                    data-bs-toggle="modal" data-bs-target="#update_post_modal">
+                                                    <i class="bi bi-pencil-square text-primary"></i> Editar
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <button id="delete_post_button"
+                                                    class="dropdown-item text-danger d-flex align-items-center gap-2"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_post_modal">
+                                                    <i class="bi bi-trash"></i> Excluir
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="btn-group fs-3">
-                                    <button type="button" class="btn rounded-pill border-0 fw-bold"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-three-dots fs-3"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="">Adicionar colaborador</a></li>
-                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#editModal">Editar</a></li>
-                                        <li>
-                                            <button class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#delete_post_modal">Excluir</button>
-                                        </li>
-                                    </ul>
-                                </div>
+
+                                <!-- Título (vai para baixo em telas pequenas) -->
+                                <h3 class="card-title m-3 text-break order-last order-md-first w-100">
+                                    <%= text.title %>
+                                </h3>
                             </div>
-                        </div>
-                        <div class=" d-flex">
-                            <button type="button" id="like-button" class="btn rounded-pill fw-bold border-0"
-                                data-id="<%= text.id %>">
-                                <i class="bi bi-hand-thumbs-up ms-2"></i>
-                            </button>
-                            <p class="card-text ms-3 mt-2" id="like-count">
-                                <%= text.like %>
+
+
+                            <div class="d-flex align-items-center mt-2">
+                                <button type="button" id="like-button" class="btn rounded-pill fw-bold border-0"
+                                    data-id="<%= text.id %>">
+                                    <i class="bi bi-hand-thumbs-up ms-2"></i>
+                                </button>
+                                <p class="card-text ms-1" id="like-count">
+                                    <%= text.like %>
+                                </p>
+                            </div>
+
+                            <hr class="border-danger-subtle border-3 opacity-75 mt-4">
+                            <p class="card-text ms-4 fs-5">
+                                <%= text.text %>
                             </p>
-                        </div>
-                        <hr class="border-danger-subtle border-3 opacity-75 mt-4">
-                        <p class="card-text ms-4 fs-5">
-                            <%= text.text %>
-                        </p>
-                        <hr class="border-danger-subtle border-3 opacity-75 mt-4">
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5">Editar conto</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/text/<%= text.id %>/edit_text?_method=PUT" method="POST">
-                                <div class="mb-3">
-                                    <label for="title" class="col-form-label fw-semibold">Título:</label>
-                                    <input type="text" class="form-control" id="title" name="title"
-                                        value="<%= text.title %>" required>
-                                </div>
-                                <div class="btn-group mt-2" role="group">
-                                    <input type="radio" class="btn-check" name="style" id="tale" autocomplete="off"
-                                        checked>
-                                    <label class="btn btn-outline-primary" for="tale">Conto</label>
-
-                                    <input type="radio" class="btn-check" name="style" id="poem" autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="poem">Poema</label>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="text" class="col-form-label fw-semibold">Conto:</label>
-                                    <textarea class="form-control form-text" id="text" placeholder="Digite seu conto"
-                                        maxlength="5000" name="text" required><%= text.text %></textarea>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-secondary"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Salvar</button>
-                                </div>
-                            </form>
+                            <hr class="border-danger-subtle border-3 opacity-75 mt-4">
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Modal de Confirmação de Exclusão de Perfil -->
-            <%- include('confirmation_modal', {
-                modal_id: 'delete_post_modal',
-                modal_label: 'delete_post_label',
-                modal_title: 'Excluir Texto',
-                modal_body: 'Tem certeza que deseja excluir esse texto? Esta ação não pode ser desfeita.',
-                modal_form_id: 'delete_post_form',
-                modal_action: '/text/' + encodeURIComponent(text.id) + '/delete_text?_method=DELETE',
-                modal_btn_id: 'delete_post_btn',
-                modal_btn_text: 'Excluir Texto',
-                modal_btn_class: 'btn-danger'
-            }) %>
         </div>
+
+        <div class="modal fade" id="update_post_modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Editar conto</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/text/<%= text.id %>/update_text?_method=PUT" method="POST">
+                            <div class="mb-3">
+                                <label for="title" class="col-form-label fw-semibold">Título:</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    value="<%= text.title %>" required>
+                            </div>
+                            <div class="btn-group mt-2" role="group">
+                                <input type="radio" class="btn-check" name="style" id="tale" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="tale">Conto</label>
+
+                                <input type="radio" class="btn-check" name="style" id="poem" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="poem">Poema</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="text" class="col-form-label fw-semibold">Conto:</label>
+                                <textarea class="form-control form-text" id="text" placeholder="Digite seu conto"
+                                    maxlength="5000" name="text" required><%= text.text %></textarea>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de adição de colaborador -->
+        <div class="modal fade" id="add_collaborator_modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Adicionar colaborador</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <select class="form-select" id="collaborator" aria-label="Selecione um colaborador">
+                            <option selected>Selecione um colaborador</option>
+                            <option value="1">User 1</option>
+                            <option value="2">User 2</option>
+                            <option value="3">User 3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de confirmação de exclusão de post -->
+        <%- include('confirmation_modal', { modal_id: 'delete_post_modal' , modal_label: 'delete_post_label' ,
+            modal_title: 'Excluir Texto' ,
+            modal_body: 'Tem certeza que deseja excluir esse texto? Esta ação não pode ser desfeita.' ,
+            modal_form_id: 'delete_post_form' , modal_action: '/text/' + encodeURIComponent(text.id)
+            + '/delete_text?_method=DELETE' , modal_btn_id: 'delete_post_btn' , modal_btn_text: 'Excluir Texto' ,
+            modal_btn_class: 'btn-danger' }) %>
 </body>
 
 </html>

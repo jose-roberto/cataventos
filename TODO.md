@@ -16,7 +16,8 @@ Já em casos onde seja interessante que o resultado da ação impacte o front-en
 - [ ] CRUD da lista
 
 ### Responsividade
-- [ ] text.ejs
+- [ ] search.ejs
+- [X] text.ejs
 - [X] my_lists.ejs
 - [x] list.ejs
 - [X] confirmation_modal.ejs

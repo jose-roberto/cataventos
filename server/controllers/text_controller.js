@@ -79,10 +79,10 @@ const get_my_texts = async (req, res) => {
         const search_query = req.query.q;
 
         let posts;
-        
+
         if (search_query) {
             // Se houver uma pesquisa, filtre os textos
-            posts = await text_instance.find_my_texts_by_search(req.session.user_id, search_query);
+            posts = await text_instance.search_my_texts(req.session.user_id, search_query);
         } else {
             // Caso contrário, retorne todos os textos
             posts = await text_instance.find_my_texts(req.session.user_id);
@@ -103,7 +103,7 @@ const get_text = async (req, res) => {
 
         const text = await text_instance.find_by_id(req.params.id);
 
-        if(!text) {
+        if (!text) {
             return res.status(404).send("Texto não encontrado.");
         }
 
@@ -133,9 +133,9 @@ const like_text = async (req, res) => {
     }
 };
 
-const edit_text = async (req, res) => {
+const update_text = async (req, res) => {
     try {
-        const { title, text, style} = req.body;
+        const { title, text, style } = req.body;
 
         if (!title || !text || !style) {
             return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
@@ -174,19 +174,42 @@ const delete_text = async (req, res) => {
 
         const result = await text_instance.delete(req.params.id);
 
-        res.json(result); 
+        res.redirect('/my_tales');
     } catch (error) {
         console.error("Erro ao deletar post:", error);
         res.status(500).json({ error: "Erro ao deletar o texto." });
     }
 };
 
+const add_collaborator = async (req, res) => {
+    try {
+        const { collaborator_id, text_id } = req.body;
+
+        if (!collaborator_id || !text_id) {
+            return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
+        }
+
+        const text_user = new TextUser();
+
+        const result = await text_user.create({
+            user_id: user_id,
+            text_id: text_id
+        });
+
+        res.json(result);
+    } catch (error) {
+        console.error("Erro ao adicionar colaborador:", error);
+        res.status(500).json({ error: "Erro ao adicionar colaborador." });
+    }
+}
+
 module.exports = {
-    create_text, 
+    create_text,
     get_timeline,
     get_my_texts,
     get_text,
     like_text,
-    edit_text,
-    delete_text
+    update_text,
+    delete_text,
+    add_collaborator
 };
