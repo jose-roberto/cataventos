@@ -98,6 +98,37 @@ class User extends Model {
             throw new Error('Erro ao autenticar usuário!');
         }
     }
+
+    search_collaborator(search_query) {
+        return new Promise((resolve, reject) => {
+            try {
+                // Validação da query
+                if (!search_query || search_query.trim() === "") {
+                    throw new Error("A query de busca não pode estar vazia.");
+                }
+
+                // console.log("Search query:", search_query); // Debug: Verifique a query recebida
+
+                // Prepara e executa a consulta SQL
+                const statement = this.db_connection.prepare(
+                    `SELECT id, username FROM user WHERE LOWER(username) LIKE LOWER(?) OR LOWER(name) LIKE LOWER(?)`
+                );
+
+                // Executa a consulta e obtém os resultados
+                const result = statement.all(`%${search_query}%`, `%${search_query}%`);
+
+                // console.log("Resultado da busca:", result); // Debug: Verifique o resultado
+
+                // Resolve a Promise com os resultados
+                resolve(result);
+            } catch (error) {
+                console.error('Erro ao buscar colaboradores:', error);
+
+                // Rejeita a Promise com o erro
+                reject(new Error('Erro ao buscar colaboradores.'));
+            }
+        });
+    }
 }
 
 module.exports = User;

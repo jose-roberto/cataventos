@@ -40,9 +40,9 @@
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end shadow-sm">
                                             <li>
-                                                <button id="add_collaborator_button"
+                                                <button id="search_collaborator_button"
                                                     class="dropdown-item d-flex align-items-center gap-2"
-                                                    data-bs-toggle="modal" data-bs-target="#add_collaborator_modal">
+                                                    data-bs-toggle="modal" data-bs-target="#search_collaborator_modal">
                                                     <i class="bi bi-people text-primary"></i> Adicionar colaborador
                                                 </button>
                                             </li>
@@ -77,10 +77,16 @@
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <div class="d-flex mt-1 ms-2">
-                                    <i class="bi bi-hand-thumbs-up ms-2"></i>
-                                    <p class="card-text ms-3"><%- text.like %></p>
+                                <div class="d-flex align-items-center">
+                                    <button type="button" id="like-button" class="btn rounded-pill fw-bold border-0"
+                                        data-id="<%= text.id %>">
+                                        <i class="bi bi-hand-thumbs-up ms-2"></i>
+                                    </button>
+                                    <p class="card-text mb-0" id="like-count">
+                                        <%= text.like %>
+                                    </p>
                                 </div>
+
                                 <div class="mt-1 me-2">
                                     <i class="bi bi-calendar-event me-2"></i>
                                     <%= new Date(text.publication_date).toLocaleDateString('pt-BR') %>
@@ -139,7 +145,7 @@
         </div>
 
         <!-- Modal de adição de colaborador -->
-        <div class="modal fade" id="add_collaborator_modal" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="search_collaborator_modal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -147,12 +153,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <select class="form-select" id="collaborator" aria-label="Selecione um colaborador">
-                            <option selected>Selecione um colaborador</option>
-                            <option value="1">User 1</option>
-                            <option value="2">User 2</option>
-                            <option value="3">User 3</option>
-                        </select>
+                        <input id="search_collaborators_input" class="form-control rounded-pill ps-5" type="search"
+                            placeholder="Buscar colaboradores" aria-label="Search">
+                        <div id="collaborators_list" class="list-group mt-2">
+
+                        </div>
                     </div>
                 </div>
             </div>

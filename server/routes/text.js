@@ -18,6 +18,6 @@ router.post('/:id/like_text', authenticate, text_controller.like_text);
 
 router.delete('/:id/delete_text', authenticate, text_controller.delete_text);
 
-router.post('/add_collaborator', authenticate, text_controller.add_collaborator);
+router.get('/:id/search_collaborator', authenticate, text_controller.search_collaborator);
 
 module.exports = router;

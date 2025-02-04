@@ -1,7 +1,24 @@
+async function load_genres() {
+    try {
+        const response = await fetch('/genre/read_genre');
+        const genres = await response.json();
+
+        const genreSelect = document.getElementById('genre');
+        genres.forEach(genre => {
+            const option = document.createElement('option');
+            option.value = genre.id;
+            option.textContent = genre.name;
+            genreSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Erro ao obter gêneros literários:', error);
+    }
+}
+
 async function load_my_posts(search_query = "") {
     try {
         const url = search_query ? `/text/my_texts?q=${encodeURIComponent(search_query)}` : "/text/my_texts";
-
+        console.log(url);
         const response = await fetch(url);
         const posts = await response.json();
 
@@ -71,6 +88,48 @@ async function load_my_posts(search_query = "") {
     }
 }
 
+async function search_collaborators(text_id, search_query = "") {
+    try {
+        const route = search_query
+            ? `/text/${text_id}/search_collaborator?q=${encodeURIComponent(search_query)}`
+            : `/text/${text_id}/search_collaborator`;
+
+        console.log(route);
+
+        const response = await fetch(route);
+        const collaborators = await response.json();
+
+        const collaborators_list = document.getElementById("collaborators_list");
+
+        if (collaborators.length === 0) {
+            collaborators_list.innerHTML = "<p class='text-center title-gradient fs-5 mt-1'>Sem correspondência.</p>";
+            return;
+        }
+
+        collaborators_list.innerHTML = collaborators.map(collaborator => {
+            return `
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="card-title
+                                m-3">${collaborator.username}</h3>
+                            <div class="d-flex">
+                                <img src="/images/user_photo.png" alt="Logo" class="rounded-circle mt-1"
+                                    width="40" height="40">
+                                <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="profile">User</a>
+                            </div>
+                        </div>
+                        <hr class="border-danger-subtle border-3 opacity-75 mt-2 mb-4">
+                    </div>
+                </div>
+                `;
+        }).join("");
+    } catch (error) {
+        console.error("Erro ao carregar colaboradores:", error);
+        document.getElementById("collaborators_list").innerHTML = "<p>Erro ao carregar colaboradores.</p>";
+    }
+}
+
 async function like_text() {
     const button = document.getElementById("like-button");
 
@@ -78,7 +137,7 @@ async function like_text() {
         const text_id = button.getAttribute("data-id");
 
         try {
-            const response = await fetch(`/text/${text_id}/like_text`, {
+            const response = await fetch(`/ text / ${text_id}/like_text`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -97,22 +156,6 @@ async function like_text() {
     });
 }
 
-async function load_genres() {
-    try {
-        const response = await fetch('/genre/read_genre');
-        const genres = await response.json();
-
-        const genreSelect = document.getElementById('genre');
-        genres.forEach(genre => {
-            const option = document.createElement('option');
-            option.value = genre.id;
-            option.textContent = genre.name;
-            genreSelect.appendChild(option);
-        });
-    } catch (error) {
-        console.error('Erro ao obter gêneros literários:', error);
-    }
-}
 
 window.onload = function () {
     if (window.location.pathname.includes('my_tales')) {
@@ -128,5 +171,13 @@ window.onload = function () {
 
     if (window.location.pathname.includes('text')) {
         like_text();
+
+        const search_collaborator_input = document.getElementById("search_collaborators_input");
+        search_collaborator_input.addEventListener("input", (event) => {
+            const text_id = window.location.pathname.split('/')[2];
+
+            const search_query = event.target.value.trim();
+            search_collaborators(text_id, search_query);
+        });
     }
 };

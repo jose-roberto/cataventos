@@ -1,5 +1,6 @@
 const Text = require('../models/Text');
 const TextUser = require('../models/TextUser');
+const User = require('../models/User');
 
 const create_text = async (req, res) => {
     try {
@@ -181,22 +182,25 @@ const delete_text = async (req, res) => {
     }
 };
 
-const add_collaborator = async (req, res) => {
+const search_collaborator = async (req, res) => {
     try {
-        const { collaborator_id, text_id } = req.body;
+        const search_query = req.query.q;
 
-        if (!collaborator_id || !text_id) {
-            return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
+        // console.log("Consulta recebida:", search_query); // Debugando a query recebida
+
+        const user_instance = new User();
+
+        let collaborators;
+
+        if (search_query) {
+            collaborators = await user_instance.search_collaborator(search_query);
+        } else {
+            collaborators = await user_instance.find_all();
         }
 
-        const text_user = new TextUser();
+        // console.log("Colaboradores encontrados:", collaborators);
 
-        const result = await text_user.create({
-            user_id: user_id,
-            text_id: text_id
-        });
-
-        res.json(result);
+        res.json(collaborators);
     } catch (error) {
         console.error("Erro ao adicionar colaborador:", error);
         res.status(500).json({ error: "Erro ao adicionar colaborador." });
@@ -211,5 +215,5 @@ module.exports = {
     like_text,
     update_text,
     delete_text,
-    add_collaborator
+    search_collaborator
 };
