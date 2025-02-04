@@ -1,7 +1,8 @@
-async function load_my_posts() {
+async function load_my_posts(search_query = "") {
     try {
-        // Buscar os posts
-        const response = await fetch("/text/my_texts");
+        const url = search_query ? `/text/my_texts?q=${encodeURIComponent(search_query)}` : "/text/my_texts";
+
+        const response = await fetch(url);
         const posts = await response.json();
 
         // Buscar os gêneros
@@ -21,7 +22,7 @@ async function load_my_posts() {
             return;
         }
 
-        charLimit = 150;
+        const charLimit = 150;
 
         my_texts.innerHTML = posts.map(post => {
             const is_long = post.text.length > charLimit;
@@ -32,43 +33,49 @@ async function load_my_posts() {
             const genreName = genreMap[post.genre_id] || "Desconhecido";
 
             return `
-          <div class="card mt-4">
-              <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                      <h3 class=" card-title m-3">
-                      <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
-                      </h3>
-                      <div class="d-flex">
-                          <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-2" width="40"
-                              height="40">
-                          <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="profile">User</a>
-                      </div>
-                  </div>
-                      
-                  <div class="d-flex justify-content-between">
-                      <div class="d-flex mt-1 ms-2">
-                          <i class="bi bi-hand-thumbs-up ms-2"></i>
-                          <p class="card-text ms-3">${post.like}</p>
-                      </div>
-                      <div class="mt-1 me-3">
-                          <i class="bi bi-calendar-event me-2"></i>${data_formatada}
-                      </div>
-                  </div>
-  
-                  <hr class="border-danger-subtle border-3 opacity-75 mt-4">
-                  <p class="card-text ms-4 fs-5">${display}</p>
-  
-                  <hr class="border-danger-subtle border-3 opacity-75 mt-4">
-                  <p class="card-text ms-4 fs-5">${genreName}</p>
-              </div>
-          </div>
-        `;
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h3 class=" card-title m-3">
+                                    <a href="/text/${post.id}" class="text-decoration-none text-dark">${post.title}</a>
+                                </h3>
+                                <div class="d-flex">
+                                    <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-2" width="40"
+                                        height="40">
+                                    <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="profile">User</a>
+                                </div>
+                            </div>
+                                
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex mt-1 ms-2">
+                                    <i class="bi bi-hand-thumbs-up ms-2"></i>
+                                    <p class="card-text ms-3">${post.like}</p>
+                                </div>
+                                <div class="mt-1 me-3">
+                                    <i class="bi bi-calendar-event me-2"></i>${data_formatada}
+                                </div>
+                            </div>
+            
+                            <hr class="border-danger-subtle border-3 opacity-75 mt-4">
+                            <p class="card-text ms-4 fs-5">${display}</p>
+            
+                            <hr class="border-danger-subtle border-3 opacity-75 mt-4">
+                            <p class="card-text ms-4 fs-5">${genreName}</p>
+                        </div>
+                    </div>
+                `;
         }).join("");
     } catch (error) {
         console.error("Erro ao carregar posts:", error);
         document.getElementById("my_tales").innerHTML = "<p>Erro ao carregar posts.</p>";
     }
 }
+
+const searchInput = document.getElementById("search_input");
+searchInput.addEventListener("input", (event) => {
+    const searchQuery = event.target.value.trim();
+    load_my_posts(searchQuery);
+});
 
 async function delete_post(event, text_id) {
     console.log('Deletando post...');

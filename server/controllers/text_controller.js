@@ -76,8 +76,19 @@ const get_timeline = async (req, res) => {
 const get_my_texts = async (req, res) => {
     try {
         const text_instance = new Text();
+        const search_query = req.query.q;
 
-        const posts = await text_instance.find_my_texts(req.session.user_id);
+        let posts;
+        
+        if (search_query) {
+            // Se houver uma pesquisa, filtre os textos
+            posts = await text_instance.find_my_texts_by_search(req.session.user_id, search_query);
+        } else {
+            // Caso contrário, retorne todos os textos
+            posts = await text_instance.find_my_texts(req.session.user_id);
+        }
+
+        posts.sort((a, b) => new Date(b.publication_date) - new Date(a.publication_date));
 
         res.json(posts);
     } catch (error) {
