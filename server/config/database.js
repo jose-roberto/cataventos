@@ -67,7 +67,7 @@ function fill_text() {
         type: 1,
         genre_id: 10,
         like: 0,
-        status: 1,
+        created_by: 10,
     });
     text_instance.create({ // 2
         title: 'A Loteria',
@@ -76,7 +76,7 @@ function fill_text() {
         type: 1,
         genre_id: 2,
         like: 0,
-        status: 1
+        created_by: 11
     });
     text_instance.create({ // 3
         title: 'A Casa de Asterion',
@@ -85,7 +85,7 @@ function fill_text() {
         type: 1,
         genre_id: 5,
         like: 0,
-        status: 1
+        created_by: 12
     });
     text_instance.create({ // 4
         title: 'O Gato Preto',
@@ -94,7 +94,7 @@ function fill_text() {
         type: 1,
         genre_id: 9,
         like: 0,
-        status: 1
+        created_by: 10
     });
     text_instance.create({ // 5
         title: 'O Chamado de Cthulhu',
@@ -103,7 +103,7 @@ function fill_text() {
         type: 1,
         genre_id: 15,
         like: 0,
-        status: 1
+        created_by: 13
     });
     text_instance.create({ // 6
         title: 'A Curva na Estrada',
@@ -112,7 +112,7 @@ function fill_text() {
         type: 1,
         genre_id: 1,
         like: 0,
-        status: 1
+        created_by: 14
     });
     text_instance.create({ // 7
         title: 'O Grande Deus Pã',
@@ -121,7 +121,7 @@ function fill_text() {
         type: 1,
         genre_id: 1,
         like: 0,
-        status: 1
+        created_by: 15
     });
     text_instance.create({ // 8
         title: 'O Homem da Areia',
@@ -130,7 +130,7 @@ function fill_text() {
         type: 1,
         genre_id: 4,
         like: 0,
-        status: 1
+        created_by: 16
     });
     text_instance.create({ // 9
         title: 'A Biblioteca de Babel',
@@ -139,7 +139,7 @@ function fill_text() {
         type: 1,
         genre_id: 7,
         like: 0,
-        status: 1
+        created_by: 12
     });
     text_instance.create({ // 10
         title: 'A Canção de Rolando',
@@ -148,7 +148,7 @@ function fill_text() {
         type: 1,
         genre_id: 11,
         like: 0,
-        status: 1
+        created_by: 2
     });
     text_instance.create({ // 11
         title: 'A Máscara da Morte Rubra',
@@ -157,7 +157,7 @@ function fill_text() {
         type: 1,
         genre_id: 12,
         like: 0,
-        status: 1
+        created_by: 10
     });
     text_instance.create({ // 12
         title: 'A Máquina do Tempo',
@@ -166,7 +166,7 @@ function fill_text() {
         type: 1,
         genre_id: 13,
         like: 0,
-        status: 1
+        created_by: 18
     });
     text_instance.create({ // 13
         title: 'O Monte dos Vendavais',
@@ -175,7 +175,7 @@ function fill_text() {
         type: 1,
         genre_id: 3,
         like: 0,
-        status: 1
+        created_by: 19
     });
 }
 
@@ -185,61 +185,61 @@ function fill_user() {
 
     // Usuários
     user_instance.create({  // 1
-        name: 'Admin', username: 'admin', email: 'admin@gmail.com', password: hashedPassword, birthdate: '01/01/1990', type: 0
+        name: 'Admin', username: 'admin', email: 'admin@gmail.com', password: hashedPassword, birthdate: '1990-01-01'
     });
     user_instance.create({ // 2
-        name: 'José', username: 'zé', email: 'ze@gmail.com', password: hashedPassword, birthdate: '01/01/1990', type: 0
+        name: 'José', username: 'zé', email: 'ze@gmail.com', password: hashedPassword, birthdate: '1990-01-01'
     });
     user_instance.create({ // 3
-        name: 'Thiago', username: 'thi', email: 'thi@gmail.com', password: hashedPassword, birthdate: '01/01/1990', type: 0
+        name: 'Thiago', username: 'thi', email: 'thi@gmail.com', password: hashedPassword, birthdate: '1990-01-01'
     });
     user_instance.create({ // 4
-        name: 'Ana', username: 'aninha', email: 'ana@gmail.com', password: hashedPassword, birthdate: '01/01/1990', type: 1
+        name: 'Ana', username: 'aninha', email: 'ana@gmail.com', password: hashedPassword, birthdate: '1990-01-01'
     });
     user_instance.create({ // 5
-        name: 'Carlos', username: 'carlinhos', email: 'carlos@gmail.com', password: hashedPassword, birthdate: '01/01/1991', type: 1
+        name: 'Carlos', username: 'carlinhos', email: 'carlos@gmail.com', password: hashedPassword, birthdate: '1991-01-01'
     });
     user_instance.create({ // 6
-        name: 'Sofia', username: 'sofi', email: 'sofia@gmail.com', password: hashedPassword, birthdate: '01/01/1992', type: 1
+        name: 'Sofia', username: 'sofi', email: 'sofia@gmail.com', password: hashedPassword, birthdate: '1992-01-01'
     });
     user_instance.create({ // 7
-        name: 'Beatriz', username: 'bea', email: 'beatriz@gmail.com', password: hashedPassword, birthdate: '01/01/1993', type: 1
+        name: 'Beatriz', username: 'bea', email: 'beatriz@gmail.com', password: hashedPassword, birthdate: '1993-01-01'
     });
     user_instance.create({ // 8
-        name: 'Luiz', username: 'luizinho', email: 'luiz@gmail.com', password: hashedPassword, birthdate: '01/01/1994', type: 1
+        name: 'Luiz', username: 'luizinho', email: 'luiz@gmail.com', password: hashedPassword, birthdate: '1994-01-01'
     });
     user_instance.create({ // 9
-        name: 'Mariana', username: 'mari', email: 'mariana@gmail.com', password: hashedPassword, birthdate: '01/01/1995', type: 1
+        name: 'Mariana', username: 'mari', email: 'mariana@gmail.com', password: hashedPassword, birthdate: '1995-01-01'
     });
     user_instance.create({ // 10
-        name: 'Edgar Allan Poe', username: 'poe', email: 'poe@gmail.com', password: hashedPassword, birthdate: '19/01/1809', type: 1
+        name: 'Edgar Allan Poe', username: 'poe', email: 'poe@gmail.com', password: hashedPassword, birthdate: '1809-01-19'
     });
     user_instance.create({ // 11
-        name: 'Shirley Jackson', username: 'shirley', email: 'shirley@gmail.com', password: hashedPassword, birthdate: '14/12/1916', type: 1
+        name: 'Shirley Jackson', username: 'shirley', email: 'shirley@gmail.com', password: hashedPassword, birthdate: '1916-12-14'
     });
     user_instance.create({ // 12
-        name: 'Jorge Luis Borges', username: 'borges', email: 'borges@gmail.com', password: hashedPassword, birthdate: '24/08/1899', type: 1
+        name: 'Jorge Luis Borges', username: 'borges', email: 'borges@gmail.com', password: hashedPassword, birthdate: '1899-08-24'
     });
     user_instance.create({ // 13
-        name: 'H.P. Lovecraft', username: 'lovecraft', email: 'lovecraft@gmail.com', password: hashedPassword, birthdate: '20/08/1890', type: 1
+        name: 'H.P. Lovecraft', username: 'lovecraft', email: 'lovecraft@gmail.com', password: hashedPassword, birthdate: '1890-08-20'
     });
     user_instance.create({ // 14
-        name: 'Lygia Fagundes Telles', username: 'lygia', email: 'lygia@gmail.com', password: hashedPassword, birthdate: '19/04/1923', type: 1
+        name: 'Lygia Fagundes Telles', username: 'lygia', email: 'lygia@gmail.com', password: hashedPassword, birthdate: '1923-04-19'
     });
     user_instance.create({ // 15
-        name: 'Arthur Machen', username: 'machen', email: 'machen@gmail.com', password: hashedPassword, birthdate: '03/03/1863', type: 1
+        name: 'Arthur Machen', username: 'machen', email: 'machen@gmail.com', password: hashedPassword, birthdate: '1863-03-03'
     });
     user_instance.create({ // 16
-        name: 'E.T.A. Hoffmann', username: 'hoffmann', email: 'hoffmann@gmail.com', password: hashedPassword, birthdate: '24/01/1776', type: 1
+        name: 'E.T.A. Hoffmann', username: 'hoffmann', email: 'hoffmann@gmail.com', password: hashedPassword, birthdate: '1776-01-24'
     });
     user_instance.create({ // 17
-        name: 'Autor Desconhecido', username: 'desconhecido', email: 'desconhecido@gmail.com', password: hashedPassword, birthdate: '01/01/0001', type: 1
+        name: 'Autor Desconhecido', username: 'desconhecido', email: 'desconhecido@gmail.com', password: hashedPassword, birthdate: '2001-01-01'
     });
     user_instance.create({ // 18
-        name: 'H.G. Wells', username: 'wells', email: 'wells@gmail.com', password: hashedPassword, birthdate: '21/09/1866', type: 1
+        name: 'H.G. Wells', username: 'wells', email: 'wells@gmail.com', password: hashedPassword, birthdate: '1866-09-21'
     });
     user_instance.create({ // 19
-        name: 'Charlotte Brontë', username: 'bronte', email: 'bronte@gmail.com', password: hashedPassword, birthdate: '21/04/1816', type: 1
+        name: 'Charlotte Brontë', username: 'bronte', email: 'bronte@gmail.com', password: hashedPassword, birthdate: '1816-04-21'
     });
 }
 
@@ -320,15 +320,15 @@ function verify_population() {
         }
     });
 
-    text_instance.find_all().then((texts) => {
-        if (texts.length == 0) {
-            fill_text();
-        }
-    });
-
     user_instance.find_all().then((users) => {
         if (users.length == 0) {
             fill_user();
+        }
+    });
+
+    text_instance.find_all().then((texts) => {
+        if (texts.length == 0) {
+            fill_text();
         }
     });
 

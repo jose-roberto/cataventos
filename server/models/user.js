@@ -25,8 +25,7 @@ class User extends Model {
                     username TEXT UNIQUE,
                     email TEXT UNIQUE,
                     password TEXT,
-                    birthdate TEXT,
-                    type INTEGER
+                    birthdate TEXT
                 )`
             );
             statement.run();

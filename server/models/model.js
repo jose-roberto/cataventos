@@ -42,6 +42,7 @@ class Model {
 
         resolve({ id: result.lastInsertRowid }); // Retorne o ID do novo registro
       } catch (error) {
+        console.log('aqui')
         reject(error);
       }
     });

@@ -50,12 +50,10 @@ const create_user = async (req, res) => {
       email: email,
       password: hashedPassword,
       birthdate: birthdate,
-      type: 1
     });
 
     // Retornar resposta de sucesso
-    res.status(201).json({ message: 'Usuário criado com sucesso!', user_id: result.lastInsertRowid });
-    res.redirect('/homepage');
+    res.redirect('/login');
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao criar usuário.' });

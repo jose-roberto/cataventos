@@ -26,7 +26,8 @@ class Text extends Model {
                     type INTEGER,
                     genre_id INTEGER,
                     like INTEGER,
-                    status INTEGER
+                    created_by INTEGER,
+                    FOREIGN KEY (created_by) REFERENCES user(id) ON DELETE CASCADE
                 )`
             );
             statement.run();

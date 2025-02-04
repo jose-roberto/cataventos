@@ -23,7 +23,7 @@ const create_text = async (req, res) => {
             genre_id: genre,
             publication_date: new Date().toISOString(),
             like: 0,
-            status: 1
+            created_by: req.session.user_id
         });
 
         // Criar uma instância de TextUser
