@@ -11,14 +11,14 @@ que se comunica diretamente com o banco.
 Já em casos onde seja interessante que o resultado da ação impacte o front-end dinamicamente, é mais interessante utilizar o Javascript como mediador.
 
 #### Verificar em:
-- [] CRUD do usuário
-- [] CRUD do texto
-- [] CRUD da lista
+- [ ] CRUD do usuário
+- [ ] CRUD do texto
+- [ ] CRUD da lista
 
 ### Responsividade
 - [ ] text.ejs
 - [ ] my_lists.ejs
-- [ ] list.ejs
+- [x] list.ejs
 - [X] confirmation_modal.ejs
 - [X] homepage.ejs
 - [X] index.ejs
@@ -60,8 +60,9 @@ Implementar respectivos redirecionamentos para:
 ### Homepage
 - [X] Timeline de textos produzidos
 - [X] Opções de like
+- [X] Data de publicação
+- [X] Paginação
 - [ ] Realizar filtragens
-- [ ] Data de publicação
 - [ ] Visualizar perfil de outros usuários
 
 - [ ] Coluna de sugestões
@@ -80,18 +81,17 @@ Implementar respectivos redirecionamentos para:
 - [X] Alterar textos produzidos (Update)
 - [X] Excluir textos produzidos (Delete)
 - [X] Consertar botões de tipo
-- [ ] Paginação
 - [ ] Criar opção de convidar para colaboração
 
 - [ ] Criar opção de indicar leitura
-- [ ] Acoplar editor de texto -> Sugestão: CKEditor
 - [ ] Contador de caracteres
+- [ ] Acoplar editor de texto -> Sugestão: CKEditor
 
 ### Página de listas do usuário
 - [X] Criar listas via modal (Create)
 - [X] Visualizar listas (Read)
-- [ ] Alterar listas (Update)
-- [ ] Excluir listas (Delete)
+- [X] Alterar listas (Update)
+- [X] Excluir listas (Delete)
 - [X] Consertar botões de tipo
 
 ## Banco de dados
