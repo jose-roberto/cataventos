@@ -120,11 +120,28 @@ const update_list = async (req, res) => {
     }
 }
 
+const delete_list = async (req, res) => {
+    try {
+        const list_instance = new List();
+
+        const result = await list_instance.delete(req.params.id);
+
+        // res.status(200).json({ message: 'Lista deletada com sucesso!' });
+        if(result){
+            res.redirect('/my_lists');
+        }
+    } catch (error) {
+        console.error("Erro ao deletar lista:", error);
+        res.status(500).send("Erro ao deletar a lista.");
+    }
+}
+
 
 module.exports = {
     create_list,
     get_my_lists,
     get_list,
     get_list_texts,
-    update_list
+    update_list,
+    delete_list
 };

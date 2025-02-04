@@ -14,4 +14,6 @@ router.get('/:id/texts', authenticate, list_controller.get_list_texts);
 
 router.put('/:id/edit_list', authenticate, list_controller.update_list);
 
+router.delete('/:id/delete_list', authenticate, list_controller.delete_list);
+
 module.exports = router;

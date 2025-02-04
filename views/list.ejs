@@ -47,10 +47,11 @@
                                                 <hr class="dropdown-divider">
                                             </li>
                                             <li>
-                                                <a class="dropdown-item text-danger d-flex align-items-center gap-2"
-                                                    href="/user/logout">
+                                                <button
+                                                    class="dropdown-item text-danger d-flex align-items-center gap-2"
+                                                    data-bs-toggle="modal" data-bs-target="#delete_list_modal">
                                                     <i class="bi bi-trash"></i> Excluir
-                                                </a>
+                                                </button>
                                             </li>
                                         </ul>
 
@@ -107,6 +108,14 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal de Confirmação de Exclusão de Lista -->
+        <%- include ('confirmation_modal', {modal_id: 'delete_list_modal' , modal_label: 'delete_list_label' ,
+            modal_title: 'Excluir Lista' ,
+            modal_body: 'Tem certeza que deseja excluir essa lista? Esta ação não pode ser desfeita.' ,
+            modal_form_id: 'delete_list_form' , modal_action:
+            `/list/${encodeURIComponent(list.id)}/delete_list?_method=DELETE`, modal_btn_id: 'delete_list_btn' ,
+            modal_btn_text: 'Excluir Lista' , modal_btn_class: 'btn-danger' }) %>
 </body>
 
 </html>
