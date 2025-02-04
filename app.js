@@ -52,7 +52,7 @@ app.use('/user', userRouter);
 app.use('/text', textRouter);
 app.use('/list', listRouter);
 app.use('/genre', genreRouter);
-app.use('/pages', genreRouter);
+// app.use('/pages', genreRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

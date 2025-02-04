@@ -31,4 +31,9 @@ router.get('/my_lists', authenticate, (req, res) => {
     res.render('my_lists');
 });
 
+router.get('/search', authenticate, (req, res) => {
+    res.render('search');
+});
+
+
 module.exports = router;
