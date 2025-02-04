@@ -99,7 +99,7 @@ class User extends Model {
         }
     }
 
-    search_collaborator(search_query) {
+    search_collaborator(search_query, user_id) {
         return new Promise((resolve, reject) => {
             try {
                 // Validação da query
@@ -111,11 +111,11 @@ class User extends Model {
 
                 // Prepara e executa a consulta SQL
                 const statement = this.db_connection.prepare(
-                    `SELECT id, username FROM user WHERE LOWER(username) LIKE LOWER(?) OR LOWER(name) LIKE LOWER(?)`
+                    `SELECT id, username, name FROM user WHERE (LOWER(username) LIKE LOWER(?) OR LOWER(name) LIKE LOWER(?)) and id != ?;`
                 );
 
                 // Executa a consulta e obtém os resultados
-                const result = statement.all(`%${search_query}%`, `%${search_query}%`);
+                const result = statement.all(`%${search_query}%`, `%${search_query}%`, user_id);
 
                 // console.log("Resultado da busca:", result); // Debug: Verifique o resultado
 

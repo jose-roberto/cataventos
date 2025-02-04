@@ -193,14 +193,38 @@ const search_collaborator = async (req, res) => {
         let collaborators;
 
         if (search_query) {
-            collaborators = await user_instance.search_collaborator(search_query);
+            collaborators = await user_instance.search_collaborator(search_query, res.locals.user_id);
         } else {
-            collaborators = await user_instance.find_all();
+            collaborators = "";
         }
 
         // console.log("Colaboradores encontrados:", collaborators);
 
         res.json(collaborators);
+    } catch (error) {
+        console.error("Erro ao pesquisar colaborador:", error);
+        res.status(500).json({ error: "Erro ao pesquisar colaborador." });
+    }
+}
+
+const add_collaborator = async (req, res) => {
+    try {
+        const { collaborator_id } = req.body;
+
+        console.log("ID do colaborador:", collaborator_id);
+
+        if (!collaborator_id) {
+            return res.status(400).json({ error: 'ID do colaborador é obrigatório.' });
+        }
+
+        const text_user = new TextUser();
+
+        const result = await text_user.create({
+            text_id: req.params.id,
+            user_id: collaborator_id
+        });
+
+        res.json({ message: 'Colaborador adicionado com sucesso!' });
     } catch (error) {
         console.error("Erro ao adicionar colaborador:", error);
         res.status(500).json({ error: "Erro ao adicionar colaborador." });
@@ -215,5 +239,6 @@ module.exports = {
     like_text,
     update_text,
     delete_text,
-    search_collaborator
+    search_collaborator,
+    add_collaborator
 };

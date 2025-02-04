@@ -20,4 +20,6 @@ router.delete('/:id/delete_text', authenticate, text_controller.delete_text);
 
 router.get('/:id/search_collaborator', authenticate, text_controller.search_collaborator);
 
+router.post('/:id/add_collaborator', authenticate, text_controller.add_collaborator);
+
 module.exports = router;
