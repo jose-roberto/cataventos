@@ -65,8 +65,8 @@ Implementar respectivos redirecionamentos para:
 - [X] Opções de like
 - [X] Data de publicação
 - [X] Paginação
-- [ ] Realizar filtragens
-- [ ] Visualizar perfil de outros usuários
+- [X] Realizar filtragens
+- [X] Visualizar perfil de outros usuários
 
 #### Baixa prioridade
 - [ ] Coluna de sugestões
@@ -75,9 +75,9 @@ Implementar respectivos redirecionamentos para:
 - [X] Visualizar dados pessoais (Read)
 - [X] Alterar dados pessoais (Update)
 - [X] Excluir conta (Delete)
-- [ ] Contos e listas do usuário
 
 #### Baixa prioridade
+- [ ] Contos e listas do usuário
 - [ ] Análise de atividades
 
 ### Página de textos do usuário
@@ -90,8 +90,8 @@ Implementar respectivos redirecionamentos para:
 - [X] Validação de colaboração
 - [X] Adicionar texto na lista
 - [X] Validar inclusão de texto na lista
+- [X] Controle de acesso para alterações
 - [ ] Exibir ícone de colaboração em my_tales.ejs e em text.ejs
-- [ ] Controle de acesso para alterações
 - [ ] Adicionar data
 
 #### Baixa prioridade
