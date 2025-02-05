@@ -206,28 +206,28 @@ async function search_list(search_query = "") {
     }
 }
 
-// async function add_collaborator(text_id, collaborator_id) {
-//     try {
-//         const response = await fetch(`/text/${text_id}/add_collaborator`, {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({ collaborator_id }),
-//         });
+async function add_text_to_list(text_id, list_id) {
+    try {
+        const response = await fetch(`/text/${text_id}/add_text_to_list`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ list_id }),
+        });
 
-//         if (!response.ok) {
-//             throw new Error("Erro ao adicionar colaborador.");
-//         } else {
-//             console.log("Colaborador adicionado com sucesso!");
+        if (!response.ok) {
+            throw new Error("Erro ao adicionar texto na lista.");
+        } else {
+            console.log("Texto adicionado na lista com sucesso!");
 
-//             const new_collaborator = document.getElementById(`collaborator_${collaborator_id}`);
-//             new_collaborator.remove();
-//         }
-//     } catch (error) {
-//         console.error("Erro ao adicionar colaborador:", error);
-//     }
-// }
+            const nex_text_in_list = document.getElementById(`list_${list_id}`);
+            nex_text_in_list.remove();
+        }
+    } catch (error) {
+        console.error("Erro ao adicionar texto na lista:", error);
+    }
+}
 
 async function like_text() {
     const button = document.getElementById("like-button");
@@ -299,6 +299,7 @@ if (collaborators_container) {
 
         if (button) {  // Verifica se o botão existe
             const text_id = window.location.pathname.split('/')[2];
+
             const collaborator_id = button.getAttribute("data-id");
 
             // Chama a função para adicionar o colaborador
@@ -307,17 +308,19 @@ if (collaborators_container) {
     });
 }
 
-// Em construção
-// const lists_container = document.getElementById("your_lists");
 
-// if (lists_container) {
-//     lists_container.addEventListener("click", (event) => {
-//         const button = event.target.closest(".add-text-to-list-button");
+const lists_container = document.getElementById("your_lists");
 
-//         if (button) {
-//             const text_id = window.location.pathname.split('/')[2];
+if (lists_container) {
+    lists_container.addEventListener("click", (event) => {
+        const button = event.target.closest(".add-text-to-list-button");
 
-//             add_text_to_list(text_id);
-//         }
-//     });
-// }
+        if (button) {
+            const text_id = window.location.pathname.split('/')[2];
+
+            const list_id = button.getAttribute("data-id");
+
+            add_text_to_list(text_id, list_id);
+        }
+    });
+}

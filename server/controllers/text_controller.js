@@ -1,7 +1,7 @@
 const Text = require('../models/Text');
 const TextUser = require('../models/TextUser');
 const User = require('../models/User');
-const List = require('../models/List');
+const TextList = require('../models/TextList');
 
 const create_text = async (req, res) => {
     try {
@@ -246,30 +246,27 @@ const verify_collaborator = async (req, res) => {
     }
 }
 
-// const search_list = async (req, res) => {
-//     try {
-//         const search_query = req.query.q;
+const add_text_to_list = async (req, res) => {
+    try {
+        const { list_id } = req.body;
 
-//         console.log("Consulta recebida:", search_query); // Debugando a query recebida
+        if (!list_id) {
+            return res.status(400).json({ error: 'ID da lista é obrigatório.' });
+        }
 
-//         const list_instance = new List();
+        const text_list_instance = new TextList();
 
-//         let lists;
+        const result = await text_list_instance.create({
+            text_id: req.params.id,
+            list_id: list_id
+        });
 
-//         if (search_query) {
-//             lists = await list_instance.search_my_lists(search_query, res.locals.user_id);
-//         } else {
-//             lists = "";
-//         }
-
-//         console.log("Listas encontradas:", lists);
-
-//         res.json(lists);
-//     } catch (error) {
-//         console.error("Erro ao pesquisar lista:", error);
-//         res.status(500).json({ error: "Erro ao pesquisar lista." });
-//     }
-// }
+        res.json({ message: 'Texto adicionado à lista com sucesso!' });
+    } catch (error) {
+        console.error("Erro ao adicionar texto à lista:", error);
+        res.status(500).json({ error: "Erro ao adicionar texto à lista." });
+    }
+}
 
 module.exports = {
     create_text,
@@ -281,5 +278,6 @@ module.exports = {
     delete_text,
     search_collaborator,
     add_collaborator,
-    verify_collaborator
+    verify_collaborator,
+    add_text_to_list
 };
