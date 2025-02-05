@@ -89,7 +89,7 @@ Implementar respectivos redirecionamentos para:
 - [X] Criar opção de convidar para colaboração
 - [X] Validação de colaboração
 - [X] Adicionar texto na lista
-- [ ] Validar inclusão na lista
+- [X] Validar inclusão de texto na lista
 - [ ] Exibir ícone de colaboração em my_tales.ejs e em text.ejs
 - [ ] Controle de acesso para alterações
 - [ ] Adicionar data
