@@ -15,6 +15,7 @@ var userRouter = require('./server/routes/user');
 var textRouter = require('./server/routes/text');
 var listRouter = require('./server/routes/list');
 var genreRouter = require('./server/routes/genre');
+var searchRouter = require('./server/routes/search');
 
 var app = express();
 
@@ -64,7 +65,7 @@ app.use('/user', userRouter);
 app.use('/text', textRouter);
 app.use('/list', listRouter);
 app.use('/genre', genreRouter);
-// app.use('/pages', genreRouter);
+app.use('/search', searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

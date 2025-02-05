@@ -11,7 +11,7 @@
     <link href="/stylesheets/style.css" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="/javascripts/list_script.js" defer></script>
+    <script src="/javascripts/search_script.js" defer></script>
     <style>
         html {
             font-size: 14px !important;
@@ -33,11 +33,11 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6 d-flex align-items-center gap-2">
                 <form class="d-flex flex-grow-1" id="search_form">
-                    <select id="search_filter" class="form-select w-auto">
+                    <select id="search_filter" class="form-select w-auto" required>
                         <option value="" disabled selected>Selecione um filtro</option>
-                        <option value="title">Texto</option>
-                        <option value="author">Usuário</option>
-                        <option value="category">Lista</option>
+                        <option value="text">Texto</option>
+                        <option value="user">Usuário</option>
+                        <option value="list">Lista</option>
                     </select>
                     <div class="position-relative flex-grow-1 ms-3 me-2">
                         <input id="search_input" class="form-control rounded-pill ps-5" type="search"
@@ -53,11 +53,14 @@
 
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6">
-                <div class="separator-line"></div>
+                <div class="separator-line mb-5"></div>
             </div>
         </div>
 
-        <div class="d-flex align-items-center justify-content-center mt-5" id="my_search">
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 col-md-10 col-lg-8" id="my_search">
+
+            </div>
         </div>
     </div>
 </body>
