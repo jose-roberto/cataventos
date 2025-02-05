@@ -101,11 +101,6 @@ class User extends Model {
     search_collaborator(search_query, user_id, text_id) {
         return new Promise((resolve, reject) => {
             try {
-                // Validação da query
-                if (!search_query || search_query.trim() === "") {
-                    throw new Error("A query de busca não pode estar vazia.");
-                }
-
                 // console.log("Search query:", search_query); // Debug: Verifique a query recebida
 
                 // Prepara e executa a consulta SQL

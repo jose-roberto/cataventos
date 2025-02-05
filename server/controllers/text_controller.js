@@ -2,6 +2,7 @@ const Text = require('../models/Text');
 const TextUser = require('../models/TextUser');
 const User = require('../models/User');
 const TextList = require('../models/TextList');
+const List = require('../models/List');
 
 const create_text = async (req, res) => {
     try {
@@ -246,6 +247,21 @@ const verify_collaborator = async (req, res) => {
     }
 }
 
+const search_list = async (req, res) => {
+    try {
+        const search_query = req.query.q;
+
+        const list_instance = new List();
+
+        lists = await list_instance.list_search(search_query, req.session.user_id, req.params.id);
+
+        res.json(lists);
+    } catch (error) {
+        console.error("Erro ao pesquisar lista para adicionar texto:", error);
+        res.status(500).json({ error: "Erro ao pesquisar lista para adicionar texto." });
+    }
+}
+
 const add_text_to_list = async (req, res) => {
     try {
         const { list_id } = req.body;
@@ -279,5 +295,6 @@ module.exports = {
     search_collaborator,
     add_collaborator,
     verify_collaborator,
+    search_list,
     add_text_to_list
 };

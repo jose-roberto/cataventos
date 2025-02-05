@@ -50,19 +50,51 @@ class List extends Model {
 
     search_my_lists(user_id, search_query) {
         const search_terms = search_query.split(' ').filter(term => term.trim() !== '');
-    
+
         let query = `
             SELECT * FROM list WHERE user_id = ? 
         `;
-    
+
         let params = [user_id];
-    
+
         if (search_terms.length > 0) {
             query += ` AND (${search_terms.map(() => 'name LIKE ?').join(' OR ')})`;
             params = params.concat(search_terms.map(term => `%${term}%`));
         }
-    
+
         return this.db_connection.prepare(query).all(...params);
+    }
+
+    list_search(search_query, user_id, text_id) {
+        return new Promise((resolve, reject) => {
+            try {
+                // console.log("Search query:", search_query); // Debug: Verifique a query recebida
+
+                // Prepara e executa a consulta SQL
+                const statement = this.db_connection.prepare(
+                    `SELECT id, name FROM list WHERE(LOWER(name) LIKE LOWER(?)) and user_id = ?
+                    AND NOT EXISTS(
+                        SELECT 1
+                    FROM text_list
+                    WHERE text_list.list_id = list.id
+                    AND text_list.text_id = ?
+                    );`
+                );
+
+                // Executa a consulta e obtém os resultados
+                const result = statement.all(`%${search_query}%`, user_id, text_id);
+
+                // console.log("Resultado da busca:", result); // Debug: Verifique o resultado
+
+                // Resolve a Promise com os resultados
+                resolve(result);
+            } catch (error) {
+                console.error('Erro ao buscar listas:', error);
+
+                // Rejeita a Promise com o erro
+                reject(new Error('Erro ao buscar listas.'));
+            }
+        });
     }
 }
 

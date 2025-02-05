@@ -162,7 +162,7 @@ async function add_collaborator(text_id, collaborator_id) {
     }
 }
 
-async function search_list(search_query = "") {
+async function search_list(search_query = "", text_id) {
     try {
         const your_lists = document.getElementById("your_lists");
 
@@ -171,7 +171,7 @@ async function search_list(search_query = "") {
             return;
         }
 
-        const route = search_query ? `/list/my_lists?q=${encodeURIComponent(search_query)}` : "/list/my_lists";
+        const route = search_query ? `/text/${text_id}/search_list?q=${encodeURIComponent(search_query)}` : `/text/${text_id}/search_list`;
 
         console.log(route);
 
@@ -282,9 +282,11 @@ window.onload = function () {
 
         const search_list_input = document.getElementById("search_list_input");
         search_list_input.addEventListener("input", (event) => {
+            const text_id = window.location.pathname.split('/')[2];
+
             const search_query = event.target.value.trim();
 
-            search_list(search_query);
+            search_list(search_query, text_id);
         });
     }
 };

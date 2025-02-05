@@ -41,7 +41,7 @@ class TextUser extends Model {
                 );
 
                 const result = statement.get(text_id, user_id);
-                console.log("Resultado da busca:", result);
+                // console.log("Resultado da busca:", result);
 
                 // Se o resultado for encontrado, resolve com o resultado
                 if (result) {
