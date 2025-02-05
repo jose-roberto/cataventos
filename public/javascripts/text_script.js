@@ -59,7 +59,7 @@ async function load_my_posts(search_query = "") {
                                 <div class="d-flex">
                                     <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-2" width="40"
                                         height="40">
-                                    <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="profile">User</a>
+                                    <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="/user/${post.created_by}">User</a>
                                 </div>
                             </div>
                                 

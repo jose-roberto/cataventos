@@ -31,7 +31,7 @@
                                 <div class="d-flex align-items-center ms-auto mb-2">
                                     <img src="/images/user_photo.png" alt="Foto do Usuário" class="rounded-circle"
                                         width="40" height="40">
-                                    <a class="navbar-brand fs-5 ms-2 me-3" href="/user/<%= user_id %>">User</a>
+                                    <a class="navbar-brand fs-5 ms-2 me-3" href="/user/<%= text.created_by %>">User</a>
 
                                     <div class="btn-group">
                                         <button type="button" class="btn rounded-pill border-0 fw-bold"
@@ -40,42 +40,44 @@
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end shadow-sm">
                                             <li>
-                                                <button id="search_collaborator_button"
-                                                    class="dropdown-item d-flex align-items-center gap-2"
-                                                    data-bs-toggle="modal" data-bs-target="#search_collaborator_modal">
-                                                    <i class="bi bi-people text-primary"></i> Adicionar colaborador
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
                                                 <button id="search_list_button"
                                                     class="dropdown-item d-flex align-items-center gap-2"
                                                     data-bs-toggle="modal" data-bs-target="#search_list_modal">
                                                     <i class="bi bi-list-check text-primary"></i> Adicionar em uma lista
                                                 </button>
                                             </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <button id="update_post_button"
-                                                    class="dropdown-item d-flex align-items-center gap-2"
-                                                    data-bs-toggle="modal" data-bs-target="#update_post_modal">
-                                                    <i class="bi bi-pencil-square text-primary"></i> Editar
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <button id="delete_post_button"
-                                                    class="dropdown-item text-danger d-flex align-items-center gap-2"
-                                                    data-bs-toggle="modal" data-bs-target="#delete_post_modal">
-                                                    <i class="bi bi-trash"></i> Excluir
-                                                </button>
-                                            </li>
+                                            <% if (is_owner) { %>
+                                                <li>
+                                                    <button id="search_collaborator_button"
+                                                        class="dropdown-item d-flex align-items-center gap-2"
+                                                        data-bs-toggle="modal" data-bs-target="#search_collaborator_modal">
+                                                        <i class="bi bi-people text-primary"></i> Adicionar colaborador
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <button id="update_post_button"
+                                                        class="dropdown-item d-flex align-items-center gap-2"
+                                                        data-bs-toggle="modal" data-bs-target="#update_post_modal">
+                                                        <i class="bi bi-pencil-square text-primary"></i> Editar
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <button id="delete_post_button"
+                                                        class="dropdown-item text-danger d-flex align-items-center gap-2"
+                                                        data-bs-toggle="modal" data-bs-target="#delete_post_modal">
+                                                        <i class="bi bi-trash"></i> Excluir
+                                                    </button>
+                                                </li>
+                                            <% } %>
                                         </ul>
                                     </div>
                                 </div>
