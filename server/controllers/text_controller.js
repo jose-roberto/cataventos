@@ -110,7 +110,15 @@ const get_text = async (req, res) => {
             return res.status(404).send("Texto não encontrado.");
         }
 
-        res.render('text', { text });
+        const text_user_instance = new TextUser();
+
+        const result = await text_user_instance.find_by_two_keys(req.params.id, req.session.user_id);
+
+        res.render('text', {
+            text,
+            is_owner: req.session.user_id === text.created_by, 
+            is_collaborator: result === 1
+        });
     } catch (error) {
         console.error("Erro ao buscar post:", error);
         res.status(500).send("Erro ao carregar o texto.");

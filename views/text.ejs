@@ -39,14 +39,7 @@
                                             <i class="bi bi-three-dots fs-4"></i>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                                            <li>
-                                                <button id="search_list_button"
-                                                    class="dropdown-item d-flex align-items-center gap-2"
-                                                    data-bs-toggle="modal" data-bs-target="#search_list_modal">
-                                                    <i class="bi bi-list-check text-primary"></i> Adicionar em uma lista
-                                                </button>
-                                            </li>
-                                            <% if (is_owner) { %>
+                                            <% if (is_owner ) { %>
                                                 <li>
                                                     <button id="search_collaborator_button"
                                                         class="dropdown-item d-flex align-items-center gap-2"
@@ -57,6 +50,15 @@
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
+                                            <% } %>
+                                                <li>
+                                                    <button id="search_list_button"
+                                                        class="dropdown-item d-flex align-items-center gap-2"
+                                                        data-bs-toggle="modal" data-bs-target="#search_list_modal">
+                                                        <i class="bi bi-list-check text-primary"></i> Adicionar em uma lista
+                                                    </button>
+                                                </li>
+                                                <% if (is_owner || is_collaborator ) { %>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
@@ -67,6 +69,7 @@
                                                         <i class="bi bi-pencil-square text-primary"></i> Editar
                                                     </button>
                                                 </li>
+                                                <% } %> <% if (is_owner ) { %>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
@@ -77,7 +80,7 @@
                                                         <i class="bi bi-trash"></i> Excluir
                                                     </button>
                                                 </li>
-                                            <% } %>
+                                                <% } %>
                                         </ul>
                                     </div>
                                 </div>
