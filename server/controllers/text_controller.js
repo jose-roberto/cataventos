@@ -114,10 +114,16 @@ const get_text = async (req, res) => {
 
         const result = await text_user_instance.find_by_two_keys(req.params.id, req.session.user_id);
 
+        const user = new User();
+        const data_user = await user.find_by_id(text.created_by);
+        const username = data_user.username;
+        console.log("Username:", username);
+
         res.render('text', {
             text,
-            is_owner: req.session.user_id === text.created_by, 
-            is_collaborator: result === 1
+            is_owner: req.session.user_id === text.created_by,
+            is_collaborator: result === 1,
+            username: username
         });
     } catch (error) {
         console.error("Erro ao buscar post:", error);

@@ -14,7 +14,11 @@ async function load_my_lists(search_query = "") {
             return;
         }
 
-        my_lists.innerHTML = lists.map(list => {
+        my_lists.innerHTML = (await Promise.all(lists.map(async list => {
+            const response_data_user = await fetch(`/user/${list.user_id}/read_user`);
+            const data_user = await response_data_user.json();
+            const username = data_user.username;
+
             return `
             <div class="card mt-4">
                 <div class="card-body">
@@ -26,7 +30,7 @@ async function load_my_lists(search_query = "") {
                         <div class="d-flex">
                             <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1"
                                 width="40" height="40">
-                            <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="/user/${list.user_id}">User</a>
+                            <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="/user/${list.user_id}">${username}</a>
                         </div>
                     </div>
                     <hr class="border-danger-subtle border-3 opacity-75 mt-2 mb-4">
@@ -34,7 +38,7 @@ async function load_my_lists(search_query = "") {
                 </div>
             </div>
         `;
-        }).join("");
+        }))).join("");
     } catch (error) {
         console.error("Erro ao carregar listas:", error);
         document.getElementById("my_lists").innerHTML = "<p>Erro ao carregar listas.</p>";
@@ -54,18 +58,23 @@ async function load_text_list(list_id, target_id) {
             return;
         }
 
-        listTexts.innerHTML = texts.map(text => `
+        listTexts.innerHTML = (await Promise.all(texts.map(async text => {
+            const response_data_user = await fetch(`/user/${text.created_by}/read_user`);
+            const data_user = await response_data_user.json();
+            const username = data_user.username;
+
+            return`
             <div class="d-flex justify-content-between">
                 <h4 class="mt-2 ms-4">
                     <a href="/text/${text.id}" class="text-decoration-none text-dark">${text.title}</a>
                 </h4>
                 <div class="d-flex">
                     <img src="/images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40" height="40">
-                    <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="/user/${text.created_by}">User</a>
+                    <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="/user/${text.created_by}">${username}</a>
                 </div>
             </div>
             <hr class="border-danger-subtle border-3 opacity-75 mt- mb-4">
-        `).join("");
+       `}))).join("");
     } catch (error) {
         console.error("Erro ao carregar textos da lista:", error);
         document.getElementById(target_id).innerHTML = "<p>Erro ao carregar textos da lista.</p>";

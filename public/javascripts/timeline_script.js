@@ -3,16 +3,13 @@ async function load_timeline(page = 1, limit = 10) {
         const get_user_id = await fetch("/user/get_user_id");
         const user_id = get_user_id.user_id;
 
-        // Buscar os posts com paginação
         const response = await fetch(`/text/read_texts?page=${page}&limit=${limit}`);
         const data = await response.json();
         const { posts, pagination } = data;
 
-        // Buscar os gêneros
         const genreResponse = await fetch("/genre/read_genre");
         const genres = await genreResponse.json();
 
-        // Criar um mapa de ID para nome do gênero
         const genreMap = {};
         genres.forEach(genre => {
             genreMap[genre.id] = genre.name;
@@ -27,25 +24,24 @@ async function load_timeline(page = 1, limit = 10) {
 
         const charLimit = 250;
 
-        // Exibir os posts
         timeline.innerHTML = (await Promise.all(posts.map(async post => {
             const is_long = post.text.length > charLimit;
             const display = is_long ? post.text.slice(0, charLimit) + "..." : post.text;
 
-            // Obter o nome do gênero pelo ID do post
             const date = new Date(post.publication_date);
             const final_date = date.toLocaleDateString('pt-BR');
             const genreName = genreMap[post.genre_id] || "Desconhecido";
 
-            // Verificar se o usuário é colaborador
+            const response_data_user = await fetch(`/user/${post.created_by}/read_user`);
+            const data_user = await response_data_user.json();
+            const username = data_user.username;
+
             const verify_collaborator_response = await fetch(`/text/${post.id}/verify_collaborator`);
-
-            const result = await verify_collaborator_response.json(); // Aguardar a resolução da Promise
-
-            const is_collaborator = result.is_collaborator; // Acessar o campo `status`
+            const result = await verify_collaborator_response.json();
+            const is_collaborator = result.is_collaborator;
 
             let collaborator_icon = "";
-            // Verifica se é colaborador
+        
             if (is_collaborator && post.created_by !== user_id) {
                 collaborator_icon = `<i class="bi bi-people me-2"></i>`;
             }
@@ -68,7 +64,7 @@ async function load_timeline(page = 1, limit = 10) {
 
                             <div class="d-flex align-items-center">
                                 <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-1" width="40" height="40">
-                                <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="user/${post.created_by}">User</a>
+                                <a class="navbar-brand fs-4 ms-3 mt-2 me-3" href="user/${post.created_by}">${username}</a>
                             </div>
                         </div>
 
@@ -90,9 +86,8 @@ async function load_timeline(page = 1, limit = 10) {
                     </div>
                 </div>
             `;
-        }))).join(""); // Usar Promise.all para aguardar todas as Promises
+        }))).join("");
 
-        // Adicionar botões de paginação
         const pagination_container = document.getElementById("pagination");
         if (pagination_container) {
             const total_pages = Math.ceil(pagination.total_posts / pagination.limit);

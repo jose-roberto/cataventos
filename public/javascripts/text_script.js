@@ -41,13 +41,17 @@ async function load_my_posts(search_query = "") {
 
         const charLimit = 150;
 
-        my_texts.innerHTML = posts.map(post => {
+        my_texts.innerHTML = (await Promise.all(posts.map(async post => {
             const is_long = post.text.length > charLimit;
             const display = is_long ? post.text.slice(0, charLimit) + "..." : post.text;
 
             const data = new Date(post.publication_date);
             const data_formatada = data.toLocaleDateString('pt-BR');
             const genreName = genreMap[post.genre_id] || "Desconhecido";
+
+            const response_data_user = await fetch(`/user/${post.created_by}/read_user`);
+            const data_user = await response_data_user.json();
+            const username = data_user.username;
 
             return `
                     <div class="card mt-4">
@@ -59,7 +63,7 @@ async function load_my_posts(search_query = "") {
                                 <div class="d-flex">
                                     <img src="images/user_photo.png" alt="Logo" class="rounded-circle mt-2" width="40"
                                         height="40">
-                                    <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="/user/${post.created_by}">User</a>
+                                    <a class="navbar-brand fs-3 ms-3 mt-2 me-3" href="/user/${post.created_by}">${username}</a>
                                 </div>
                             </div>
                                 
@@ -81,7 +85,7 @@ async function load_my_posts(search_query = "") {
                         </div>
                     </div>
                 `;
-        }).join("");
+        }))).join("");
     } catch (error) {
         console.error("Erro ao carregar posts:", error);
         document.getElementById("my_tales").innerHTML = "<p>Erro ao carregar posts.</p>";
@@ -254,7 +258,6 @@ async function like_text() {
         }
     });
 }
-
 
 window.onload = function () {
     if (window.location.pathname.includes('my_tales')) {
