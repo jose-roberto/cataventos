@@ -107,7 +107,7 @@ async function search_collaborator(text_id, search_query = "") {
         const collaborators = await response.json();
 
         if (collaborators.length === 0) {
-            collaborators_list.innerHTML = "<p class='text-center title-gradient fs-5 mt-2'>Usuário não encontrado.</p>";
+            collaborators_list.innerHTML = "<p class='text-center title-gradient fs-5 mt-2'>Usuário não encontrado ou já é um colaborador.</p>";
             return;
         }
 
@@ -179,7 +179,7 @@ async function search_list(search_query = "", text_id) {
         const lists = await response.json();
 
         if (lists.length === 0) {
-            your_lists.innerHTML = "<p class='text-center title-gradient fs-5 mt-2'>Lista não encontrada.</p>";
+            your_lists.innerHTML = "<p class='text-center title-gradient fs-5 mt-2'>Lista não encontrada ou texto já adicionado.</p>";
             return;
         }
 
