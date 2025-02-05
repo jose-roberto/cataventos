@@ -1,4 +1,3 @@
-
 async function load_timeline(page = 1, limit = 10) {
     try {
         const get_user_id = await fetch("/user/get_user_id");
@@ -98,12 +97,14 @@ async function load_timeline(page = 1, limit = 10) {
         if (pagination_container) {
             const total_pages = Math.ceil(pagination.total_posts / pagination.limit);
             pagination_container.innerHTML = `
-                <div style="display: flex; justify-content: center; gap: 10px;">
-                    <button class="btn btn-brown" onclick="load_timeline(${page - 1}, ${limit})" ${page === 1 ? "disabled" : ""}>Anterior</button>
-                    <button class="btn btn-brown" onclick="load_timeline(${page + 1}, ${limit})" ${page === total_pages ? "disabled" : ""}>Próxima</button>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-brown" onclick="load_timeline(${page - 1}, ${limit})" ${page===1
+                        ? "disabled" : "" }>Anterior</button>
+                    <button class="btn btn-brown" onclick="load_timeline(${page + 1}, ${limit})"
+                        ${page===total_pages ? "disabled" : "" }>Próxima</button>
                 </div>
-                <div style="text-align: center; margin-top: 5px;">
-                    <span class="ms-3 mt-1">Página ${page} de ${total_pages}</span>
+                <div class="text-center mt-3 mb-5">
+                    <span class="fw-bold">Página ${page} de ${total_pages}</span>
                 </div>
             `;
         }
