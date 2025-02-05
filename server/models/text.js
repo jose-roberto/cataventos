@@ -65,6 +65,20 @@ class Text extends Model {
 
         return this.db_connection.prepare(query).all(...params);
     }
+
+    search_texts(search_query) {
+        const search_terms = search_query.split(' ').filter(term => term.trim() !== '');
+    
+        let query = `SELECT * FROM text`;
+        let params = [];
+    
+        if (search_terms.length > 0) {
+            query += ` WHERE ${search_terms.map(() => 'title LIKE ?').join(' OR ')}`;
+            params = search_terms.map(term => `%${term}%`);
+        }
+    
+        return this.db_connection.prepare(query).all(...params);
+    }
 }
 
 module.exports = Text;

@@ -5,7 +5,6 @@ const List = require('../models/List')
 
 const get_text = async (req, res) => {
     try {
-        console.log('Query:', req.query.q);
         const text_instance = new Text();
         const search_query = req.query.q;
 
@@ -13,11 +12,8 @@ const get_text = async (req, res) => {
 
         if (search_query) {
             // Se houver uma pesquisa, filtre os textos
-            posts = await text_instance.search_my_texts(req.session.user_id, search_query);
-        } else {
-            // Caso contrário, retorne todos os textos
-            posts = await text_instance.find_my_texts(req.session.user_id);
-        }
+            posts = await text_instance.search_texts(search_query);
+        } 
 
         posts.sort((a, b) => new Date(b.publication_date) - new Date(a.publication_date));
 
@@ -58,10 +54,7 @@ const get_list = async (req, res) => {
 
         if (search_query) {
             // Se houver uma pesquisa, filtre as listas
-            lists = await list_instance.search_my_lists(req.session.user_id, search_query);
-        } else {
-            // Caso contrário, retorne todos as listas
-            lists = await list_instance.find_my_lists(req.session.user_id);
+            lists = await list_instance.search_lists(search_query);
         }
 
         lists.sort((a, b) => new Date(b.publication_date) - new Date(a.publication_date));

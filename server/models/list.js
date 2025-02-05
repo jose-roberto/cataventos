@@ -65,6 +65,20 @@ class List extends Model {
         return this.db_connection.prepare(query).all(...params);
     }
 
+    search_lists(search_query) {
+        const search_terms = search_query.split(' ').filter(term => term.trim() !== '');
+
+        let query = `SELECT * FROM list`;
+        let params = [];
+
+        if (search_terms.length > 0) {
+            query += ` WHERE ${search_terms.map(() => 'name LIKE ?').join(' OR ')}`;
+            params = search_terms.map(term => `%${term}%`);
+        }
+
+        return this.db_connection.prepare(query).all(...params);
+    }
+
     list_search(search_query, user_id, text_id) {
         return new Promise((resolve, reject) => {
             try {
