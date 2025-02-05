@@ -194,7 +194,7 @@ const search_collaborator = async (req, res) => {
         let collaborators;
 
         if (search_query) {
-            collaborators = await user_instance.search_collaborator(search_query, res.locals.user_id);
+            collaborators = await user_instance.search_collaborator(search_query, res.locals.user_id, req.params.id);
         } else {
             collaborators = "";
         }

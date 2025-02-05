@@ -87,8 +87,10 @@ Implementar respectivos redirecionamentos para:
 - [X] Excluir textos produzidos (Delete)
 - [X] Consertar botões de tipo
 - [X] Criar opção de convidar para colaboração
-- [ ] Adicionar texto na lista
-- [ ] Validação de colaboração
+- [X] Validação de colaboração
+- [X] Adicionar texto na lista
+- [ ] Validar inclusão na lista
+- [ ] Exibir ícone de colaboração em my_tales.ejs e em text.ejs
 - [ ] Controle de acesso para alterações
 - [ ] Adicionar data
 
