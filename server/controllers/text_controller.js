@@ -1,6 +1,7 @@
 const Text = require('../models/Text');
 const TextUser = require('../models/TextUser');
 const User = require('../models/User');
+const List = require('../models/List');
 
 const create_text = async (req, res) => {
     try {
@@ -236,7 +237,7 @@ const verify_collaborator = async (req, res) => {
         const text_user_instance = new TextUser();
 
         const result = await text_user_instance.find_by_two_keys(req.params.id, req.session.user_id);
-        console.log("Resultado da verificação:", result);
+        // console.log("Resultado da verificação:", result);
 
         res.json({ is_collaborator: result });
     } catch (error) {
@@ -244,6 +245,31 @@ const verify_collaborator = async (req, res) => {
         res.status(500).json({ error: "Erro ao verificar colaborador." });
     }
 }
+
+// const search_list = async (req, res) => {
+//     try {
+//         const search_query = req.query.q;
+
+//         console.log("Consulta recebida:", search_query); // Debugando a query recebida
+
+//         const list_instance = new List();
+
+//         let lists;
+
+//         if (search_query) {
+//             lists = await list_instance.search_my_lists(search_query, res.locals.user_id);
+//         } else {
+//             lists = "";
+//         }
+
+//         console.log("Listas encontradas:", lists);
+
+//         res.json(lists);
+//     } catch (error) {
+//         console.error("Erro ao pesquisar lista:", error);
+//         res.status(500).json({ error: "Erro ao pesquisar lista." });
+//     }
+// }
 
 module.exports = {
     create_text,

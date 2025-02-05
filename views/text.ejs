@@ -50,6 +50,16 @@
                                                 <hr class="dropdown-divider">
                                             </li>
                                             <li>
+                                                <button id="search_list_button"
+                                                    class="dropdown-item d-flex align-items-center gap-2"
+                                                    data-bs-toggle="modal" data-bs-target="#search_list_modal">
+                                                    <i class="bi bi-list-check text-primary"></i> Adicionar em uma lista
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
                                                 <button id="update_post_button"
                                                     class="dropdown-item d-flex align-items-center gap-2"
                                                     data-bs-toggle="modal" data-bs-target="#update_post_modal">
@@ -143,6 +153,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Modal de adição de colaborador -->
         <div class="modal fade" id="search_collaborator_modal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -152,9 +163,28 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input id="search_collaborators_input" class="form-control rounded-pill ps-5" type="search"
+                        <input id="search_collaborator_input" class="form-control rounded-pill ps-5" type="search"
                             placeholder="Buscar colaboradores" aria-label="Search">
                         <div id="collaborators_list" class="list-group mt-2">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de adicionar em lista  -->
+        <div class="modal fade" id="search_list_modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Adicionar em uma lista</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input id="search_list_input" class="form-control rounded-pill ps-5" type="search"
+                            placeholder="Buscar suas listas" aria-label="Search">
+                        <div id="your_lists" class="list-group mt-2">
 
                         </div>
                     </div>

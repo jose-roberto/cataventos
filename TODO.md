@@ -16,6 +16,7 @@ Já em casos onde seja interessante que o resultado da ação impacte o front-en
 - [ ] CRUD da lista
 
 ### Responsividade
+- [ ] modal de adicionar colaborador
 - [ ] search.ejs
 - [X] text.ejs
 - [X] my_lists.ejs

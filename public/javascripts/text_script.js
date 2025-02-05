@@ -88,7 +88,7 @@ async function load_my_posts(search_query = "") {
     }
 }
 
-async function search_collaborators(text_id, search_query = "") {
+async function search_collaborator(text_id, search_query = "") {
     try {
         const collaborators_list = document.getElementById("collaborators_list");
 
@@ -162,6 +162,73 @@ async function add_collaborator(text_id, collaborator_id) {
     }
 }
 
+async function search_list(search_query = "") {
+    try {
+        const your_lists = document.getElementById("your_lists");
+
+        if (search_query === "") {
+            your_lists.innerHTML = "<p class='text-center title-gradient fs-5 mt-2'>Procure por uma lista...</p>";
+            return;
+        }
+
+        const route = search_query ? `/list/my_lists?q=${encodeURIComponent(search_query)}` : "/list/my_lists";
+
+        console.log(route);
+
+        const response = await fetch(route);
+        const lists = await response.json();
+
+        if (lists.length === 0) {
+            your_lists.innerHTML = "<p class='text-center title-gradient fs-5 mt-2'>Lista não encontrada.</p>";
+            return;
+        }
+
+        your_lists.innerHTML = lists.map(list => {
+            return `
+               <div class="card mt-4" id="list_${list.id}">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3 class="card-title m-0">${list.name}</h3>
+
+                            <button type="button" class="btn btn-brown add-text-to-list-button" data-id="${list.id}">
+                                <i class="bi bi-plus-square"></i>
+                            </button>
+                        </div>
+
+                        <hr class="border-danger-subtle border-3 opacity-75 mt-2 mb-4">
+                    </div>
+                </div>
+                `;
+        }).join("");
+    } catch (error) {
+        console.error("Erro ao carregar listas:", error);
+        document.getElementById("your_lists").innerHTML = "<p>Erro ao carregar listas.</p>";
+    }
+}
+
+// async function add_collaborator(text_id, collaborator_id) {
+//     try {
+//         const response = await fetch(`/text/${text_id}/add_collaborator`, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({ collaborator_id }),
+//         });
+
+//         if (!response.ok) {
+//             throw new Error("Erro ao adicionar colaborador.");
+//         } else {
+//             console.log("Colaborador adicionado com sucesso!");
+
+//             const new_collaborator = document.getElementById(`collaborator_${collaborator_id}`);
+//             new_collaborator.remove();
+//         }
+//     } catch (error) {
+//         console.error("Erro ao adicionar colaborador:", error);
+//     }
+// }
+
 async function like_text() {
     const button = document.getElementById("like-button");
 
@@ -169,7 +236,7 @@ async function like_text() {
         const text_id = button.getAttribute("data-id");
 
         try {
-            const response = await fetch(`/ text / ${text_id}/like_text`, {
+            const response = await fetch(`/text/${text_id}/like_text`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -204,22 +271,30 @@ window.onload = function () {
     if (window.location.pathname.includes('text')) {
         like_text();
 
-        const search_collaborator_input = document.getElementById("search_collaborators_input");
+        const search_collaborator_input = document.getElementById("search_collaborator_input");
         search_collaborator_input.addEventListener("input", (event) => {
             const text_id = window.location.pathname.split('/')[2];
 
             const search_query = event.target.value.trim();
-            search_collaborators(text_id, search_query);
+
+            search_collaborator(text_id, search_query);
+        });
+
+        const search_list_input = document.getElementById("search_list_input");
+        search_list_input.addEventListener("input", (event) => {
+            const search_query = event.target.value.trim();
+
+            search_list(search_query);
         });
     }
 };
 
 // DINAMICAMENTE:
 
-const collaboratorsContainer = document.getElementById("collaborators_list");
+const collaborators_container = document.getElementById("collaborators_list");
 
-if (collaboratorsContainer) {
-    collaboratorsContainer.addEventListener("click", (event) => {
+if (collaborators_container) {
+    collaborators_container.addEventListener("click", (event) => {
         const button = event.target.closest(".add-collaborator-button");
 
         if (button) {  // Verifica se o botão existe
@@ -231,3 +306,18 @@ if (collaboratorsContainer) {
         }
     });
 }
+
+// Em construção
+// const lists_container = document.getElementById("your_lists");
+
+// if (lists_container) {
+//     lists_container.addEventListener("click", (event) => {
+//         const button = event.target.closest(".add-text-to-list-button");
+
+//         if (button) {
+//             const text_id = window.location.pathname.split('/')[2];
+
+//             add_text_to_list(text_id);
+//         }
+//     });
+// }
