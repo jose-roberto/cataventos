@@ -1,6 +1,6 @@
 # Cataventos
 
-Repositório para o desenvolvimento do trabalho final da disciplina INF321.
+Repositório para o Trabalho Final da disciplina INF321 - Projeto e Desenvolvimento de Sistemas para a Web.
 
 ## Alunos:
 - José Roberto Martins Costa Júnior - 105480
